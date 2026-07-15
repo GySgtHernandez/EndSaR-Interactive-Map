@@ -1,0 +1,537 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EndSaR Interactive Data Map</title>
+  <link rel="stylesheet" href="leaflet/leaflet.css">
+  <style>
+    :root { color-scheme: light; --ink: #17202a; --muted: #5f6b77; --line: #d7dee7; --panel: #ffffff; --paper: #f5f7fa; --accent: #006d77; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); background: var(--paper); }
+    .app { display: grid; grid-template-columns: minmax(360px, 455px) 1fr; height: 100vh; min-height: 0; overflow: hidden; }
+    aside { background: var(--panel); border-right: 1px solid var(--line); padding: 18px; height: 100vh; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+    main { position: relative; height: 100vh; min-height: 0; overflow: hidden; }
+    #map { position: absolute; inset: 0; background: #dfe8ed; }
+    .screen-hatch-canvas { position: absolute; pointer-events: none; }
+    h1 { font-size: 23px; line-height: 1.2; margin: 0 0 8px; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); line-height: 1.45; }
+    label { display: block; font-size: 12px; font-weight: 700; color: #384653; margin: 16px 0 7px; text-transform: uppercase; }
+    select, input { width: 100%; min-height: 40px; border: 1px solid #b9c4d0; border-radius: 6px; background: #fff; color: var(--ink); padding: 8px 10px; font: inherit; }
+    .command { width: 100%; min-height: 40px; border: 1px solid #0f5f68; border-radius: 6px; background: var(--accent); color: #fff; padding: 8px 10px; font: inherit; font-weight: 700; cursor: pointer; }
+    .command:hover { background: #005b63; }
+    .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .export-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+    .stat { border: 1px solid var(--line); border-radius: 6px; padding: 11px; background: #fbfcfd; min-height: 78px; }
+    .stat b { display: block; font-size: 22px; margin-bottom: 4px; }
+    .stat span { display: block; color: var(--muted); font-size: 12px; line-height: 1.3; }
+    .summary-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+    .summary-table td { border-bottom: 1px solid #edf1f5; padding: 7px 4px; text-align: right; }
+    .summary-table td:first-child { text-align: left; color: var(--muted); }
+    .legend { position: absolute; right: 16px; bottom: calc(100% + 8px); z-index: 2; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; box-shadow: 0 8px 22px rgba(23,32,42,.14); width: min(430px, calc(100vw - 490px)); min-width: 280px; transition: opacity .14s ease, transform .14s ease; }
+    .legend.hidden { opacity: 0; pointer-events: none; transform: translateY(6px); }
+    .legend-title { font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+    .swatches { display: block; position: relative; height: 12px; border-radius: 3px; margin: 12px 0 6px; background: linear-gradient(90deg, #0070c0 0%, #95b39c 25%, #ffd966 50%, #ff6633 75%, #ff0000 100%); }
+    .legend-marker { position: absolute; top: -13px; transform: translateX(-50%); color: #17202a; font-weight: 900; font-size: 18px; line-height: 1; text-shadow: 0 1px 2px rgba(255,255,255,.9); pointer-events: none; }
+    .scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+    .legend-note { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #e4e9ef; font-size: 11px; color: var(--muted); }
+    .legend-footnote { margin-top: 5px; padding-left: 30px; font-size: 11px; color: var(--muted); }
+    .hatch-sample { width: 22px; height: 14px; border: 1px dashed #4f5862; background: repeating-linear-gradient(135deg, transparent 0 5px, #4f5862 5px 7px, transparent 7px 11px); flex: 0 0 auto; }
+    .entity-name { font-size: 18px; font-weight: 700; margin: 18px 0 8px; }
+    .details { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 14px; }
+    .detail-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid #edf1f5; font-size: 14px; }
+    .detail-row span:first-child { color: var(--muted); }
+    .districts { margin-top: 12px; display: grid; gap: 8px; }
+    .district { border-left: 3px solid var(--accent); background: #f7fafb; padding: 8px 9px; border-radius: 0 5px 5px 0; }
+    .district strong { display: block; font-size: 13px; line-height: 1.25; }
+    .district span, .note, .credit { color: var(--muted); font-size: 12px; }
+    .note { margin-top: 16px; }
+    .credit { margin-top: 12px; color: #384653; font-weight: 700; }
+    .leaflet-popup-content { margin: 10px 12px; line-height: 1.35; }
+    .popup-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+    .popup-line { color: #40505f; }
+    .info-menu { position: absolute; top: 14px; right: 14px; z-index: 1000; }
+    .info-button { border: 1px solid #9facba; border-radius: 6px; background: #fff; color: #203a5f; min-height: 36px; padding: 7px 12px; font: inherit; font-weight: 700; box-shadow: 0 4px 14px rgba(23,32,42,.12); cursor: pointer; }
+    .info-list { position: absolute; top: calc(100% + 6px); right: 0; display: none; min-width: 180px; background: #fff; border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 8px 22px rgba(23,32,42,.18); overflow: hidden; }
+    .info-list.open { display: block; }
+    .info-item { display: block; width: 100%; border: 0; border-bottom: 1px solid #edf1f5; background: #fff; color: var(--ink); padding: 10px 12px; font: inherit; text-align: left; cursor: pointer; }
+    .info-item:last-child { border-bottom: 0; }
+    .info-item:hover, .info-item:focus { background: #f2f6fa; outline: none; }
+    .info-overlay { position: fixed; inset: 0; z-index: 1600; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(23,32,42,.36); }
+    .info-overlay.open { display: flex; }
+    .info-dialog { width: min(760px, 100%); max-height: min(80vh, 760px); overflow: auto; background: #fff; border-radius: 8px; border: 1px solid var(--line); box-shadow: 0 18px 50px rgba(23,32,42,.28); }
+    .info-dialog-header { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); background: #f7f9fb; }
+    .info-dialog-title { flex: 1; }
+    .info-dialog-title h2 { margin: 0 0 4px; font-size: 18px; line-height: 1.25; color: var(--ink); }
+    .info-dialog-title p { font-size: 13px; color: #40505f; }
+    .info-close { width: 30px; height: 30px; border: 1px solid #9facba; border-radius: 4px; background: #fff; cursor: pointer; font-size: 18px; line-height: 1; }
+    .info-dialog-body { padding: 18px; color: #2f3a45; line-height: 1.5; font-size: 14px; }
+    .info-dialog-body p { color: #2f3a45; margin: 0 0 12px; }
+    .info-source { padding-top: 12px; border-top: 1px solid #edf1f5; color: var(--muted); font-size: 13px; }
+    .bottom-drawer { position: fixed; left: 455px; right: 0; bottom: 0; z-index: 1200; background: #fff; border-top: 1px solid #aeb8c4; box-shadow: 0 -8px 22px rgba(23,32,42,.16); max-height: min(46vh, 430px); transform: translateY(calc(100% - 38px)); transition: transform .18s ease; }
+    .bottom-drawer.open { transform: translateY(0); }
+    .drawer-bar { height: 38px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-bottom: 1px solid var(--line); background: #f7f9fb; }
+    .drawer-bar button { width: 28px; height: 26px; border: 1px solid #9facba; border-radius: 4px; background: #fff; cursor: pointer; }
+    .drawer-bar .legend-toggle { width: auto; min-width: 72px; margin-left: auto; padding: 0 10px; font-weight: 700; color: #203a5f; }
+    .drawer-title { font-weight: 700; font-size: 13px; }
+    .drawer-subtitle { color: var(--muted); font-size: 12px; }
+    .drawer-content { overflow: auto; max-height: calc(min(46vh, 430px) - 38px); overscroll-behavior: contain; }
+    .detail-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 1050px; }
+    .detail-table th, .detail-table td { border: 1px solid #d7dee7; padding: 6px 7px; text-align: right; white-space: nowrap; }
+    .detail-table th:first-child, .detail-table td:first-child, .detail-table th:nth-child(2), .detail-table td:nth-child(2) { text-align: left; }
+    .detail-table th { position: sticky; top: 0; background: #203a5f; color: #fff; z-index: 1; }
+    .detail-table.approximated-table th { background: #72dd44; color: #17202a; }
+    .detail-table tr:nth-child(even) td { background: #f6f8fa; }
+    @media (max-width: 900px) { .app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 42vh) minmax(0, 58vh); height: 100vh; } aside { border-right: 0; border-bottom: 1px solid var(--line); height: auto; min-height: 0; max-height: none; overflow-y: auto; } main { height: auto; min-height: 0; } .info-menu { top: 10px; right: 10px; } .legend { right: 10px; width: calc(100vw - 20px); min-width: 0; } .bottom-drawer { left: 0; max-height: 52vh; } .drawer-content { max-height: calc(52vh - 38px); } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <h1>EndSaR Interactive Data Map</h1>
+      <p>School-year data uses CEPI <em>Use of seclusion and restraint data files</em> [Data set] and CEPI district-code geography assignments.</p>
+      <label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select>
+      <div class="controls">
+        <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
+        <div><label for="year">School Year</label><select id="year"></select></div>
+      </div>
+      <div id="scope-wrap"><label for="scope">Data Scope</label><select id="scope"><option value="combined">Combined entities</option><option value="entity">ISD entity only</option></select></div>
+      <label for="metric">Metric</label><select id="metric"></select>
+      <label>Export</label><div class="export-controls"><button class="command" id="export-png" type="button">Export Map as PNG</button><button class="command" id="export-table" type="button">Export Table as Excel</button></div>
+      <label for="search" id="search-label">Find County</label><input id="search" list="area-list" placeholder="Type a county"><datalist id="area-list"></datalist>
+      <div class="metric-grid">
+        <div class="stat"><b id="state-total">0</b><span>statewide estimated total for selected metric</span></div>
+        <div class="stat"><b id="area-count">0</b><span id="area-label">areas represented</span></div>
+        <div class="stat"><b id="district-total">0</b><span>LEA rows included in aggregation</span></div>
+        <div class="stat"><b id="suppressed-total">0</b><span id="suppressed-total-label">suppressed cells in selected metric</span></div>
+      </div>
+      <label>Michigan Overall Year Totals</label><table class="summary-table"><tbody id="summary-body"></tbody></table>
+      <div id="entity-panel" class="details"><p>Select an area on the map to see details.</p></div>
+      <p class="note">Michigan's Center for Educational Performance and Information. (2017-2026). <em>Use of seclusion and restraint data files</em> [Data set]. MI School Data. <a href="https://www.mischooldata.org/districtschool-data-files/" target="_blank" rel="noopener noreferrer">https://www.mischooldata.org/districtschool-data-files/</a></p>
+      <p class="credit">Developed by Matt Rische</p>
+    </aside>
+    <main><div id="map"></div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
+  </div>
+  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Toggle table">?</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button></div><div class="drawer-content" id="drawer-content"></div></div>
+  <div class="info-overlay" id="info-overlay" aria-hidden="true"><div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="info-dialog-header"><div class="info-dialog-title"><h2 id="info-title">Information</h2><p id="info-subtitle"></p></div><button class="info-close" id="info-close" type="button" aria-label="Close information">×</button></div><div class="info-dialog-body" id="info-body"></div></div></div>
+  <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script><script src="map-data.js?v=derived-stars-20260520"></script>
+  <script>
+    const datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body');
+    const fmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
+    const ratioFmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
+    const HISTORIC_AVERAGE_YEAR = '__historic_average__';
+    const HISTORIC_AVERAGE_LABEL = 'Historic Average';
+    const gradientColors = ['#0070c0', '#95b39c', '#ffd966', '#ff6633', '#ff0000'];
+    const INFO_CONTENT = {
+      seclusion: {
+        title: 'Seclusion',
+        header: 'Mich. Comp. Laws § 380.1307h(e)',
+        paragraphs: [
+          '"Emergency seclusion" means a last resort emergency safety intervention involving seclusion that is necessitated by an ongoing emergency situation and that provides an opportunity for the pupil to regain self-control while maintaining the safety of the pupil and others. To qualify as emergency seclusion, there must be continuous observation by school personnel of the pupil in seclusion, and the room or area used for confinement must comply with state and local fire and building codes; must not be locked; must not prevent the pupil from exiting the area if school personnel become incapacitated or leave that area; and must provide for adequate space, lighting, ventilation, viewing, and the safety and dignity of the pupil and others, in accordance with department guidelines. Emergency seclusion does not include the confinement of preschool children or of pupils who are severely self-injurious or suicidal; seclusion that is used for the convenience of school personnel, as a substitute for an educational program, as a form of discipline or punishment, as a substitute for less restrictive alternatives, as a substitute for adequate staffing, or as a substitute for school personnel training in positive behavioral intervention and support; or a practice prohibited under section 1307b. Emergency seclusion does not include seclusion when contraindicated based on a pupil\'s disability, health care needs, or medical or psychiatric condition, as documented in a record or records made available to the school.'
+        ],
+        source: 'Michigan Compiled Laws § 380.1307h(e). (n.d.). Definitions. State of Michigan.',
+        url: 'https://www.legislature.mi.gov/'
+      },
+      restraint: {
+        title: 'Restraint',
+        header: 'Mich. Comp. Laws § 380.1307h(d)',
+        paragraphs: [
+          '"Emergency physical restraint" means a last resort emergency safety intervention involving physical restraint that is necessitated by an ongoing emergency situation and that provides an opportunity for the pupil to regain self-control while maintaining the safety of the pupil and others. Emergency physical restraint does not include physical restraint that is used for the convenience of school personnel, as a substitute for an educational program, as a form of discipline or punishment, as a substitute for less restrictive alternatives, as a substitute for adequate staffing, or as a substitute for school personnel training in positive behavioral intervention and support. Emergency physical restraint does not include a practice prohibited under section 1307b. Emergency physical restraint does not include physical restraint when contraindicated based on a pupil\'s disability, health care needs, or medical or psychiatric condition, as documented in a record or records made available to the school.'
+        ],
+        source: 'Michigan Compiled Laws § 380.1307h(d). (n.d.). Definitions. State of Michigan.',
+        url: 'https://www.legislature.mi.gov/'
+      },
+      getInvolved: {
+        title: 'Get Involved',
+        header: 'Get Involved',
+        paragraphs: [
+          'If you want to End the Harm of Seclusion and Restraint learn more about Michigan Advocates to End Seclusion and Restraint'
+        ],
+        url: 'https://www.endsar-mi.org'
+      }
+    };
+    const MICHIGAN_BOUNDS = L.latLngBounds([41.25, -91.2], [48.75, -80.2]);
+    const MAP_NAVIGATION_BOUNDS = L.latLngBounds([39.2, -91.2], [48.75, -78.0]);
+    const boundaries = { county: COUNTY_BOUNDARIES_OPTIMIZED, district: DISTRICT_BOUNDARIES_OPTIMIZED, isd: ISD_BOUNDARIES_OPTIMIZED, region: REGION_BOUNDARIES_OPTIMIZED };
+    const labels = { county: { find: 'Find County', ph: 'Type a county', represented: 'counties represented', empty: 'Select a county on the map to see details.' }, district: { find: 'Find District', ph: 'Type a district', represented: 'districts represented', empty: 'Select a district on the map to see details.' }, isd: { find: 'Find ISD', ph: 'Type an ISD', represented: 'ISDs represented', empty: 'Select an ISD on the map to see details.' }, region: { find: 'Find Region', ph: 'Type a region', represented: 'regions represented', empty: 'Select a region on the map to see details.' } };
+    let selectedLayer = null, geoLayer = null, hatchCanvas = null, hatchCtx = null, hatchFrame = 0, hatchTimer = 0, hatchDrawTopLeft = L.point(0, 0);
+
+    METRICS.forEach(metric => { const option = document.createElement('option'); option.value = metric.key; option.textContent = metric.label; metricSelect.appendChild(option); });
+
+    function activeDataset() { return MAP_DATASETS[datasetSelect.value] || MAP_DATASETS[DEFAULT_DATASET]; }
+    function activeSources() { return activeDataset().sources; }
+    function activeMode() { return viewSelect.value; }
+    function activeSourceKey() { if (activeMode() === 'isd' && scopeSelect.value === 'entity') return 'isd_entity'; if (activeMode() === 'region' && scopeSelect.value === 'entity') return 'region_entity'; return activeMode(); }
+    function activeSource() { return activeSources()[activeSourceKey()]; }
+    function escapeHtml(value) { return String(value === undefined || value === null ? '' : value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+    function toggleInfoList(forceOpen) { const open = forceOpen === undefined ? !infoList.classList.contains('open') : forceOpen; infoList.classList.toggle('open', open); infoButton.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function openInfo(key) { const entry = INFO_CONTENT[key]; if (!entry) return; infoTitle.textContent = entry.title; infoSubtitle.textContent = entry.header; const link = entry.url ? `<a href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(entry.url)}</a>` : ''; const source = entry.source ? `${escapeHtml(entry.source)} ${link}` : link; infoBody.innerHTML = entry.paragraphs.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join('') + (source ? `<div class="info-source">${source}</div>` : ''); infoOverlay.classList.add('open'); infoOverlay.setAttribute('aria-hidden', 'false'); toggleInfoList(false); infoClose.focus(); }
+    function closeInfo() { infoOverlay.classList.remove('open'); infoOverlay.setAttribute('aria-hidden', 'true'); infoButton.focus(); }
+    function refreshScope() { const visible = activeMode() === 'isd' || activeMode() === 'region'; scopeWrap.style.display = visible ? 'block' : 'none'; if (!visible) scopeSelect.value = 'combined'; }
+    function selectedYear() { return yearSelect.value; }
+    function isHistoricAverage() { return selectedYear() === HISTORIC_AVERAGE_YEAR; }
+    function selectedYearLabel() { return isHistoricAverage() ? HISTORIC_AVERAGE_LABEL : selectedYear(); }
+    function activeItem(feature) { return activeSource().items[feature.properties.id]; }
+    function formatValue(key, value) { return key === 'event_student_ratio' ? ratioFmt.format(value || 0) : fmt.format(value || 0); }
+    function average(values) { const usable = values.filter(value => Number.isFinite(value)); return usable.length ? usable.reduce((sum, value) => sum + value, 0) / usable.length : 0; }
+    function averageYearRecords(records) {
+      const metrics = {}, displayMetrics = {}, suppressedCells = {}, approximatedCells = {}, summary = {};
+      METRICS.forEach(metric => {
+        const key = metric.key;
+        metrics[key] = average(records.map(record => Number(record.metrics && record.metrics[key])));
+        suppressedCells[key] = records.reduce((sum, record) => sum + ((record.suppressedCells && record.suppressedCells[key]) || 0), 0);
+        approximatedCells[key] = records.reduce((sum, record) => sum + ((record.approximatedCells && record.approximatedCells[key]) || 0), 0);
+        const omitted = datasetSelect.value === 'raw' && suppressedCells[key] > 0;
+        displayMetrics[key] = omitted ? `${formatValue(key, metrics[key])}*` : metrics[key];
+      });
+      ['swd_total', 'nonswd_total', 'student_total', 'seclusion_total', 'restraint_total', 'combined_event_total'].forEach(key => {
+        summary[key] = average(records.map(record => Number(record.summary && record.summary[key])));
+      });
+      return { metrics, displayMetrics, suppressedCells, approximatedCells, summary, topDistricts: [] };
+    }
+    function dataForSelection(years, dataByYear) { return isHistoricAverage() ? averageYearRecords(years.map(year => dataByYear[year.year]).filter(Boolean)) : dataByYear[selectedYear()]; }
+    function yearData(item) { return dataForSelection(activeSource().years, item.years); }
+    function displayValue(data, key) { const value = data.displayMetrics && data.displayMetrics[key] !== undefined ? data.displayMetrics[key] : data.metrics[key]; return typeof value === 'string' ? value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : formatValue(key, value); }
+    function nonzeroValues(metricKey) { return Object.values(activeSource().items).map(item => yearData(item).metrics[metricKey] || 0).filter(v => v > 0).sort((a, b) => a - b); }
+    function percentile(values, p) { if (!values.length) return 0; const pos = (values.length - 1) * p; const base = Math.floor(pos); const rest = pos - base; return values[base + 1] !== undefined ? values[base] + rest * (values[base + 1] - values[base]) : values[base]; }
+    function colorScale(metricKey) { const values = nonzeroValues(metricKey); return { min: values[0] || 0, mid: percentile(values, 0.50), max: values[values.length - 1] || 0 }; }
+    function hexToRgb(hex) { const clean = hex.replace('#', ''); return [parseInt(clean.slice(0,2),16), parseInt(clean.slice(2,4),16), parseInt(clean.slice(4,6),16)]; }
+    function mix(a, b, t) { const ar = hexToRgb(a), br = hexToRgb(b); return '#' + ar.map((v, i) => Math.round(v + (br[i] - v) * t).toString(16).padStart(2, '0')).join(''); }
+    function gradientColorAt(t) { const capped = Math.max(0, Math.min(t, 1)); const segment = Math.min(Math.floor(capped * (gradientColors.length - 1)), gradientColors.length - 2); const local = capped * (gradientColors.length - 1) - segment; return mix(gradientColors[segment], gradientColors[segment + 1], local); }
+    function percentileRank(values, value) { if (!value || !values.length) return 0; if (values.length === 1) return 1; let first = values.findIndex(v => v >= value), last = values.length - 1; for (let i = values.length - 1; i >= 0; i--) { if (values[i] <= value) { last = i; break; } } if (first < 0) first = values.length - 1; return ((first + last) / 2) / (values.length - 1); }
+    function percentileColor(value, metricKey) { if (!value) return '#eef2f5'; return gradientColorAt(percentileRank(nonzeroValues(metricKey), value)); }
+    function selectedLegendPercent(metricKey) { if (!selectedLayer) return null; const item = activeItem(selectedLayer.feature); if (!item) return null; const value = yearData(item).metrics[metricKey] || 0; if (!value) return null; return percentileRank(nonzeroValues(metricKey), value); }
+    function hasSuppressionPattern(data, metricKey) { return datasetSelect.value === 'raw' ? (data.suppressedCells[metricKey] || 0) > 0 : (data.approximatedCells && (data.approximatedCells[metricKey] || 0) > 0); }
+    function selectedCellCount(data, metricKey) { return datasetSelect.value === 'raw' ? data.suppressedCells[metricKey] || 0 : data.approximatedCells && data.approximatedCells[metricKey] || 0; }
+    function selectedCellCountLabel() { return datasetSelect.value === 'raw' ? 'suppressed cells in selected metric' : 'approximated cells in selected metric'; }
+    function selectedCellCountTitle() { return datasetSelect.value === 'raw' ? 'Suppressed cells' : 'Approximated cells'; }
+    function cellCountForDataset(data, metricKey, datasetKey) { return datasetKey === 'raw' ? data.suppressedCells[metricKey] || 0 : data.approximatedCells && data.approximatedCells[metricKey] || 0; }
+    function cellCountTitleForDataset(datasetKey) { return datasetKey === 'raw' ? 'Suppressed cells' : 'Approximated cells'; }
+    function styleFeature(feature) { const item = activeItem(feature), metricKey = metricSelect.value, data = item ? yearData(item) : null, value = data ? data.metrics[metricKey] || 0 : 0, patterned = data && hasSuppressionPattern(data, metricKey); return { color: '#ffffff', weight: activeMode() === 'district' ? 0.8 : activeMode() === 'region' ? 2 : 1.2, fillColor: datasetSelect.value === 'raw' && patterned && !isHistoricAverage() ? '#d8dde2' : percentileColor(value, metricKey), fillOpacity: 0.88 }; }
+
+    const map = L.map('map', { zoomControl: true, scrollWheelZoom: true, preferCanvas: true, maxBounds: MAP_NAVIGATION_BOUNDS, maxBoundsViscosity: 0.85, minZoom: 5, maxZoom: 10, attributionControl: false }).setView([44.35, -85.55], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { bounds: MICHIGAN_BOUNDS, noWrap: true, keepBuffer: 1, minZoom: 5, maxZoom: 10, opacity: 0.82, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+    function ensureHatchCanvas() { if (hatchCanvas) return; hatchCanvas = document.createElement('canvas'); hatchCanvas.className = 'screen-hatch-canvas'; map.getPanes().overlayPane.appendChild(hatchCanvas); hatchCtx = hatchCanvas.getContext('2d'); }
+    function resizeHatchCanvas() { ensureHatchCanvas(); const size = map.getSize(), dpr = window.devicePixelRatio || 1, topLeft = map.containerPointToLayerPoint([0, 0]); L.DomUtil.setPosition(hatchCanvas, topLeft); hatchCanvas.style.width = `${size.x}px`; hatchCanvas.style.height = `${size.y}px`; hatchCanvas.width = Math.ceil(size.x * dpr); hatchCanvas.height = Math.ceil(size.y * dpr); hatchCtx.setTransform(dpr, 0, 0, dpr, 0, 0); return { size, topLeft }; }
+    function drawFeaturePathToContainer(ctx, geometry) {
+      const drawRing = ring => {
+        ring.forEach((coord, index) => {
+          const point = map.latLngToLayerPoint([coord[1], coord[0]]);
+          const x = point.x - hatchDrawTopLeft.x, y = point.y - hatchDrawTopLeft.y;
+          if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+      };
+      if (geometry.type === 'Polygon') geometry.coordinates.forEach(drawRing);
+      if (geometry.type === 'MultiPolygon') geometry.coordinates.forEach(polygon => polygon.forEach(drawRing));
+    }
+    function hideHatches() { if (hatchCanvas) hatchCanvas.style.opacity = '0'; }
+    function renderHatches() {
+      if (!geoLayer) return;
+      const hatchLayout = resizeHatchCanvas(), size = hatchLayout.size, metricKey = metricSelect.value;
+      hatchDrawTopLeft = hatchLayout.topLeft;
+      hatchCanvas.style.opacity = '1';
+      hatchCtx.clearRect(0, 0, size.x, size.y);
+      boundaries[activeMode()].features.forEach(feature => {
+        const item = activeSource().items[feature.properties.id];
+        if (!item) return;
+        const data = yearData(item);
+        if (!hasSuppressionPattern(data, metricKey)) return;
+        hatchCtx.beginPath();
+        drawFeaturePathToContainer(hatchCtx, feature.geometry);
+        stripeCurrentPath(hatchCtx, 1, datasetSelect.value === 'raw' ? '#7a838c' : '#343a40', size.x, size.y);
+      });
+    }
+    function scheduleHatches(delay = 0) { clearTimeout(hatchTimer); hatchTimer = setTimeout(() => { cancelAnimationFrame(hatchFrame); hatchFrame = requestAnimationFrame(renderHatches); }, delay); }
+    map.on('zoomstart movestart', hideHatches);
+    map.on('zoomend moveend resize viewreset', () => scheduleHatches(40));
+
+    function refreshYears() { const current = yearSelect.value; yearSelect.innerHTML = ''; activeSource().years.forEach(item => { const option = document.createElement('option'); option.value = item.year; option.textContent = item.year; yearSelect.appendChild(option); }); const historic = document.createElement('option'); historic.value = HISTORIC_AVERAGE_YEAR; historic.textContent = HISTORIC_AVERAGE_LABEL; yearSelect.appendChild(historic); yearSelect.value = current === HISTORIC_AVERAGE_YEAR || activeSource().years.some(y => y.year === current) ? current : activeSource().years[activeSource().years.length - 1].year; }
+    function refreshSearch() { const l = labels[activeMode()]; document.getElementById('search-label').textContent = l.find; search.placeholder = l.ph; search.value = ''; areaList.innerHTML = ''; Object.values(activeSource().items).sort((a, b) => a.name.localeCompare(b.name)).forEach(item => { const option = document.createElement('option'); option.value = item.name; areaList.appendChild(option); }); }
+    function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">LEA rows: ${fmt.format(item.districtCount)}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>`; }
+    function sourceTotalsForSelection(source = activeSource()) { return dataForSelection(source.years, source.stateTotals); }
+    function renderSummary() { const totals = sourceTotalsForSelection(), s = totals.summary; document.getElementById('summary-body').innerHTML = `<tr><td>Total reported students with disabilities</td><td>${fmt.format(s.swd_total)}</td></tr><tr><td>Total reported students without disabilities</td><td>${fmt.format(s.nonswd_total)}</td></tr><tr><td>Combined reported students</td><td>${fmt.format(s.student_total)}</td></tr><tr><td>Total seclusions</td><td>${fmt.format(s.seclusion_total)}</td></tr><tr><td>Total restraints</td><td>${fmt.format(s.restraint_total)}</td></tr><tr><td>Combined seclusions and restraints</td><td>${fmt.format(s.combined_event_total)}</td></tr><tr><td>Combined Ratio</td><td>${formatValue('event_student_ratio', totals.metrics.event_student_ratio || 0)}</td></tr>`; }
+    function detailRowsFor(item, scopeLabel) {
+      return activeSource().years.map(y => {
+        const data = item.years[y.year], m = data.metrics, s = data.summary;
+        return `<tr><td>${y.year}</td><td>${scopeLabel}</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
+      }).join('');
+    }
+    function stateDetailRowsFor(source = activeSource()) {
+      return source.years.map(y => {
+        const data = source.stateTotals[y.year];
+        return `<tr><td>${y.year}</td><td>State Total</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
+      }).join('');
+    }
+    function detailTableHtml(rows, datasetKey = datasetSelect.value) { return `<table class="detail-table ${datasetKey === 'approximated' ? 'approximated-table' : 'raw-table'}"><thead><tr><th>Year</th><th>Scope</th><th>Students Reported</th><th>SWD Students</th><th>SWD Seclusions</th><th>SWD Restraints</th><th>Non-SWD Students</th><th>Non-SWD Seclusions</th><th>Non-SWD Restraints</th><th>Total Seclusions</th><th>Total Restraints</th><th>Combined Ratio</th><th>Total Incidents</th></tr></thead><tbody>${rows}</tbody></table>`; }
+    function renderStateDrawer() {
+      drawerTitle.textContent = 'State Detail';
+      drawerSubtitle.textContent = `${activeDataset().label} - ${activeSource().label}`;
+      drawerContent.innerHTML = detailTableHtml(stateDetailRowsFor());
+    }
+    function renderDrawer(item) {
+      drawerTitle.textContent = `${item.name} Detail`;
+      drawerSubtitle.textContent = `${activeSource().label}`;
+      let rows = detailRowsFor(item, activeSource().label);
+      if (activeMode() === 'isd') {
+        rows = detailRowsFor(activeSources().isd_entity.items[item.id], 'ISD entity only') + detailRowsFor(activeSources().isd.items[item.id], 'Combined entities');
+      } else if (activeMode() === 'region') {
+        rows = detailRowsFor(activeSources().region_entity.items[item.id], 'ISD entities only') + detailRowsFor(activeSources().region.items[item.id], 'Combined entities');
+      }
+      drawerContent.innerHTML = detailTableHtml(rows);
+    }
+
+    function rowsForMetrics(data) { return METRICS.map(metric => `<div class="detail-row"><span>${metric.label}</span><strong>${displayValue(data, metric.key)}</strong></div>`).join(''); }
+    function rowsForSummary(s) { return `<div class="detail-row"><span>Students with disabilities total</span><strong>${fmt.format(s.swd_total)}</strong></div><div class="detail-row"><span>Students without disabilities total</span><strong>${fmt.format(s.nonswd_total)}</strong></div><div class="detail-row"><span>Total seclusions</span><strong>${fmt.format(s.seclusion_total)}</strong></div><div class="detail-row"><span>Total restraints</span><strong>${fmt.format(s.restraint_total)}</strong></div><div class="detail-row"><span>Combined seclusions and restraints</span><strong>${fmt.format(s.combined_event_total)}</strong></div>`; }
+    function renderPanel(item) {
+      const data = yearData(item), s = data.summary;
+      const extra = item.type === 'District' ? `<div class="detail-row"><span>ISD</span><strong>${item.isdCode || ''}${item.isdName ? ' - ' + item.isdName : ''}</strong></div>` : item.type === 'Region' ? `<div class="detail-row"><span>ISDs included</span><strong>${item.isdCount || 0}</strong></div>` : '';
+      const districts = data.topDistricts.length ? data.topDistricts.map(d => `<div class="district"><strong>${d.district}</strong><span>Code ${d.code} - estimated combined events: ${fmt.format(d.total)}${d.suppressed ? ` - ${d.suppressed} suppressed cells` : ''}</span></div>`).join('') : '<p>No nonzero LEA event totals for this area and year.</p>';
+      let detailSections = `<label>Metric Breakdowns</label>${rowsForMetrics(data)}<label>Overall Totals</label>${rowsForSummary(s)}`;
+      if (activeMode() === 'isd') {
+        const entityItem = activeSources().isd_entity.items[item.id];
+        const combinedItem = activeSources().isd.items[item.id];
+        const entityData = dataForSelection(activeSources().isd_entity.years, entityItem.years);
+        const combinedData = dataForSelection(activeSources().isd.years, combinedItem.years);
+        detailSections = `<label>Metric Breakdowns</label>${rowsForMetrics(entityData)}<label>Overall Totals</label>${rowsForSummary(entityData.summary)}<label>Metric Breakdowns Combined</label>${rowsForMetrics(combinedData)}<label>Overall Totals Combined</label>${rowsForSummary(combinedData.summary)}`;
+      }
+      entityPanel.innerHTML = `<div class="entity-name">${item.name}</div><div class="detail-row"><span>View</span><strong>${activeSource().label}</strong></div><div class="detail-row"><span>School year</span><strong>${selectedYearLabel()}</strong></div><div class="detail-row"><span>${item.type} ID</span><strong>${item.id}</strong></div>${extra}<div class="detail-row"><span>LEA rows included</span><strong>${fmt.format(item.districtCount)}</strong></div>${detailSections}<label>Highest LEA combined event totals</label><div class="districts">${districts}</div>`;
+    }
+    function clearSelection() { if (selectedLayer) geoLayer.resetStyle(selectedLayer); selectedLayer = null; entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); renderLegend(); scheduleHatches(0); }
+    function highlightLayer(layer) { if (selectedLayer === layer) { clearSelection(); return; } if (selectedLayer) geoLayer.resetStyle(selectedLayer); selectedLayer = layer; layer.setStyle({ weight: 3, color: '#17202a', fillOpacity: 0.95 }); layer.bringToFront(); const item = activeItem(layer.feature); renderPanel(item); renderDrawer(item); renderLegend(); }
+    function onEachFeature(feature, layer) { if (!activeSource().items[feature.properties.id]) return; layer.bindPopup(() => popupHtml(feature)); layer.on({ mouseover: () => layer.setStyle({ weight: 2.4, color: '#17202a' }), mouseout: () => { if (layer !== selectedLayer) geoLayer.resetStyle(layer); }, click: () => highlightLayer(layer) }); }
+    function renderLegend() { const metric = METRICS.find(m => m.key === metricSelect.value), s = colorScale(metric.key), selectedPercent = selectedLegendPercent(metric.key); document.getElementById('legend-title').textContent = `${selectedYearLabel()} - ${metric.label}`; document.getElementById('legend-content').innerHTML = `<div class="swatches" id="swatches">${selectedPercent === null ? '' : `<span class="legend-marker" style="left:${Math.round(selectedPercent * 1000) / 10}%">|</span>`}</div><div class="scale"><span id="legend-min"></span><span id="legend-mid">50th pct</span><span id="legend-max"></span></div><div class="legend-note"><span class="hatch-sample"></span><span>Hatching = mertic contains one or more suppressed cells (&lt;10)</span></div><div class="legend-footnote">* Asterisks = value omits one or more suppressed cells (&lt;10)</div>`; document.getElementById('legend-min').textContent = formatValue(metric.key, s.min); document.getElementById('legend-max').textContent = formatValue(metric.key, s.max); }
+    function updateStats() { const metricKey = metricSelect.value, source = activeSource(), items = Object.values(source.items), totals = sourceTotalsForSelection(source); document.getElementById('state-total').textContent = formatValue(metricKey, totals.metrics[metricKey] || 0); document.getElementById('area-count').textContent = fmt.format(items.length); document.getElementById('area-label').textContent = labels[activeMode()].represented; document.getElementById('district-total').textContent = fmt.format(items.reduce((sum, item) => sum + item.districtCount, 0)); document.getElementById('suppressed-total').textContent = fmt.format(selectedCellCount(totals, metricKey)); document.getElementById('suppressed-total-label').textContent = selectedCellCountLabel(); renderSummary(); renderLegend(); }
+    function loadLayer() { if (geoLayer) map.removeLayer(geoLayer); selectedLayer = null; geoLayer = L.geoJSON(boundaries[activeMode()], { style: styleFeature, onEachFeature, smoothFactor: 1.4 }).addTo(map); map.fitBounds(geoLayer.getBounds(), { padding: [14, 14], maxZoom: 7 }); scheduleHatches(80); }
+    function redraw(resetPanel = true) { updateStats(); if (geoLayer) geoLayer.setStyle(styleFeature); scheduleHatches(0); if (resetPanel) { selectedLayer = null; renderLegend(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); } else if (selectedLayer) { const item = activeItem(selectedLayer.feature); renderPanel(item); renderDrawer(item); renderLegend(); } else { renderStateDrawer(); } }
+    function switchView() { refreshScope(); refreshYears(); refreshSearch(); loadLayer(); redraw(true); }
+    function htmlText(value) { return String(value === undefined || value === null ? '' : value).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/<[^>]+>/g, ''); }
+    function displayText(data, key) { return htmlText(displayValue(data, key)); }
+    function exportSlug() { return [datasetSelect.value, activeMode(), selectedYearLabel(), metricSelect.value].join('-').replace(/[^a-z0-9-]+/gi, '-').toLowerCase(); }
+    function downloadCanvas(canvas, filename) { const link = document.createElement('a'); link.download = filename; link.href = canvas.toDataURL('image/png'); link.click(); }
+    function downloadDataUrl(filename, mimeType, content) { const link = document.createElement('a'); link.download = filename; link.href = `data:${mimeType};charset=utf-8,${encodeURIComponent(content)}`; link.click(); }
+    function drawFeaturePath(ctx, geometry, scale) {
+      const drawRing = ring => {
+        ring.forEach((coord, index) => {
+          const point = map.latLngToContainerPoint([coord[1], coord[0]]);
+          const x = point.x * scale, y = point.y * scale;
+          if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+      };
+      if (geometry.type === 'Polygon') geometry.coordinates.forEach(drawRing);
+      if (geometry.type === 'MultiPolygon') geometry.coordinates.forEach(polygon => polygon.forEach(drawRing));
+    }
+    function stripeCurrentPath(ctx, scale, color = '#6f7780', width = ctx.canvas.width, height = ctx.canvas.height) {
+      ctx.save();
+      ctx.clip('evenodd');
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.2 * scale;
+      const step = 10 * scale;
+      for (let x = -height; x < width + height; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, height);
+        ctx.lineTo(x + height, 0);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+    function exportMapPng() {
+      const size = map.getSize(), scale = 2, metricKey = metricSelect.value;
+      const canvas = document.createElement('canvas');
+      canvas.width = size.x * scale;
+      canvas.height = size.y * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      boundaries[activeMode()].features.forEach(feature => {
+        const item = activeSource().items[feature.properties.id];
+        if (!item) return;
+        const value = yearData(item).metrics[metricKey] || 0;
+        const data = yearData(item), patterned = hasSuppressionPattern(data, metricKey);
+        ctx.beginPath();
+        drawFeaturePath(ctx, feature.geometry, scale);
+        ctx.fillStyle = datasetSelect.value === 'raw' && patterned && !isHistoricAverage() ? '#d8dde2' : percentileColor(value, metricKey);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = (activeMode() === 'district' ? 0.8 : activeMode() === 'region' ? 2 : 1.2) * scale;
+        ctx.globalAlpha = 0.88;
+        ctx.fill('evenodd');
+        ctx.globalAlpha = 1;
+        if (patterned) stripeCurrentPath(ctx, scale);
+        ctx.stroke();
+      });
+      if (selectedLayer) {
+        ctx.beginPath();
+        drawFeaturePath(ctx, selectedLayer.feature.geometry, scale);
+        ctx.strokeStyle = '#17202a';
+        ctx.lineWidth = 3 * scale;
+        ctx.stroke();
+      }
+      downloadCanvas(canvas, `endsar-map-${exportSlug()}.png`);
+    }
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = String(text).split(/\s+/);
+      let line = '';
+      words.forEach(word => {
+        const test = line ? `${line} ${word}` : word;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          ctx.fillText(line, x, y);
+          line = word;
+          y += lineHeight;
+        } else {
+          line = test;
+        }
+      });
+      if (line) ctx.fillText(line, x, y);
+      return y + lineHeight;
+    }
+    function tableRowsForExport(item, scopeLabel, source = activeSource()) {
+      return source.years.map(y => {
+        const data = item.years[y.year], m = data.metrics, s = data.summary;
+        return [y.year, scopeLabel, displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events')];
+      });
+    }
+    function stateTableRowsForExport(source = activeSource()) {
+      return source.years.map(y => {
+        const data = source.stateTotals[y.year];
+        return [y.year, 'State Total', displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events')];
+      });
+    }
+    function selectedItemForExport() { return selectedLayer ? activeItem(selectedLayer.feature) : null; }
+    function selectedItemForDatasetExport(source) { return selectedLayer ? source.items[selectedLayer.feature.properties.id] || null : null; }
+    function exportDetailsPng(datasetKey) {
+      const dataset = MAP_DATASETS[datasetKey], sources = dataset.sources, source = sources[activeSourceKey()], metric = METRICS.find(m => m.key === metricSelect.value), totals = sourceTotalsForSelection(source), item = selectedItemForDatasetExport(source), headerFill = datasetKey === 'approximated' ? '#72dd44' : '#203a5f', headerText = datasetKey === 'approximated' ? '#17202a' : '#ffffff';
+      let tableRows = [];
+      if (item && activeMode() === 'isd') tableRows = tableRowsForExport(sources.isd_entity.items[item.id], 'ISD entity only', sources.isd_entity).concat(tableRowsForExport(sources.isd.items[item.id], 'Combined entities', sources.isd));
+      else if (item && activeMode() === 'region') tableRows = tableRowsForExport(sources.region_entity.items[item.id], 'ISD entities only', sources.region_entity).concat(tableRowsForExport(sources.region.items[item.id], 'Combined entities', sources.region));
+      else if (item) tableRows = tableRowsForExport(item, source.label, source);
+      else tableRows = stateTableRowsForExport(source);
+      const width = 1400, rowHeight = 28, height = Math.max(980, 560 + tableRows.length * rowHeight);
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = '#17202a';
+      ctx.font = '700 28px Segoe UI, Arial';
+      ctx.fillText('EndSaR Data Map Export', 42, 52);
+      ctx.font = '14px Segoe UI, Arial';
+      ctx.fillStyle = '#5f6b77';
+      ctx.fillText(`${dataset.label} | ${source.label} | ${selectedYearLabel()} | ${metric.label}`, 42, 80);
+      let y = 126;
+      ctx.fillStyle = '#17202a';
+      ctx.font = '700 18px Segoe UI, Arial';
+      ctx.fillText('Current Selection', 42, y);
+      y += 28;
+      ctx.font = '14px Segoe UI, Arial';
+      const selectedName = item ? item.name : 'State Total';
+      y = wrapText(ctx, `${activeMode().toUpperCase()}: ${selectedName}`, 42, y, 1260, 20);
+      y += 10;
+      const cards = [
+        ['Selected metric total', formatValue(metric.key, totals.metrics[metric.key] || 0)],
+        ['Areas represented', fmt.format(Object.values(source.items).length)],
+        ['LEA rows included', fmt.format(Object.values(source.items).reduce((sum, row) => sum + row.districtCount, 0))],
+        [cellCountTitleForDataset(datasetKey), fmt.format(cellCountForDataset(totals, metric.key, datasetKey))]
+      ];
+      cards.forEach((card, index) => {
+        const x = 42 + index * 330;
+        ctx.fillStyle = '#f7f9fb';
+        ctx.strokeStyle = '#d7dee7';
+        ctx.fillRect(x, y, 300, 86);
+        ctx.strokeRect(x, y, 300, 86);
+        ctx.fillStyle = '#17202a';
+        ctx.font = '700 24px Segoe UI, Arial';
+        ctx.fillText(card[1], x + 18, y + 36);
+        ctx.fillStyle = '#5f6b77';
+        ctx.font = '13px Segoe UI, Arial';
+        wrapText(ctx, card[0], x + 18, y + 60, 260, 16);
+      });
+      y += 124;
+      ctx.fillStyle = '#17202a';
+      ctx.font = '700 18px Segoe UI, Arial';
+      ctx.fillText('Michigan Overall Year Totals', 42, y);
+      y += 28;
+      const summary = totals.summary;
+      [['Total reported students with disabilities', fmt.format(summary.swd_total)], ['Total reported students without disabilities', fmt.format(summary.nonswd_total)], ['Combined reported students', fmt.format(summary.student_total)], ['Total seclusions', fmt.format(summary.seclusion_total)], ['Total restraints', fmt.format(summary.restraint_total)], ['Combined seclusions and restraints', fmt.format(summary.combined_event_total)], ['Combined Ratio', formatValue('event_student_ratio', totals.metrics.event_student_ratio || 0)]].forEach(row => {
+        ctx.font = '14px Segoe UI, Arial';
+        ctx.fillStyle = '#5f6b77';
+        ctx.fillText(row[0], 42, y);
+        ctx.fillStyle = '#17202a';
+        ctx.fillText(row[1], 360, y);
+        y += 22;
+      });
+      y += 20;
+      ctx.font = '700 18px Segoe UI, Arial';
+      ctx.fillText(item ? 'Bottom Drawer Data' : 'Bottom Drawer Data: State Detail', 42, y);
+      y += 24;
+      if (tableRows.length) {
+        const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events'];
+        const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82];
+        let x = 42;
+        ctx.fillStyle = headerFill;
+        ctx.fillRect(42, y, widths.reduce((a, b) => a + b, 0), rowHeight);
+        ctx.font = '700 11px Segoe UI, Arial';
+        ctx.fillStyle = headerText;
+        columns.forEach((col, idx) => { ctx.fillText(col, x + 6, y + 18); x += widths[idx]; });
+        y += rowHeight;
+        ctx.font = '11px Segoe UI, Arial';
+        tableRows.forEach((row, rowIndex) => {
+          x = 42;
+          ctx.fillStyle = rowIndex % 2 ? '#f6f8fa' : '#ffffff';
+          ctx.fillRect(42, y, widths.reduce((a, b) => a + b, 0), rowHeight);
+          ctx.strokeStyle = '#d7dee7';
+          ctx.strokeRect(42, y, widths.reduce((a, b) => a + b, 0), rowHeight);
+          ctx.fillStyle = '#17202a';
+          row.forEach((cell, idx) => { ctx.fillText(String(cell), x + 6, y + 18); x += widths[idx]; });
+          y += rowHeight;
+        });
+      }
+      downloadCanvas(canvas, `endsar-details-${datasetKey}-${activeMode()}-${selectedYearLabel()}-${metricSelect.value}.png`.replace(/[^a-z0-9-.]+/gi, '-').toLowerCase());
+    }
+    function exportCurrentSelection() { exportMapPng(); exportDetailsPng('raw'); exportDetailsPng('approximated'); }
+    function excelEscape(value) { return String(value === undefined || value === null ? '' : value).replace(/\s+/g, ' ').trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function exportDrawerTable() {
+      const table = drawerContent.querySelector('table');
+      if (!table) return;
+      const metadataRows = [
+        ['Dataset', activeDataset().label],
+        ['Map View', activeSource().label],
+        ['Selected School Year', selectedYearLabel()],
+        ['Selected Metric', METRICS.find(m => m.key === metricSelect.value).label],
+        ['Drawer', drawerTitle.textContent]
+      ].map(row => `<tr><td>${excelEscape(row[0])}</td><td>${excelEscape(row[1])}</td></tr>`).join('');
+      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => {
+        const tag = row.querySelector('th') ? 'th' : 'td';
+        return `<tr>${Array.from(row.children).map(cell => `<${tag}>${excelEscape(cell.textContent)}</${tag}>`).join('')}</tr>`;
+      }).join('');
+      const html = `<!doctype html><html><head><meta charset="utf-8"><style>table{border-collapse:collapse;font-family:Arial,sans-serif;font-size:12px}td,th{border:1px solid #b8c6d6;padding:5px 7px;text-align:left}th{background:${datasetSelect.value === 'approximated' ? '#72dd44' : '#203a5f'};color:${datasetSelect.value === 'approximated' ? '#17202a' : '#ffffff'};font-weight:700}.meta td{font-weight:700;background:#eef2f5}</style></head><body><table class="meta">${metadataRows}</table><br><table>${tableRows}</table></body></html>`;
+      downloadDataUrl(`endsar-table-${exportSlug()}.xls`, 'application/vnd.ms-excel', html);
+    }
+
+    refreshScope(); refreshYears(); refreshSearch(); loadLayer(); updateStats(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); drawerToggle.addEventListener('click', () => { const isOpen = drawer.classList.toggle('open'); document.body.classList.toggle('drawer-open', isOpen); drawerToggle.textContent = isOpen ? '?' : '?'; });
+    legendToggle.addEventListener('click', () => { const isHidden = legend.classList.toggle('hidden'); legendToggle.textContent = isHidden ? 'Show Legend' : 'Hide Legend'; });
+    datasetSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); loadLayer(); redraw(true); });
+    viewSelect.addEventListener('change', switchView);
+    scopeSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); redraw(true); });
+    yearSelect.addEventListener('change', () => redraw(false));
+    metricSelect.addEventListener('change', () => redraw(false));
+    exportButton.addEventListener('click', exportCurrentSelection);
+    exportTableButton.addEventListener('click', exportDrawerTable);
+    infoButton.addEventListener('click', () => toggleInfoList());
+    infoList.addEventListener('click', event => { const item = event.target.closest('[data-info]'); if (item) openInfo(item.dataset.info); });
+    infoClose.addEventListener('click', closeInfo);
+    infoOverlay.addEventListener('click', event => { if (event.target === infoOverlay) closeInfo(); });
+    document.addEventListener('click', event => { if (!event.target.closest('.info-menu')) toggleInfoList(false); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') { toggleInfoList(false); if (infoOverlay.classList.contains('open')) closeInfo(); } });
+    search.addEventListener('change', () => { const term = search.value.trim().toLowerCase(); if (!term) return; geoLayer.eachLayer(layer => { const item = activeItem(layer.feature); if (item && (item.name.toLowerCase() === term || item.id.toLowerCase() === term)) { map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: activeMode() === 'district' ? 10 : 8 }); highlightLayer(layer); layer.openPopup(); } }); });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
