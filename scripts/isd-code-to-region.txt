@@ -1,0 +1,59 @@
+ISD Code:Region  //ISD Name
+    0: 0,    // State of Michigan
+    3: 3,    // Allegan Area Educational Service Agency
+    4: 2,    // Alpena-Montmorency-Alcona ESD
+    8: 3,    // Barry ISD
+    9: 4,    // Bay-Arenac ISD
+    11: 7,   // Berrien RESA
+    12: 7,   // Branch ISD
+    13: 7,   // Calhoun Intermediate School District
+    14: 7,   // Heritage Southwest Intermediate School District
+    15: 2,   // Charlevoix-Emmet ISD
+    16: 2,   // Cheboygan-Otsego-Presque Isle ESD
+    17: 1,   // Eastern Upper Peninsula ISD
+    18: 4,   // Clare-Gladwin RESD
+    19: 6,   // Clinton County RESA
+    21: 1,   // Delta-Schoolcraft ISD
+    22: 1,   // Dickinson-Iron ISD
+    23: 6,   // Eaton RESA
+    25: 5,   // Genesee ISD
+    27: 1,   // Gogebic-Ontonagon ISD
+    28: 2,   // Northwest Education Services
+    29: 4,   // Gratiot-Isabella RESD
+    30: 8,   // Hillsdale ISD
+    31: 1,   // Copper Country ISD
+    32: 5,   // Huron ISD
+    33: 6,   // Ingham ISD
+    34: 3,   // Ionia ISD
+    35: 2,   // Iosco RESA
+    38: 8,   // Jackson ISD
+    39: 7,   // Kalamazoo RESA
+    41: 3,   // Kent ISD
+    44: 5,   // Lapeer County ISD
+    46: 8,   // Lenawee ISD
+    47: 8,   // Livingston ESA
+    50: 9,   // Macomb ISD
+    51: 2,   // Manistee ISD
+    52: 1,   // Marquette-Alger RESA
+    53: 3,   // West Shore ESD
+    54: 3,   // Mecosta-Osceola ISD
+    55: 1,   // Menominee ISD
+    56: 4,   // Midland County ESA
+    58: 8,   // Monroe ISD
+    59: 3,   // Montcalm Area ISD
+    61: 3,   // Muskegon Area ISD
+    62: 3,   // Newaygo County RESA
+    63: 9,   // Oakland Schools
+    70: 3,   // Ottawa Area ISD
+    72: 2,   // C.O.O.R. ISD
+    73: 4,   // Saginaw ISD
+    74: 5,   // St. Clair County RESA
+    75: 7,   // St. Joseph County ISD
+    76: 5,   // Sanilac ISD
+    78: 6,   // Shiawassee Regional ESD
+    79: 5,   // Tuscola ISD
+    80: 7,   // Van Buren ISD
+    81: 8,   // Washtenaw ISD
+    82: 10,  // Wayne RESA
+    83: 2,   // Wexford-Missaukee ISD
+    84: 0    // State of Michigan

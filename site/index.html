@@ -115,8 +115,17 @@
   </div>
   <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Toggle table">?</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button></div><div class="drawer-content" id="drawer-content"></div></div>
   <div class="info-overlay" id="info-overlay" aria-hidden="true"><div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="info-dialog-header"><div class="info-dialog-title"><h2 id="info-title">Information</h2><p id="info-subtitle"></p></div><button class="info-close" id="info-close" type="button" aria-label="Close information">×</button></div><div class="info-dialog-body" id="info-body"></div></div></div>
-  <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script><script src="map-data.js?v=derived-stars-20260520"></script>
+  <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script>
   <script>
+    (async () => {
+    const dataResponse = await fetch('data/map-data.json', { cache: 'no-cache' });
+    if (!dataResponse.ok) throw new Error(`Map data request failed (${dataResponse.status})`);
+    const dataPayload = await dataResponse.json();
+    const MAP_DATASETS = dataPayload.datasets;
+    const DEFAULT_DATASET = dataPayload.defaultDataset;
+    const MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources;
+    const METRICS = dataPayload.metrics;
+    const MAP_METADATA = dataPayload.metadata;
     const datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body');
     const fmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
     const ratioFmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
@@ -525,6 +534,11 @@
     document.addEventListener('click', event => { if (!event.target.closest('.info-menu')) toggleInfoList(false); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape') { toggleInfoList(false); if (infoOverlay.classList.contains('open')) closeInfo(); } });
     search.addEventListener('change', () => { const term = search.value.trim().toLowerCase(); if (!term) return; geoLayer.eachLayer(layer => { const item = activeItem(layer.feature); if (item && (item.name.toLowerCase() === term || item.id.toLowerCase() === term)) { map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: activeMode() === 'district' ? 10 : 8 }); highlightLayer(layer); layer.openPopup(); } }); });
+    })().catch(error => {
+      console.error(error);
+      const panel = document.getElementById('entity-panel');
+      if (panel) panel.innerHTML = '<p><strong>Map data could not be loaded.</strong> Please refresh the page or try again later.</p>';
+    });
   </script>
 </body>
 </html>

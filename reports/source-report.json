@@ -1,0 +1,85 @@
+{
+  "downloaded": [
+    {
+      "schoolYear": "2017-2018",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://michigan.gov/documents/cepi/18-CEPI-60_SY_FINAL_638482_7.xlsx",
+      "filename": "18-CEPI-60_SY_FINAL_638482_7.xlsx",
+      "bytes": 669274,
+      "sha256": "ca385c71c82e49cd18a8812960ff3d746e1dd82df66d4c88e91abca223425bc4"
+    },
+    {
+      "schoolYear": "2018-2019",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/-/media/Project/Websites/cepi/MISchoolData/2018-19/1819_Seclusion_Restraint_CEPI60_Q1.xlsx",
+      "filename": "1819_Seclusion_Restraint_CEPI60_Q1.xlsx",
+      "bytes": 910769,
+      "sha256": "4520a40c1854260fe871b99a4da35915af933d460c2c0febacac5f6d691e07df"
+    },
+    {
+      "schoolYear": "2019-2020",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/-/media/Project/Websites/cepi/MISchoolData/2019-20/20_CEPI60_Q1.xlsx",
+      "filename": "20_CEPI60_Q1.xlsx",
+      "bytes": 861687,
+      "sha256": "cd5edacaf2c4b9531bdda1b6dca0156cac24991045e17f7425b0c87a9706da8a"
+    },
+    {
+      "schoolYear": "2020-2021",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/-/media/Project/Websites/cepi/MISchoolData/2020-21/2021-seclusion-and-restraint-cepi-60_q3q4.xlsx",
+      "filename": "2021-seclusion-and-restraint-cepi-60_q3q4.xlsx",
+      "bytes": 905430,
+      "sha256": "9bf082be8811398dbc57b27142fb449b73fab25e2e5da9154e32216566bd13ad"
+    },
+    {
+      "schoolYear": "2021-2022",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MiSchoolData/2021-22/22-CEPI-60Q3-4.xlsx",
+      "filename": "22-CEPI-60Q3-4.xlsx",
+      "bytes": 906327,
+      "sha256": "a75c28694acd29887c16e048a057e60076b92e29fbb55d857fe206f35986a630"
+    },
+    {
+      "schoolYear": "2022-2023",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2022-23/23CEPI60C.xlsx",
+      "filename": "23CEPI60C.xlsx",
+      "bytes": 898816,
+      "sha256": "13148f5156072cbf9198d68533a2bf0efc0cef915d996ac95c12fe56bf82d79f"
+    },
+    {
+      "schoolYear": "2023-2024",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2023-24/24CEPI60-Q34.xlsx",
+      "filename": "24CEPI60-Q34.xlsx",
+      "bytes": 893554,
+      "sha256": "41f340ca159ad61ff3c69be65ed640a8553b3070283354c5049468ffece975e8"
+    },
+    {
+      "schoolYear": "2024-2025",
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2024-25/25CEPI60-Q34.xlsx",
+      "filename": "25CEPI60-Q34.xlsx",
+      "bytes": 893713,
+      "sha256": "c94a8131062fcac83a9bc6275e3c40ee731cde58f05c64cc14cb0e535e9ff865"
+    }
+  ],
+  "unapprovedCandidates": [
+    {
+      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2025-26/26-CEPI-60-Q2.xlsx",
+      "schoolYear": "2025-2026",
+      "period": "q2",
+      "approved": false
+    }
+  ],
+  "manifestUpdated": false
+}

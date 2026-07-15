@@ -1,0 +1,66 @@
+name: Check for CEPI data updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 7 * * 1"
+      timezone: "America/New_York"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: cepi-data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install workbook dependency
+        run: pip install -r requirements.txt
+
+      - name: Discover, rebuild, and validate
+        run: python scripts/run_pipeline.py --discover --allow-change
+
+      - name: Create review summary
+        run: python scripts/make_pr_body.py
+
+      - name: Detect changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- data/sources.json reports site/data/map-data.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit update branch
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: automation/cepi-data-update-${{ github.run_id }}
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add data/sources.json reports site/data/map-data.json
+          git commit -m "Update CEPI map data"
+          git push --set-upstream origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "Update CEPI map data" --body-file build/pr-body.md
+
+      - name: Record no-change result
+        if: steps.changes.outputs.changed != 'true'
+        run: echo "No CEPI source or generated map-data changes were detected."
