@@ -1,0 +1,925 @@
+entity_level,region,district_code,district_name
+State,,0,State Total
+LEA,,1010,Alcona Community Schools
+LEA,,2010,AuTrain-Onota Public Schools
+LEA,,2020,Burt Township School District
+LEA,,2070,Munising Public Schools
+LEA,,2080,Superior Central School District
+ISD,,3000,Allegan Area Educational Service Agency
+LEA,,3010,Plainwell Community Schools
+LEA,,3020,Otsego Public Schools
+LEA,,3030,Allegan Public Schools
+LEA,,3040,Wayland Union Schools
+LEA,,3050,Fennville Public Schools
+LEA,,3060,Martin Public Schools
+LEA,,3070,Hopkins Public Schools
+LEA,,3080,Saugatuck Public Schools
+LEA,,3100,Hamilton Community Schools
+LEA,,3440,Glenn Public School District
+LEA,,3900,Innocademy Allegan Campus
+LEA,,3902,Outlook Academy
+ISD,,4000,Alpena-Montmorency-Alcona ESD
+LEA,,4010,Alpena Public Schools
+LEA,,5010,Alba Public Schools
+LEA,,5035,Central Lake Public Schools
+LEA,,5040,Bellaire Public Schools
+LEA,,5060,Elk Rapids Schools
+LEA,,5065,Ellsworth Community School
+LEA,,5070,Mancelona Public Schools
+LEA,,6020,Au Gres-Sims School District
+LEA,,6050,Standish-Sterling Community Schools
+LEA,,7010,Arvon Township School District
+LEA,,7020,Baraga Area Schools
+LEA,,7040,L'Anse Area Schools
+ISD,,8000,Barry ISD
+LEA,,8010,Delton Kellogg Schools
+LEA,,8030,Hastings Area School District
+LEA,,8050,Thornapple Kellogg School District
+ISD,,9000,Bay-Arenac ISD
+LEA,,9010,Bay City School District
+LEA,,9030,Bangor Township Schools
+LEA,,9050,Essexville-Hampton Public Schools
+LEA,,9090,Pinconning Area Schools
+LEA,,9901,Bay-Arenac Community High School
+LEA,,9902,State Street Academy
+LEA,,9903,Bay City Academy
+LEA,,10015,Benzie County Central Schools
+LEA,,10025,Frankfort-Elberta Area Schools
+ISD,,11000,Berrien RESA
+LEA,,11010,Benton Harbor Area Schools
+LEA,,11020,St. Joseph Public Schools
+LEA,,11030,Lakeshore School District (Berrien)
+LEA,,11033,River Valley School District
+LEA,,11200,New Buffalo Area Schools
+LEA,,11210,Brandywine Community Schools
+LEA,,11240,Berrien Springs Public Schools
+LEA,,11250,Eau Claire Public Schools
+LEA,,11300,Niles Community Schools
+LEA,,11310,Buchanan Community Schools
+LEA,,11320,Watervliet School District
+LEA,,11330,Coloma Community Schools
+LEA,,11340,Bridgman Public Schools
+LEA,,11670,Hagar Township S/D #6
+LEA,,11830,Sodus Township S/D #5
+LEA,,11900,Bridge Academy of Southwest Michigan
+LEA,,11901,Countryside Academy
+LEA,,11903,Benton Harbor Charter School Academy
+LEA,,11904,Mildred C. Wells Preparatory Academy
+ISD,,12000,Branch ISD
+LEA,,12010,Coldwater Community Schools
+LEA,,12020,Bronson Community School District
+LEA,,12040,Quincy Community Schools
+LEA,,12901,Pansophia Academy
+ISD,,13000,Calhoun Intermediate School District
+LEA,,13020,Battle Creek Public Schools
+LEA,,13050,Athens Area Schools
+LEA,,13070,Harper Creek Community Schools
+LEA,,13080,Homer Community School District
+LEA,,13090,Lakeview Sch. District (Calhoun)
+LEA,,13095,Mar Lee School District
+LEA,,13110,Marshall Public Schools
+LEA,,13120,Pennfield Schools
+LEA,,13130,Tekonsha Community Schools
+LEA,,13135,Union City Community Schools
+LEA,,13900,Battle Creek Montessori Academy
+LEA,,13901,Arbor Academy
+LEA,,13902,Endeavor Charter Academy
+LEA,,13903,Marshall Academy
+LEA,,13904,Battle Creek Area Learning Center
+LEA,,13905,Lakeside Charter School - Albion
+ISD,,14000,Lewis Cass ISD
+LEA,,14010,Cassopolis Public Schools
+LEA,,14020,Dowagiac Union School District
+LEA,,14030,Edwardsburg Public Schools
+LEA,,14050,Marcellus Community Schools
+ISD,,15000,Charlevoix-Emmet ISD
+LEA,,15010,Beaver Island Community School
+LEA,,15020,Boyne City Public Schools
+LEA,,15030,Boyne Falls Public School District
+LEA,,15050,Charlevoix Public Schools
+LEA,,15060,East Jordan Public Schools
+LEA,,15901,Concord Academy - Boyne
+LEA,,15902,Charlevoix Montessori Academy for the Arts
+ISD,,16000,Cheb-Otsego-Presque Isle ESD
+LEA,,16015,Cheboygan Area Schools
+LEA,,16050,Inland Lakes Schools
+LEA,,16070,Mackinaw City Public Schools
+LEA,,16100,Wolverine Community School District
+ISD,,17000,Eastern Upper Peninsula ISD
+LEA,,17010,Sault Ste. Marie Area Schools
+LEA,,17050,DeTour Area Schools
+LEA,,17090,Pickford Public Schools
+LEA,,17110,Rudyard Area Schools
+LEA,,17140,Brimley Area Schools
+LEA,,17160,Whitefish Township Schools
+LEA,,17900,Lake Superior Academy
+LEA,,17901,Joseph K. Lumsden Bahweting Anishnabe Academy
+LEA,,17902,Ojibwe Charter School
+LEA,,17903,DeTour Arts and Technology Academy
+ISD,,18000,Clare-Gladwin Regional Education Service District
+LEA,,18010,Clare Public Schools
+LEA,,18020,Farwell Area Schools
+LEA,,18060,Harrison Community Schools
+ISD,,19000,Clinton County RESA
+LEA,,19010,DeWitt Public Schools
+LEA,,19070,Fowler Public Schools
+LEA,,19100,Bath Community Schools
+LEA,,19120,Ovid-Elsie Area Schools
+LEA,,19125,Pewamo-Westphalia Community Schools
+LEA,,19140,St. Johns Public Schools
+LEA,,19900,Michigan International Prep School
+LEA,,20015,Crawford AuSable Schools
+ISD,,21000,Delta-Schoolcraft ISD
+LEA,,21010,Escanaba Area Public Schools
+LEA,,21025,Gladstone Area Schools
+LEA,,21060,Rapid River Public Schools
+LEA,,21065,Big Bay De Noc School District
+LEA,,21090,Bark River-Harris School District
+LEA,,21135,Mid Peninsula School District
+ISD,,22000,Dickinson-Iron ISD
+LEA,,22010,Iron Mountain Public Schools
+LEA,,22025,Norway-Vulcan Area Schools
+LEA,,22030,Breitung Township School District
+LEA,,22045,North Dickinson County Schools
+ISD,,23000,Eaton RESA
+LEA,,23010,Bellevue Community Schools
+LEA,,23030,Charlotte Public Schools
+LEA,,23050,Eaton Rapids Public Schools
+LEA,,23060,Grand Ledge Public Schools
+LEA,,23065,Maple Valley Schools
+LEA,,23080,Olivet Community Schools
+LEA,,23090,Potterville Public Schools
+LEA,,23490,Oneida Township S/D #3
+LEA,,23900,LifeTech Academy
+LEA,,23901,Island City Academy
+LEA,,23902,Relevant Academy of Eaton County
+LEA,,23903,Insight School of Michigan
+LEA,,24020,Harbor Springs School District
+LEA,,24030,Alanson Public Schools
+LEA,,24040,Pellston Public Schools
+LEA,,24070,Public Schools of Petoskey
+LEA,,24901,Concord Academy - Petoskey
+ISD,,25000,Genesee ISD
+LEA,,25010,"Flint, School District of the City of"
+LEA,,25030,Grand Blanc Community Schools
+LEA,,25040,Mt. Morris Consolidated Schools
+LEA,,25050,Goodrich Area Schools
+LEA,,25060,Bendle Public Schools
+LEA,,25070,Genesee School District
+LEA,,25080,Carman-Ainsworth Community Schools
+LEA,,25100,Fenton Area Public Schools
+LEA,,25110,Kearsley Community School District
+LEA,,25120,Flushing Community Schools
+LEA,,25130,Atherton Community Schools
+LEA,,25140,Davison Community Schools
+LEA,,25150,Clio Area School District
+LEA,,25180,Swartz Creek Community Schools
+LEA,,25200,Lake Fenton Community Schools
+LEA,,25210,Westwood Heights Schools
+LEA,,25230,Bentley Community School District
+LEA,,25240,Beecher Community School District
+LEA,,25250,Linden Community Schools
+LEA,,25260,Montrose Community Schools
+LEA,,25280,LakeVille Community School District
+LEA,,25900,Genesee STEM Academy
+LEA,,25902,Woodland Park Academy
+LEA,,25903,Grand Blanc Academy
+LEA,,25904,Northridge Academy
+LEA,,25905,International Academy of Flint
+LEA,,25907,Linden Charter Academy
+LEA,,25909,Burton Glen Charter Academy
+LEA,,25910,Richfield Public School Academy
+LEA,,25911,Madison Academy
+LEA,,25912,The New Standard Academy
+LEA,,25914,Greater Heights Academy
+LEA,,25915,WAY Academy - Flint
+LEA,,25916,Eagle's Nest Academy
+LEA,,25917,The Paris Academy
+LEA,,25918,Flex High School of Michigan
+LEA,,25919,Flint Cultural Center Academy
+LEA,,26010,Beaverton Rural Schools
+LEA,,26040,Gladwin Community Schools
+ISD,,27000,Gogebic-Ontonagon ISD
+LEA,,27010,Bessemer Area School District
+LEA,,27020,Ironwood Area Schools of Gogebic County
+LEA,,27070,Wakefield-Marenisco School District
+LEA,,27080,Watersmeet Township School District
+ISD,,28000,Traverse Bay Area ISD
+LEA,,28010,Traverse City Area Public Schools
+LEA,,28035,Buckley Community Schools
+LEA,,28090,Kingsley Area Schools
+LEA,,28900,Old Mission Peninsula School
+LEA,,28901,Woodland School
+LEA,,28902,Grand Traverse Academy
+LEA,,28904,The Greenspire School
+LEA,,28905,Mill Creek Academy
+ISD,,29000,Gratiot-Isabella RESD
+LEA,,29010,Alma Public Schools
+LEA,,29020,Ashley Community Schools
+LEA,,29040,Breckenridge Community Schools
+LEA,,29050,Fulton Schools
+LEA,,29060,Ithaca Public Schools
+LEA,,29100,St. Louis Public Schools
+ISD,,30000,Hillsdale ISD
+LEA,,30010,Camden-Frontier School
+LEA,,30020,Hillsdale Community Schools
+LEA,,30030,Jonesville Community Schools
+LEA,,30040,Litchfield Community Schools
+LEA,,30050,North Adams-Jerome Public Schools
+LEA,,30060,Pittsford Area Schools
+LEA,,30070,Reading Community Schools
+LEA,,30080,Waldron Area Schools
+LEA,,30901,Hillsdale Preparatory School
+LEA,,30902,Will Carleton Charter School Academy
+ISD,,31000,Copper Country ISD
+LEA,,31010,Hancock Public Schools
+LEA,,31020,Adams Township School District
+LEA,,31030,"Public Schools of Calumet, Laurium & Keweenaw"
+LEA,,31050,Chassell Township School District
+LEA,,31070,Elm River Township School District
+LEA,,31100,Dollar Bay-Tamarack City Area K-12 School
+LEA,,31110,Houghton-Portage Township School District
+LEA,,31130,Lake Linden-Hubbell School District
+LEA,,31140,Stanton Township Public Schools
+LEA,,31900,Copper Island Academy
+ISD,,32000,Huron ISD
+LEA,,32010,Bad Axe Public Schools
+LEA,,32030,Caseville Public Schools
+LEA,,32040,Church School District
+LEA,,32050,Elkton-Pigeon-Bay Port Laker Schools
+LEA,,32060,Harbor Beach Community Schools
+LEA,,32080,North Huron School District
+LEA,,32090,Owendale-Gagetown Area School District
+LEA,,32170,Ubly Community Schools
+LEA,,32260,Colfax Township S/D #1F
+LEA,,32610,Sigel Township S/D #3F
+LEA,,32620,Sigel Township S/D #4F
+LEA,,32650,Verona Township S/D #1F
+ISD,,33000,Ingham ISD
+LEA,,33010,East Lansing School District
+LEA,,33020,Lansing Public School District
+LEA,,33040,Dansville Schools
+LEA,,33060,Haslett Public Schools
+LEA,,33070,Holt Public Schools
+LEA,,33100,Leslie Public Schools
+LEA,,33130,Mason Public Schools (Ingham)
+LEA,,33170,Okemos Public Schools
+LEA,,33200,Stockbridge Community Schools
+LEA,,33215,Waverly Community Schools
+LEA,,33220,Webberville Community Schools
+LEA,,33230,Williamston Community Schools
+LEA,,33901,Cole Academy
+LEA,,33902,El-Hajj Malik El-Shabazz Academy
+LEA,,33904,Mid-Michigan Leadership Academy
+LEA,,33906,White Pine Academy
+LEA,,33909,Windemere Park Charter Academy
+LEA,,33910,Lansing Charter Academy
+LEA,,33911,Michigan Connections Academy
+LEA,,33913,NexTech High School of Lansing
+LEA,,33914,Great Lakes Cyber Academy
+LEA,,33915,Blended Learning Academies Credit Recovery High School
+ISD,,34000,Ionia ISD
+LEA,,34010,Ionia Public Schools
+LEA,,34080,Belding Area School District
+LEA,,34090,Lakewood Public Schools
+LEA,,34110,Portland Public Schools
+LEA,,34120,Saranac Community Schools
+LEA,,34140,Berlin Township S/D #3
+LEA,,34340,Easton Township S/D #6
+LEA,,34360,Ionia Township S/D #2
+ISD,,35000,Iosco RESA
+LEA,,35010,Oscoda Area Schools
+LEA,,35020,Hale Area Schools
+LEA,,35030,Tawas Area Schools
+LEA,,35040,Whittemore-Prescott Area Schools
+LEA,,35902,Alternative Educational Academy of Iosco County
+LEA,,36015,Forest Park School District
+LEA,,36025,West Iron County Public Schools
+LEA,,37010,Mt. Pleasant City School District
+LEA,,37040,Beal City Public Schools
+LEA,,37060,Shepherd Public Schools
+LEA,,37900,Flextech High School Shepherd
+LEA,,37901,Renaissance Public School Academy
+ISD,,38000,Jackson ISD
+LEA,,38010,Western School District
+LEA,,38020,Vandercook Lake Public Schools
+LEA,,38040,Columbia School District
+LEA,,38050,Grass Lake Community Schools
+LEA,,38080,Concord Community Schools
+LEA,,38090,East Jackson Community Schools
+LEA,,38100,Hanover-Horton School District
+LEA,,38120,Michigan Center School District
+LEA,,38130,Napoleon Community Schools
+LEA,,38140,Northwest Community Schools
+LEA,,38150,Springport Public Schools
+LEA,,38170,Jackson Public Schools
+LEA,,38900,Jackson Preparatory & Early College
+LEA,,38901,Da Vinci Institute
+LEA,,38902,Paragon Charter Academy
+LEA,,38904,Francis Street Primary School
+ISD,,39000,Kalamazoo RESA
+LEA,,39010,Kalamazoo Public Schools
+LEA,,39020,Climax-Scotts Community Schools
+LEA,,39030,Comstock Public Schools
+LEA,,39050,Galesburg-Augusta Community Schools
+LEA,,39065,Gull Lake Community Schools
+LEA,,39130,Parchment School District
+LEA,,39140,Portage Public Schools
+LEA,,39160,Schoolcraft Community Schools
+LEA,,39170,Vicksburg Community Schools
+LEA,,39900,Lakeside Charter School
+LEA,,39903,Oakland Academy
+LEA,,39905,Paramount Charter Academy
+LEA,,39906,Youth Advancement Academy
+LEA,,39907,Forest Academy
+LEA,,39908,Evergreen Academy
+LEA,,39909,Augusta Academy
+LEA,,39911,Kalamazoo Covenant Academy
+LEA,,40020,Forest Area Community Schools
+LEA,,40040,Kalkaska Public Schools
+LEA,,40060,Excelsior Township S/D #1
+ISD,,41000,Kent ISD
+LEA,,41010,Grand Rapids Public Schools
+LEA,,41020,Godwin Heights Public Schools
+LEA,,41025,Northview Public Schools
+LEA,,41026,Wyoming Public Schools
+LEA,,41040,Byron Center Public Schools
+LEA,,41050,Caledonia Community Schools
+LEA,,41070,Cedar Springs Public Schools
+LEA,,41080,Comstock Park Public Schools
+LEA,,41090,East Grand Rapids Public Schools
+LEA,,41110,Forest Hills Public Schools
+LEA,,41120,Godfrey-Lee Public Schools
+LEA,,41130,Grandville Public Schools
+LEA,,41140,Kelloggsville Public Schools
+LEA,,41145,Kenowa Hills Public Schools
+LEA,,41150,Kent City Community Schools
+LEA,,41160,Kentwood Public Schools
+LEA,,41170,Lowell Area Schools
+LEA,,41210,Rockford Public Schools
+LEA,,41240,Sparta Area Schools
+LEA,,41900,Covenant House Academy Grand Rapids
+LEA,,41901,New Branches Charter Academy
+LEA,,41904,West MI Academy of Environmental Science
+LEA,,41905,Excel Charter Academy
+LEA,,41908,Byron Center Charter School
+LEA,,41909,Vista Charter Academy
+LEA,,41910,Vanguard Charter Academy
+LEA,,41911,Flat River Academy
+LEA,,41914,Knapp Charter Academy
+LEA,,41915,Walker Charter Academy
+LEA,,41916,Cross Creek Charter Academy
+LEA,,41917,William C. Abney Academy
+LEA,,41918,Creative Technologies Academy
+LEA,,41919,Ridge Park Charter Academy
+LEA,,41920,Chandler Woods Charter Academy
+LEA,,41921,Grand Rapids Child Discovery Center
+LEA,,41922,Lighthouse Academy
+LEA,,41923,Wellspring Preparatory High School
+LEA,,41924,West Michigan Aviation Academy
+LEA,,41925,Michigan Virtual Charter Academy
+LEA,,41926,Hope Academy of West Michigan
+LEA,,41928,River City Scholars Charter Academy
+LEA,,41929,NexTech High School
+LEA,,41930,Grand River Preparatory High School
+LEA,,41931,Michigan Preparatory Virtual School
+LEA,,41932,Gerald Dawkins Academy
+LEA,,42030,Grant Township S/D #2
+LEA,,43040,Baldwin Community Schools
+ISD,,44000,Lapeer ISD
+LEA,,44010,Lapeer Community Schools
+LEA,,44020,Almont Community Schools
+LEA,,44050,Dryden Community Schools
+LEA,,44060,Imlay City Community Schools
+LEA,,44090,North Branch Area Schools
+LEA,,44901,Chatfield School
+LEA,,45010,Glen Lake Community Schools
+LEA,,45020,Leland Public School District
+LEA,,45040,Northport Public School District
+LEA,,45050,Suttons Bay Public Schools
+LEA,,45901,Leelanau Montessori Public School Academy
+ISD,,46000,Lenawee ISD
+LEA,,46010,Adrian Public Schools
+LEA,,46020,Addison Community Schools
+LEA,,46040,Blissfield Community Schools
+LEA,,46050,Britton Deerfield Schools
+LEA,,46060,Clinton Community Schools
+LEA,,46080,Hudson Area Schools
+LEA,,46090,Madison School District (Lenawee)
+LEA,,46100,Morenci Area Schools
+LEA,,46110,Onsted Community Schools
+LEA,,46130,Sand Creek Community Schools
+LEA,,46140,Tecumseh Public Schools
+ISD,,47000,Livingston ESA
+LEA,,47010,Brighton Area Schools
+LEA,,47030,Fowlerville Community Schools
+LEA,,47060,Hartland Consolidated Schools
+LEA,,47070,Howell Public Schools
+LEA,,47080,Pinckney Community Schools
+LEA,,47900,Light of the World Academy
+LEA,,47901,Kensington Woods Schools
+LEA,,47902,Charyl Stockwell Academy
+LEA,,47903,FlexTech High School
+LEA,,48040,Tahquamenon Area Schools
+LEA,,49010,St. Ignace Area Schools
+LEA,,49020,Bois Blanc Pines School District
+LEA,,49040,Les Cheneaux Community Schools
+LEA,,49055,Engadine Consolidated Schools
+LEA,,49070,Moran Township School District
+LEA,,49110,Mackinac Island Public Schools
+LEA,,49901,Three Lakes Academy
+ISD,,50000,Macomb ISD
+LEA,,50010,Center Line Public Schools
+LEA,,50020,Eastpointe Community Schools
+LEA,,50030,Roseville Community Schools
+LEA,,50040,Anchor Bay School District
+LEA,,50050,Armada Area Schools
+LEA,,50070,Clintondale Community Schools
+LEA,,50080,Chippewa Valley Schools
+LEA,,50090,Fitzgerald Public Schools
+LEA,,50100,Fraser Public Schools
+LEA,,50120,Lake Shore Public Schools (Macomb)
+LEA,,50130,Lakeview Public Schools (Macomb)
+LEA,,50140,L'Anse Creuse Public Schools
+LEA,,50160,Mount Clemens Community School District
+LEA,,50170,New Haven Community Schools
+LEA,,50180,Richmond Community Schools
+LEA,,50190,Romeo Community Schools
+LEA,,50200,South Lake Schools
+LEA,,50210,Utica Community Schools
+LEA,,50220,Van Dyke Public Schools
+LEA,,50230,Warren Consolidated Schools
+LEA,,50240,Warren Woods Public Schools
+LEA,,50901,Macomb Academy
+LEA,,50902,Conner Creek Academy East
+LEA,,50903,Huron Academy
+LEA,,50904,Global Preparatory Academy
+LEA,,50905,Arts Academy in the Woods
+LEA,,50906,Merritt Academy
+LEA,,50908,Mt. Clemens Montessori Academy
+LEA,,50909,Prevail Academy
+LEA,,50911,Academy of Warren
+LEA,,50912,Reach Charter Academy
+LEA,,50913,Noor International Academy
+LEA,,50914,Macomb Montessori Academy
+LEA,,50915,Rising Stars Academy
+LEA,,50916,Success Mile Academy
+LEA,,50917,Red Oak Academy
+LEA,,50918,Center Line Preparatory Academy
+LEA,,50920,New Dawn Academy of Warren
+ISD,,51000,Manistee ISD
+LEA,,51020,Bear Lake Schools
+LEA,,51045,Kaleva Norman Dickson School District
+LEA,,51060,Onekama Consolidated Schools
+LEA,,51070,Manistee Area Public Schools
+LEA,,51903,Casman Alternative Academy
+LEA,,51905,Michigan Great Lakes Virtual Academy
+ISD,,52000,Marquette-Alger RESA
+LEA,,52015,NICE Community School District
+LEA,,52040,Gwinn Area Community Schools
+LEA,,52090,Negaunee Public Schools
+LEA,,52100,Powell Township Schools
+LEA,,52110,Republic-Michigamme Schools
+LEA,,52160,Wells Township School District
+LEA,,52170,Marquette Area Public Schools
+LEA,,52180,Ishpeming Public School District No. 1
+LEA,,52901,North Star Academy
+ISD,,53000,West Shore Educational Service District
+LEA,,53010,Mason County Central Schools
+LEA,,53020,Mason County Eastern Schools
+LEA,,53040,Ludington Area School District
+LEA,,53901,Gateway To Success Academy
+ISD,,54000,Mecosta-Osceola ISD
+LEA,,54010,Big Rapids Public Schools
+LEA,,54025,Chippewa Hills School District
+LEA,,54040,Morley Stanwood Community Schools
+LEA,,54901,Crossroads Charter Academy
+ISD,,55000,Menominee ISD
+LEA,,55010,Carney-Nadeau Public Schools
+LEA,,55100,Menominee Area Public Schools
+LEA,,55115,North Central Area Schools
+LEA,,55120,Stephenson Area Public Schools
+LEA,,55900,Uplift Michigan Academy
+LEA,,55901,Nah Tah Wahsh Public School Academy
+ISD,,56000,Midland County Educational Service Agency
+LEA,,56010,Midland Public Schools
+LEA,,56020,Bullock Creek School District
+LEA,,56030,Coleman Community Schools
+LEA,,56050,Meridian Public Schools
+LEA,,56901,Windover High School
+LEA,,56902,Midland Academy of Advanced and Creative Studies
+LEA,,56903,Academic and Career Education Academy
+LEA,,57020,Lake City Area School District
+LEA,,57030,McBain Rural Agricultural Schools
+ISD,,58000,Monroe ISD
+LEA,,58010,Monroe Public Schools
+LEA,,58020,Airport Community Schools
+LEA,,58030,Bedford Public Schools
+LEA,,58050,Dundee Community Schools
+LEA,,58070,Ida Public School District
+LEA,,58080,Jefferson Schools (Monroe)
+LEA,,58090,Mason Consolidated Schools (Monroe)
+LEA,,58100,Summerfield Schools
+LEA,,58110,Whiteford Agricultural School District of the Counties of Lenawee and Monroe
+LEA,,58901,New Bedford Academy
+LEA,,58902,Triumph Academy
+ISD,,59000,Montcalm Area ISD
+LEA,,59020,Carson City-Crystal Area Schools
+LEA,,59045,Montabella Community Schools
+LEA,,59070,Greenville Public Schools
+LEA,,59080,Tri County Area Schools
+LEA,,59090,Lakeview Community Schools (Montcalm)
+LEA,,59125,Central Montcalm Public Schools
+LEA,,59150,Vestaburg Community Schools
+LEA,,59900,Success Virtual Learning Centers of Michigan
+LEA,,60010,Atlanta Community Schools
+LEA,,60020,Hillman Community Schools
+ISD,,61000,Muskegon Area ISD
+LEA,,61010,"Muskegon, Public Schools of the City of"
+LEA,,61060,Mona Shores Public School District
+LEA,,61065,Oakridge Public Schools
+LEA,,61080,Fruitport Community Schools
+LEA,,61120,Holton Public Schools
+LEA,,61180,Montague Area Public Schools
+LEA,,61190,Orchard View Schools
+LEA,,61210,Ravenna Public Schools
+LEA,,61220,Reeths-Puffer Schools
+LEA,,61230,North Muskegon Public Schools
+LEA,,61240,Whitehall District Schools
+LEA,,61900,Muskegon Montessori Academy for Environmental Change
+LEA,,61902,Timberland Academy
+LEA,,61904,Three Oaks Public School Academy
+LEA,,61905,Muskegon Heights Public School Academy System
+LEA,,61906,Muskegon Covenant Academy
+LEA,,61907,Muskegon Maritime Academy
+ISD,,62000,Newaygo County RESA
+LEA,,62040,Fremont Public School District
+LEA,,62050,Grant Public School District
+LEA,,62060,Hesperia Community Schools
+LEA,,62070,Newaygo Public School District
+LEA,,62090,White Cloud Public Schools
+LEA,,62470,Big Jackson School District
+ISD,,63000,Oakland Schools
+LEA,,63010,Birmingham Public Schools
+LEA,,63020,Ferndale Public Schools
+LEA,,63030,Pontiac City School District
+LEA,,63040,Royal Oak Schools
+LEA,,63050,Berkley School District
+LEA,,63060,Southfield Public School District
+LEA,,63070,Avondale School District
+LEA,,63080,Bloomfield Hills Schools
+LEA,,63090,Clarenceville School District
+LEA,,63100,Novi Community School District
+LEA,,63110,Oxford Community Schools
+LEA,,63130,"Hazel Park, School District of the City of"
+LEA,,63140,Madison District Public Schools
+LEA,,63150,Troy School District
+LEA,,63160,West Bloomfield School District
+LEA,,63180,Brandon School District in the Counties of Oakland and Lapeer
+LEA,,63190,Clarkston Community School District
+LEA,,63200,Farmington Public School District
+LEA,,63210,Holly Area School District
+LEA,,63220,Huron Valley Schools
+LEA,,63230,Lake Orion Community Schools
+LEA,,63240,South Lyon Community Schools
+LEA,,63250,"Oak Park, School District of the City of"
+LEA,,63260,Rochester Community School District
+LEA,,63270,Clawson Public Schools
+LEA,,63280,Lamphere Public Schools
+LEA,,63290,Walled Lake Consolidated Schools
+LEA,,63300,Waterford School District
+LEA,,63900,Sarah J. Webber Media Arts Academy
+LEA,,63901,AGBU Alex-Marie Manoogian School
+LEA,,63906,Pontiac Academy for Excellence
+LEA,,63907,Great Lakes Academy
+LEA,,63909,Oakside Scholars Charter Academy
+LEA,,63910,Dr. Joseph F. Pollack Academic Center of Excellence
+LEA,,63911,Holly Academy
+LEA,,63912,Oakland International Academy
+LEA,,63913,Walton Charter Academy
+LEA,,63914,Advanced Technology Academy
+LEA,,63915,Arts and Technology Academy of Pontiac
+LEA,,63917,Bradford Academy
+LEA,,63918,Laurus Academy
+LEA,,63920,Life Skills Center of Pontiac
+LEA,,63921,Crescent Academy
+LEA,,63922,Great Oaks Academy
+LEA,,63923,Four Corners Montessori Academy
+LEA,,63924,Michigan Mathematics and Science Academy
+LEA,,63926,Faxon Language Immersion Academy
+LEA,,63928,Momentum Academy
+LEA,,63929,Waterford Montessori Academy
+LEA,,63930,NexTech High School of Metro Detroit
+LEA,,63931,FlexTech High School - Novi
+LEA,,63933,Jefferson International Academy
+LEA,,63934,Kingsbury Country Day School
+LEA,,63935,Frederick Douglass International Academy
+LEA,,63938,Keys Grace Academy
+LEA,,63939,Lighthouse Connections Academy
+LEA,,64040,Hart Public School District
+LEA,,64070,Pentwater Public School District
+LEA,,64080,Shelby Public Schools
+LEA,,64090,Walkerville Public Schools
+LEA,,65045,West Branch-Rose City Area Schools
+LEA,,65900,Alternative Educational Academy of Ogemaw County
+LEA,,66045,Ewen-Trout Creek Consolidated School District
+LEA,,66050,Ontonagon Area School District
+LEA,,67020,Evart Public Schools
+LEA,,67050,Marion Public Schools
+LEA,,67055,Pine River Area Schools
+LEA,,67060,Reed City Area Public Schools
+LEA,,68010,Mio-AuSable Schools
+LEA,,68030,Fairview Area School District
+LEA,,69020,Gaylord Community Schools
+LEA,,69030,Johannesburg-Lewiston Area Schools
+LEA,,69040,Vanderbilt Area Schools
+ISD,,70000,Ottawa Area ISD
+LEA,,70010,Grand Haven Area Public Schools
+LEA,,70020,Holland City School District
+LEA,,70040,Allendale Public Schools
+LEA,,70070,West Ottawa Public School District
+LEA,,70120,Coopersville Area Public School District
+LEA,,70175,Jenison Public Schools
+LEA,,70190,Hudsonville Public School District
+LEA,,70300,Spring Lake Public Schools
+LEA,,70350,Zeeland Public Schools
+LEA,,70901,Walden Green Montessori
+LEA,,70902,West MI Academy of Arts and Academics
+LEA,,70904,Black River Public School
+LEA,,70905,Vanderbilt Charter Academy
+LEA,,70906,Eagle Crest Charter Academy
+LEA,,70908,Innocademy
+LEA,,70909,ICademy Global
+LEA,,71050,Onaway Area Community School District
+LEA,,71060,Posen Consolidated School District No. 9
+LEA,,71080,Rogers City Area Schools
+LEA,,71902,Presque Isle Academy
+ISD,,72000,C.O.O.R. ISD
+LEA,,72010,Roscommon Area Public Schools
+LEA,,72020,Houghton Lake Community Schools
+LEA,,72901,Charlton Heston Academy
+ISD,,73000,Saginaw ISD
+LEA,,73010,"Saginaw, School District of the City of"
+LEA,,73030,Carrollton Public Schools
+LEA,,73040,Saginaw Township Community Schools
+LEA,,73110,Chesaning Union Schools
+LEA,,73170,Birch Run Area Schools
+LEA,,73180,Bridgeport-Spaulding Community School District
+LEA,,73190,Frankenmuth School District
+LEA,,73200,Freeland Community School District
+LEA,,73210,Hemlock Public School District
+LEA,,73230,Merrill Community Schools
+LEA,,73240,St. Charles Community Schools
+LEA,,73255,Swan Valley School District
+LEA,,73900,Saginaw Covenant Academy
+LEA,,73901,The Woodley Leadership Academy
+LEA,,73908,Saginaw Preparatory Academy
+LEA,,73909,Francis Reh PSA
+LEA,,73910,North Saginaw Charter Academy
+LEA,,73911,Saginaw Learn to Earn Academy
+LEA,,73912,International Academy of Saginaw
+ISD,,74000,St. Clair County RESA
+LEA,,74010,Port Huron Area School District
+LEA,,74030,Algonac Community School District
+LEA,,74040,Capac Community Schools
+LEA,,74050,East China School District
+LEA,,74100,Marysville Public Schools
+LEA,,74120,Memphis Community Schools
+LEA,,74130,Yale Public Schools
+LEA,,74900,East Shore Leadership Academy
+LEA,,74903,Landmark Academy
+LEA,,74911,St. Clair County Intervention Academy
+LEA,,74912,Virtual Learning Academy of St. Clair County
+LEA,,74914,Blue Water Middle College
+ISD,,75000,St. Joseph County ISD
+LEA,,75010,Sturgis Public Schools
+LEA,,75020,Burr Oak Community School District
+LEA,,75030,Centreville Public Schools
+LEA,,75040,Colon Community School District
+LEA,,75050,Constantine Public School District
+LEA,,75060,Mendon Community School District
+LEA,,75070,White Pigeon Community Schools
+LEA,,75080,Three Rivers Community Schools
+LEA,,75100,Nottawa Community School
+ISD,,76000,Sanilac ISD
+LEA,,76060,Brown City Community Schools
+LEA,,76070,Carsonville-Port Sanilac School District
+LEA,,76080,Croswell-Lexington Community Schools
+LEA,,76090,Deckerville Community School District
+LEA,,76140,Marlette Community Schools
+LEA,,76180,Peck Community School District
+LEA,,76210,Sandusky Community School District
+LEA,,77010,Manistique Area Schools
+ISD,,78000,Shiawassee Regional ESD
+LEA,,78020,Byron Area Schools
+LEA,,78030,Durand Area Schools
+LEA,,78040,Laingsburg Community Schools
+LEA,,78060,Morrice Area Schools
+LEA,,78070,New Lothrop Area Public Schools
+LEA,,78080,Perry Public Schools
+LEA,,78100,Corunna Public Schools
+LEA,,78110,Owosso Public Schools
+ISD,,79000,Tuscola ISD
+LEA,,79010,Akron-Fairgrove Schools
+LEA,,79020,Caro Community Schools
+LEA,,79030,Cass City Public Schools
+LEA,,79080,Kingston Community School District
+LEA,,79090,Mayville Community School District
+LEA,,79100,Millington Community Schools
+LEA,,79110,Reese Public Schools
+LEA,,79145,Unionville-Sebewaing Area S.D.
+LEA,,79150,Vassar Public Schools
+ISD,,80000,Van Buren ISD
+LEA,,80010,South Haven Public Schools
+LEA,,80020,Bangor Public Schools (Van Buren)
+LEA,,80040,Covert Public Schools
+LEA,,80050,Decatur Public Schools
+LEA,,80090,Bloomingdale Public School District
+LEA,,80110,Gobles Public School District
+LEA,,80120,Hartford Public Schools
+LEA,,80130,Lawrence Public Schools
+LEA,,80140,Lawton Community School District
+LEA,,80150,Mattawan Consolidated School
+LEA,,80160,Paw Paw Public School District
+LEA,,80240,Bangor Township S/D #8
+LEA,,80900,Michigan Online School
+ISD,,81000,Washtenaw ISD
+LEA,,81010,Ann Arbor Public Schools
+LEA,,81020,Ypsilanti Community Schools
+LEA,,81040,Chelsea School District
+LEA,,81050,Dexter Community School District
+LEA,,81070,Lincoln Consolidated School District
+LEA,,81080,Manchester Community Schools
+LEA,,81100,Milan Area Schools
+LEA,,81120,Saline Area Schools
+LEA,,81140,Whitmore Lake Public School District
+LEA,,81900,Global Tech Academy
+LEA,,81901,Honey Creek Community School
+LEA,,81902,Central Academy
+LEA,,81903,Washtenaw Technical Middle College
+LEA,,81904,Ann Arbor Learning Community
+LEA,,81905,South Arbor Charter Academy
+LEA,,81906,Fortis Academy
+LEA,,81908,Multicultural Academy
+LEA,,81909,Arbor Preparatory High School
+LEA,,81910,East Arbor Charter Academy
+LEA,,81911,WSC Academy
+LEA,,81912,South Pointe Scholars Charter Academy
+LEA,,81913,Livingston Classical Cyber Academy
+LEA,,81915,Pittsfield Acres Academy
+LEA,,81916,GEE Compass Academy
+ISD,,82000,Wayne RESA
+LEA,,82015,Detroit Public Schools Community District
+LEA,,82020,Allen Park Public Schools
+LEA,,82030,Dearborn City School District
+LEA,,82040,Dearborn Heights School District #7
+LEA,,82045,Melvindale-North Allen Park Schools
+LEA,,82050,Garden City Public Schools
+LEA,,82055,Grosse Pointe Public Schools
+LEA,,82060,"Hamtramck, School District of the City of"
+LEA,,82090,"Lincoln Park, School District of the City of"
+LEA,,82095,Livonia Public Schools School District
+LEA,,82100,Plymouth-Canton Community Schools
+LEA,,82110,"Redford Union Schools, District No. 1"
+LEA,,82120,"River Rouge, School District of the City of"
+LEA,,82130,Romulus Community Schools
+LEA,,82140,South Redford School District
+LEA,,82150,Taylor School District
+LEA,,82155,Trenton Public Schools
+LEA,,82160,Wayne-Westland Community School District
+LEA,,82170,"Wyandotte, School District of the City of"
+LEA,,82180,Flat Rock Community Schools
+LEA,,82230,Crestwood School District
+LEA,,82240,Westwood Community School District
+LEA,,82250,Ecorse Public Schools
+LEA,,82290,Gibraltar School District
+LEA,,82300,Grosse Ile Township Schools
+LEA,,82320,"Harper Woods, The School District of the City of"
+LEA,,82340,Huron School District
+LEA,,82365,Woodhaven-Brownstown School District
+LEA,,82390,Northville Public Schools
+LEA,,82400,Riverview Community School District
+LEA,,82405,Southgate Community School District
+LEA,,82430,Van Buren Public Schools
+LEA,,82700,Detroit Achievement Academy
+LEA,,82701,University Preparatory Science and Math (PSAD)
+LEA,,82702,University Preparatory Academy (PSAD)
+LEA,,82703,Henry Ford Academy: School for Creative Studies (PSAD)
+LEA,,82704,Detroit Public Safety Academy
+LEA,,82705,Branch Line School
+LEA,,82706,The James and Grace Lee Boggs School
+LEA,,82710,WAY Michigan
+LEA,,82711,Canton Preparatory High School
+LEA,,82713,New Paradigm College Prep
+LEA,,82714,Detroit Delta Preparatory Academy for Social Justice
+LEA,,82716,Vista Meadows Academy
+LEA,,82717,Achieve Charter Academy
+LEA,,82718,Quest Charter Academy
+LEA,,82719,Washington-Parks Academy
+LEA,,82722,Detroit Leadership Academy
+LEA,,82723,Legacy Charter Academy
+LEA,,82724,University Yes Academy
+LEA,,82725,Global Heights Academy
+LEA,,82727,Regent Park Scholars Charter Academy
+LEA,,82728,Jalen Rose Leadership Academy
+LEA,,82729,South Canton Scholars Charter Academy
+LEA,,82730,American International Academy
+LEA,,82731,GEE Edmonson Academy
+LEA,,82732,GEE White Academy
+LEA,,82733,Hamilton Academy
+LEA,,82735,New Paradigm Glazer-Loving Academy
+LEA,,82737,Pathways Academy
+LEA,,82739,Detroit Innovation Academy
+LEA,,82741,Cornerstone Health and Technology School
+LEA,,82742,Madison-Carver Academy
+LEA,,82743,Plymouth Scholars Charter Academy
+LEA,,82744,Escuela Avancemos
+LEA,,82745,Caniff Liberty Academy
+LEA,,82746,W-A-Y Academy
+LEA,,82747,MacDowell Preparatory Academy
+LEA,,82748,Rutherford Winans Academy
+LEA,,82749,Highland Park Public School Academy System
+LEA,,82751,Michigan Educational Choice Center
+LEA,,82752,Capstone Academy Charter School (SDA)
+LEA,,82754,Tipton Academy
+LEA,,82755,Southwest Detroit Community School
+LEA,,82756,Taylor Preparatory High School
+LEA,,82757,Grand River Academy
+LEA,,82758,New School High
+LEA,,82759,Regents Academy
+LEA,,82760,Cornerstone Jefferson-Douglass Academy
+LEA,,82762,Inkster Preparatory Academy
+LEA,,82763,Distinctive College Prep.
+LEA,,82764,Detroit Collegiate High School
+LEA,,82765,Pembroke Academy
+LEA,,82766,Westfield Charter Academy
+LEA,,82767,Ivywood Classical Academy
+LEA,,82768,Achieve-Detroit
+LEA,,82770,Sigma Academy for Leadership and Early Middle College
+LEA,,82772,Fostering Leadership Academy
+LEA,,82773,Lincoln-King Adams-Young Academy
+LEA,,82774,Explore Academy-Livonia
+LEA,,82775,KIPP Detroit Imani Academy
+LEA,,82776,SER YouthBuild Learning Academy
+LEA,,82904,Plymouth Educational Center Charter School
+LEA,,82910,"Martin Luther King, Jr. Education Center Academy"
+LEA,,82915,Eaton Academy
+LEA,,82916,Summit Academy
+LEA,,82918,Cesar Chavez Academy
+LEA,,82919,Commonwealth Community Development Academy
+LEA,,82921,Academy for Business and Technology
+LEA,,82923,Chandler Park Academy
+LEA,,82924,Marvin L. Winans Academy of Performing Arts
+LEA,,82925,Detroit Community Schools
+LEA,,82926,Henry Ford Academy
+LEA,,82928,The Dearborn Academy
+LEA,,82929,Detroit Academy of Arts and Sciences
+LEA,,82930,Dove Academy of Detroit
+LEA,,82933,Timbuktu Academy
+LEA,,82937,George Crockett Academy
+LEA,,82938,Summit Academy North
+LEA,,82940,Voyageur Academy
+LEA,,82941,Star International Academy
+LEA,,82942,Hope Academy
+LEA,,82943,Weston Preparatory Academy
+LEA,,82945,Detroit Edison Public School Academy
+LEA,,82947,David Ellis Academy
+LEA,,82950,Universal Academy
+LEA,,82953,Detroit Service Learning Academy
+LEA,,82956,Old Redford Academy
+LEA,,82957,Hope of Detroit Academy
+LEA,,82958,Joy Preparatory Academy
+LEA,,82959,West Village Academy
+LEA,,82962,New Beginnings Academy
+LEA,,82963,George Washington Carver Academy
+LEA,,82967,Metro Charter Academy
+LEA,,82968,Canton Charter Academy
+LEA,,82969,Creative Montessori Academy
+LEA,,82970,Warrendale Charter Academy
+LEA,,82973,Trillium Academy
+LEA,,82974,Detroit Merit Charter Academy
+LEA,,82975,Riverside Academy
+LEA,,82976,Keystone Academy
+LEA,,82977,Hamtramck Academy
+LEA,,82979,Detroit Enterprise Academy
+LEA,,82981,American Montessori Academy
+LEA,,82982,Universal Learning Academy
+LEA,,82983,Bridge Academy
+LEA,,82985,Detroit Premier Academy
+LEA,,82986,Hanley International Academy
+LEA,,82987,Frontier International Academy
+LEA,,82991,Covenant House Academy Detroit
+LEA,,82994,David Ellis Academy West
+LEA,,82995,Taylor Exemplar Academy
+LEA,,82996,Clara B. Ford Academy (SDA)
+LEA,,82997,Flagship Charter Academy
+LEA,,82998,ACE Academy (SDA)
+ISD,,83000,Wexford-Missaukee ISD
+LEA,,83010,Cadillac Area Public Schools
+LEA,,83060,Manton Consolidated Schools
+LEA,,83070,Mesick Consolidated Schools
+LEA,,83900,Highpoint Virtual Academy of Michigan
+LEA,,84010,Michigan Department of Human Services
+MDE,,84020,Michigan Department of Corrections
+MDE,,84040,Michigan Department of Community Health
+MDE,,84050,Michigan School for the Deaf

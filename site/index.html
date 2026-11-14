@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EndSaR Interactive Data Map</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="leaflet/leaflet.css">
   <style>
     :root { color-scheme: light; --ink: #17202a; --muted: #5f6b77; --line: #d7dee7; --panel: #ffffff; --paper: #f5f7fa; --accent: #006d77; }
@@ -83,6 +84,18 @@
     .detail-table th { position: sticky; top: 0; background: #203a5f; color: #fff; z-index: 1; }
     .detail-table.approximated-table th { background: #72dd44; color: #17202a; }
     .detail-table tr:nth-child(even) td { background: #f6f8fa; }
+    .data-through { margin-top: 6px; font-size: 13px; font-weight: 700; color: #0f5f68; }
+    .toggle-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: #384653; text-transform: none; font-weight: 400; }
+    .toggle-row input { width: 16px; min-height: 16px; height: 16px; margin: 0; }
+    .share-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+    .share-row .command { width: auto; padding: 6px 12px; min-height: 34px; background: #fff; color: #0f5f68; }
+    .share-row .command:hover { background: #eef6f7; }
+    .share-status { font-size: 12px; color: var(--muted); }
+    .loading { position: absolute; inset: 0; z-index: 1500; display: flex; align-items: center; justify-content: center; background: rgba(245,247,250,.82); font-weight: 700; color: #203a5f; }
+    .loading.hidden { display: none; }
+    .loading .spinner { width: 22px; height: 22px; margin-right: 10px; border: 3px solid #c9d5e0; border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .point-note { margin-top: 6px; font-size: 12px; color: var(--muted); }
     @media (max-width: 900px) { .app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 42vh) minmax(0, 58vh); height: 100vh; } aside { border-right: 0; border-bottom: 1px solid var(--line); height: auto; min-height: 0; max-height: none; overflow-y: auto; } main { height: auto; min-height: 0; } .info-menu { top: 10px; right: 10px; } .legend { right: 10px; width: calc(100vw - 20px); min-width: 0; } .bottom-drawer { left: 0; max-height: 52vh; } .drawer-content { max-height: calc(52vh - 38px); } }
   </style>
 </head>
@@ -91,17 +104,20 @@
     <aside>
       <h1>EndSaR Interactive Data Map</h1>
       <p>School-year data uses CEPI <em>Use of seclusion and restraint data files</em> [Data set] and CEPI district-code geography assignments.</p>
+      <p class="data-through" id="data-through"></p>
       <label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select>
       <div class="controls">
         <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
         <div><label for="year">School Year</label><select id="year"></select></div>
       </div>
+      <div id="points-wrap"><label class="toggle-row" for="show-points"><input type="checkbox" id="show-points" checked> Show charter academies and ISD programs as dots</label><p class="point-note">These have no district boundary, so they appear as dots placed at their office address (or near their host district when no address is on file).</p></div>
       <div id="scope-wrap"><label for="scope">Data Scope</label><select id="scope"><option value="combined">Combined entities</option><option value="entity">ISD entity only</option></select></div>
       <label for="metric">Metric</label><select id="metric"></select>
       <label>Export</label><div class="export-controls"><button class="command" id="export-png" type="button">Export Map as PNG</button><button class="command" id="export-table" type="button">Export Table as Excel</button></div>
       <label for="search" id="search-label">Find County</label><input id="search" list="area-list" placeholder="Type a county"><datalist id="area-list"></datalist>
+      <div class="share-row"><button class="command" id="copy-link" type="button">Copy link to this view</button><span class="share-status" id="share-status" aria-live="polite"></span></div>
       <div class="metric-grid">
-        <div class="stat"><b id="state-total">0</b><span>statewide estimated total for selected metric</span></div>
+        <div class="stat"><b id="state-total">0</b><span id="state-total-label">statewide estimated total for selected metric</span></div>
         <div class="stat"><b id="area-count">0</b><span id="area-label">areas represented</span></div>
         <div class="stat"><b id="district-total">0</b><span>LEA rows included in aggregation</span></div>
         <div class="stat"><b id="suppressed-total">0</b><span id="suppressed-total-label">suppressed cells in selected metric</span></div>
@@ -111,13 +127,46 @@
       <p class="note">Michigan's Center for Educational Performance and Information. (2017-2026). <em>Use of seclusion and restraint data files</em> [Data set]. MI School Data. <a href="https://www.mischooldata.org/districtschool-data-files/" target="_blank" rel="noopener noreferrer">https://www.mischooldata.org/districtschool-data-files/</a></p>
       <p class="credit">Developed by Matt Rische</p>
     </aside>
-    <main><div id="map"></div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
+    <main><div id="map"></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
   </div>
-  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Toggle table">?</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button></div><div class="drawer-content" id="drawer-content"></div></div>
+  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Show or hide the detail table" aria-label="Show or hide the detail table">&#9650;</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button></div><div class="drawer-content" id="drawer-content"></div></div>
   <div class="info-overlay" id="info-overlay" aria-hidden="true"><div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="info-dialog-header"><div class="info-dialog-title"><h2 id="info-title">Information</h2><p id="info-subtitle"></p></div><button class="info-close" id="info-close" type="button" aria-label="Close information">×</button></div><div class="info-dialog-body" id="info-body"></div></div></div>
-  <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script><script src="map-data.js?v=derived-stars-20260520"></script>
+  <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script>
   <script>
-    const datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body');
+    // Rebuild the full data structure from the compact file (format 2). Older full files pass through unchanged.
+    function expandMapData(payload) {
+      if (payload.format !== 2) return payload;
+      const keys = payload.recordKeys;
+      const SUMMARY_FROM_METRIC = { swd_total: 'swd_students', nonswd_total: 'nonswd_students', student_total: 'all_students', seclusion_total: 'all_seclusions', restraint_total: 'all_restraints', combined_event_total: 'all_events' };
+      const fill = (values, list) => { const out = {}; list.forEach(key => { out[key] = (values && values[key]) || 0; }); return out; };
+      const expandRecord = record => {
+        const metrics = fill(record.m, keys.metrics), displayMetrics = {}, summary = {};
+        keys.display.forEach(key => { displayMetrics[key] = metrics[key]; });
+        Object.assign(displayMetrics, record.d || {});
+        Object.keys(SUMMARY_FROM_METRIC).forEach(key => { summary[key] = metrics[SUMMARY_FROM_METRIC[key]] || 0; });
+        return { metrics, displayMetrics, approximatedCells: fill(record.a, keys.cells), suppressedCells: fill(record.s, keys.cells), summary, topDistricts: (record.t || []).map(row => ({ district: row[0], code: row[1], total: row[2], suppressed: row[3] })) };
+      };
+      Object.values(payload.datasets).forEach(dataset => Object.values(dataset.sources).forEach(source => {
+        Object.values(source.items).forEach(item => { Object.keys(item.years).forEach(year => { item.years[year] = expandRecord(item.years[year]); }); });
+        Object.keys(source.stateTotals).forEach(year => { source.stateTotals[year] = expandRecord(source.stateTotals[year]); });
+      }));
+      delete payload.recordKeys; delete payload.format;
+      return payload;
+    }
+    (async () => {
+    const [dataResponse, pointsResponse] = await Promise.all([
+      fetch('data/map-data.json', { cache: 'no-cache' }),
+      fetch('data/entity-locations.json', { cache: 'no-cache' }).catch(() => null)
+    ]);
+    if (!dataResponse.ok) throw new Error(`Map data request failed (${dataResponse.status})`);
+    const dataPayload = expandMapData(await dataResponse.json());
+    const ENTITY_POINTS = pointsResponse && pointsResponse.ok ? (await pointsResponse.json()).points || {} : {};
+    const MAP_DATASETS = dataPayload.datasets;
+    const DEFAULT_DATASET = dataPayload.defaultDataset;
+    const MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources;
+    const METRICS = dataPayload.metrics;
+    const MAP_METADATA = dataPayload.metadata;
+    const datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body'), pointsWrap = document.getElementById('points-wrap'), showPoints = document.getElementById('show-points'), copyLinkButton = document.getElementById('copy-link'), shareStatus = document.getElementById('share-status'), loadingEl = document.getElementById('loading');
     const fmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
     const ratioFmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
     const HISTORIC_AVERAGE_YEAR = '__historic_average__';
@@ -155,7 +204,7 @@
     const MAP_NAVIGATION_BOUNDS = L.latLngBounds([39.2, -91.2], [48.75, -78.0]);
     const boundaries = { county: COUNTY_BOUNDARIES_OPTIMIZED, district: DISTRICT_BOUNDARIES_OPTIMIZED, isd: ISD_BOUNDARIES_OPTIMIZED, region: REGION_BOUNDARIES_OPTIMIZED };
     const labels = { county: { find: 'Find County', ph: 'Type a county', represented: 'counties represented', empty: 'Select a county on the map to see details.' }, district: { find: 'Find District', ph: 'Type a district', represented: 'districts represented', empty: 'Select a district on the map to see details.' }, isd: { find: 'Find ISD', ph: 'Type an ISD', represented: 'ISDs represented', empty: 'Select an ISD on the map to see details.' }, region: { find: 'Find Region', ph: 'Type a region', represented: 'regions represented', empty: 'Select a region on the map to see details.' } };
-    let selectedLayer = null, geoLayer = null, hatchCanvas = null, hatchCtx = null, hatchFrame = 0, hatchTimer = 0, hatchDrawTopLeft = L.point(0, 0);
+    let selectedLayer = null, geoLayer = null, pointLayer = null, pointRenderer = null, hatchCanvas = null, hatchCtx = null, hatchFrame = 0, hatchTimer = 0, hatchDrawTopLeft = L.point(0, 0);
 
     METRICS.forEach(metric => { const option = document.createElement('option'); option.value = metric.key; option.textContent = metric.label; metricSelect.appendChild(option); });
 
@@ -190,16 +239,28 @@
       });
       return { metrics, displayMetrics, suppressedCells, approximatedCells, summary, topDistricts: [] };
     }
-    function dataForSelection(years, dataByYear) { return isHistoricAverage() ? averageYearRecords(years.map(year => dataByYear[year.year]).filter(Boolean)) : dataByYear[selectedYear()]; }
+    // Speed: Historic Average and colour-scale values are computed once per selection and reused,
+    // instead of being recalculated for every shape on every redraw.
+    const averageCache = new Map(), scaleCache = new Map();
+    function selectionKey() { return `${datasetSelect.value}|${activeSourceKey()}|${selectedYear()}`; }
+    function dataForSelection(years, dataByYear) {
+      if (!isHistoricAverage()) return dataByYear[selectedYear()];
+      let perSelection = averageCache.get(datasetSelect.value);
+      if (!perSelection) { if (averageCache.size > 4) averageCache.clear(); perSelection = new WeakMap(); averageCache.set(datasetSelect.value, perSelection); }
+      let record = perSelection.get(dataByYear);
+      if (!record) { record = averageYearRecords(years.map(year => dataByYear[year.year]).filter(Boolean)); perSelection.set(dataByYear, record); }
+      return record;
+    }
     function yearData(item) { return dataForSelection(activeSource().years, item.years); }
     function displayValue(data, key) { const value = data.displayMetrics && data.displayMetrics[key] !== undefined ? data.displayMetrics[key] : data.metrics[key]; return typeof value === 'string' ? value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : formatValue(key, value); }
-    function nonzeroValues(metricKey) { return Object.values(activeSource().items).map(item => yearData(item).metrics[metricKey] || 0).filter(v => v > 0).sort((a, b) => a - b); }
+    function nonzeroValues(metricKey) { const key = `${selectionKey()}|${metricKey}`; let values = scaleCache.get(key); if (!values) { if (scaleCache.size > 200) scaleCache.clear(); values = Object.values(activeSource().items).map(item => yearData(item).metrics[metricKey] || 0).filter(v => v > 0).sort((a, b) => a - b); scaleCache.set(key, values); } return values; }
     function percentile(values, p) { if (!values.length) return 0; const pos = (values.length - 1) * p; const base = Math.floor(pos); const rest = pos - base; return values[base + 1] !== undefined ? values[base] + rest * (values[base + 1] - values[base]) : values[base]; }
     function colorScale(metricKey) { const values = nonzeroValues(metricKey); return { min: values[0] || 0, mid: percentile(values, 0.50), max: values[values.length - 1] || 0 }; }
     function hexToRgb(hex) { const clean = hex.replace('#', ''); return [parseInt(clean.slice(0,2),16), parseInt(clean.slice(2,4),16), parseInt(clean.slice(4,6),16)]; }
     function mix(a, b, t) { const ar = hexToRgb(a), br = hexToRgb(b); return '#' + ar.map((v, i) => Math.round(v + (br[i] - v) * t).toString(16).padStart(2, '0')).join(''); }
     function gradientColorAt(t) { const capped = Math.max(0, Math.min(t, 1)); const segment = Math.min(Math.floor(capped * (gradientColors.length - 1)), gradientColors.length - 2); const local = capped * (gradientColors.length - 1) - segment; return mix(gradientColors[segment], gradientColors[segment + 1], local); }
-    function percentileRank(values, value) { if (!value || !values.length) return 0; if (values.length === 1) return 1; let first = values.findIndex(v => v >= value), last = values.length - 1; for (let i = values.length - 1; i >= 0; i--) { if (values[i] <= value) { last = i; break; } } if (first < 0) first = values.length - 1; return ((first + last) / 2) / (values.length - 1); }
+    function lowerBound(values, value) { let lo = 0, hi = values.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (values[mid] < value) lo = mid + 1; else hi = mid; } return lo; }
+    function percentileRank(values, value) { if (!value || !values.length) return 0; if (values.length === 1) return 1; let first = lowerBound(values, value), last = lowerBound(values, value + Number.EPSILON * Math.max(1, Math.abs(value)) * 4) - 1; if (values[last + 1] !== undefined && values[last + 1] <= value) last += 1; if (first >= values.length) first = values.length - 1; if (last < 0) last = 0; if (last < first) last = first; return ((first + last) / 2) / (values.length - 1); }
     function percentileColor(value, metricKey) { if (!value) return '#eef2f5'; return gradientColorAt(percentileRank(nonzeroValues(metricKey), value)); }
     function selectedLegendPercent(metricKey) { if (!selectedLayer) return null; const item = activeItem(selectedLayer.feature); if (!item) return null; const value = yearData(item).metrics[metricKey] || 0; if (!value) return null; return percentileRank(nonzeroValues(metricKey), value); }
     function hasSuppressionPattern(data, metricKey) { return datasetSelect.value === 'raw' ? (data.suppressedCells[metricKey] || 0) > 0 : (data.approximatedCells && (data.approximatedCells[metricKey] || 0) > 0); }
@@ -249,7 +310,7 @@
 
     function refreshYears() { const current = yearSelect.value; yearSelect.innerHTML = ''; activeSource().years.forEach(item => { const option = document.createElement('option'); option.value = item.year; option.textContent = item.year; yearSelect.appendChild(option); }); const historic = document.createElement('option'); historic.value = HISTORIC_AVERAGE_YEAR; historic.textContent = HISTORIC_AVERAGE_LABEL; yearSelect.appendChild(historic); yearSelect.value = current === HISTORIC_AVERAGE_YEAR || activeSource().years.some(y => y.year === current) ? current : activeSource().years[activeSource().years.length - 1].year; }
     function refreshSearch() { const l = labels[activeMode()]; document.getElementById('search-label').textContent = l.find; search.placeholder = l.ph; search.value = ''; areaList.innerHTML = ''; Object.values(activeSource().items).sort((a, b) => a.name.localeCompare(b.name)).forEach(item => { const option = document.createElement('option'); option.value = item.name; areaList.appendChild(option); }); }
-    function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">LEA rows: ${fmt.format(item.districtCount)}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>`; }
+    function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">LEA rows: ${fmt.format(item.districtCount)}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>${feature.geometry.type === 'Point' ? `<div class="popup-line"><em>${feature.properties.exact ? 'Dot shows office location (no district boundary)' : 'Dot location is approximate (no district boundary)'}</em></div>` : ''}`; }
     function sourceTotalsForSelection(source = activeSource()) { return dataForSelection(source.years, source.stateTotals); }
     function renderSummary() { const totals = sourceTotalsForSelection(), s = totals.summary; document.getElementById('summary-body').innerHTML = `<tr><td>Total reported students with disabilities</td><td>${fmt.format(s.swd_total)}</td></tr><tr><td>Total reported students without disabilities</td><td>${fmt.format(s.nonswd_total)}</td></tr><tr><td>Combined reported students</td><td>${fmt.format(s.student_total)}</td></tr><tr><td>Total seclusions</td><td>${fmt.format(s.seclusion_total)}</td></tr><tr><td>Total restraints</td><td>${fmt.format(s.restraint_total)}</td></tr><tr><td>Combined seclusions and restraints</td><td>${fmt.format(s.combined_event_total)}</td></tr><tr><td>Combined Ratio</td><td>${formatValue('event_student_ratio', totals.metrics.event_student_ratio || 0)}</td></tr>`; }
     function detailRowsFor(item, scopeLabel) {
@@ -298,13 +359,28 @@
       }
       entityPanel.innerHTML = `<div class="entity-name">${item.name}</div><div class="detail-row"><span>View</span><strong>${activeSource().label}</strong></div><div class="detail-row"><span>School year</span><strong>${selectedYearLabel()}</strong></div><div class="detail-row"><span>${item.type} ID</span><strong>${item.id}</strong></div>${extra}<div class="detail-row"><span>LEA rows included</span><strong>${fmt.format(item.districtCount)}</strong></div>${detailSections}<label>Highest LEA combined event totals</label><div class="districts">${districts}</div>`;
     }
-    function clearSelection() { if (selectedLayer) geoLayer.resetStyle(selectedLayer); selectedLayer = null; entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); renderLegend(); scheduleHatches(0); }
-    function highlightLayer(layer) { if (selectedLayer === layer) { clearSelection(); return; } if (selectedLayer) geoLayer.resetStyle(selectedLayer); selectedLayer = layer; layer.setStyle({ weight: 3, color: '#17202a', fillOpacity: 0.95 }); layer.bringToFront(); const item = activeItem(layer.feature); renderPanel(item); renderDrawer(item); renderLegend(); }
-    function onEachFeature(feature, layer) { if (!activeSource().items[feature.properties.id]) return; layer.bindPopup(() => popupHtml(feature)); layer.on({ mouseover: () => layer.setStyle({ weight: 2.4, color: '#17202a' }), mouseout: () => { if (layer !== selectedLayer) geoLayer.resetStyle(layer); }, click: () => highlightLayer(layer) }); }
-    function renderLegend() { const metric = METRICS.find(m => m.key === metricSelect.value), s = colorScale(metric.key), selectedPercent = selectedLegendPercent(metric.key); document.getElementById('legend-title').textContent = `${selectedYearLabel()} - ${metric.label}`; document.getElementById('legend-content').innerHTML = `<div class="swatches" id="swatches">${selectedPercent === null ? '' : `<span class="legend-marker" style="left:${Math.round(selectedPercent * 1000) / 10}%">|</span>`}</div><div class="scale"><span id="legend-min"></span><span id="legend-mid">50th pct</span><span id="legend-max"></span></div><div class="legend-note"><span class="hatch-sample"></span><span>Hatching = mertic contains one or more suppressed cells (&lt;10)</span></div><div class="legend-footnote">* Asterisks = value omits one or more suppressed cells (&lt;10)</div>`; document.getElementById('legend-min').textContent = formatValue(metric.key, s.min); document.getElementById('legend-max').textContent = formatValue(metric.key, s.max); }
-    function updateStats() { const metricKey = metricSelect.value, source = activeSource(), items = Object.values(source.items), totals = sourceTotalsForSelection(source); document.getElementById('state-total').textContent = formatValue(metricKey, totals.metrics[metricKey] || 0); document.getElementById('area-count').textContent = fmt.format(items.length); document.getElementById('area-label').textContent = labels[activeMode()].represented; document.getElementById('district-total').textContent = fmt.format(items.reduce((sum, item) => sum + item.districtCount, 0)); document.getElementById('suppressed-total').textContent = fmt.format(selectedCellCount(totals, metricKey)); document.getElementById('suppressed-total-label').textContent = selectedCellCountLabel(); renderSummary(); renderLegend(); }
-    function loadLayer() { if (geoLayer) map.removeLayer(geoLayer); selectedLayer = null; geoLayer = L.geoJSON(boundaries[activeMode()], { style: styleFeature, onEachFeature, smoothFactor: 1.4 }).addTo(map); map.fitBounds(geoLayer.getBounds(), { padding: [14, 14], maxZoom: 7 }); scheduleHatches(80); }
-    function redraw(resetPanel = true) { updateStats(); if (geoLayer) geoLayer.setStyle(styleFeature); scheduleHatches(0); if (resetPanel) { selectedLayer = null; renderLegend(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); } else if (selectedLayer) { const item = activeItem(selectedLayer.feature); renderPanel(item); renderDrawer(item); renderLegend(); } else { renderStateDrawer(); } }
+    function clearSelection() { if (selectedLayer) resetLayerStyle(selectedLayer); selectedLayer = null; entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); renderLegend(); scheduleHatches(0); updateHash(); }
+    function highlightLayer(layer) { if (selectedLayer === layer) { clearSelection(); return; } if (selectedLayer) resetLayerStyle(selectedLayer); selectedLayer = layer; layer.setStyle({ weight: 3, color: '#17202a', fillOpacity: 0.95 }); layer.bringToFront(); const item = activeItem(layer.feature); renderPanel(item); renderDrawer(item); renderLegend(); updateHash(); }
+    function resetLayerStyle(layer) { if (pointLayer && pointLayer.hasLayer(layer)) pointLayer.resetStyle(layer); else if (geoLayer) geoLayer.resetStyle(layer); }
+    function stylePoint(feature) { const base = styleFeature(feature); return { radius: 5.5, color: '#17202a', weight: 1, fillColor: base.fillColor, fillOpacity: 0.95 }; }
+    function pointFeatures() {
+      const items = activeSource().items, shaped = new Set(boundaries.district.features.map(f => f.properties.id));
+      return { type: 'FeatureCollection', features: Object.keys(items).filter(id => !shaped.has(id) && ENTITY_POINTS[id]).map(id => ({ type: 'Feature', properties: { id, exact: ENTITY_POINTS[id][2] === 1 }, geometry: { type: 'Point', coordinates: [ENTITY_POINTS[id][1], ENTITY_POINTS[id][0]] } })) };
+    }
+    function refreshPoints() {
+      if (pointLayer) { map.removeLayer(pointLayer); pointLayer = null; }
+      pointsWrap.style.display = activeMode() === 'district' ? 'block' : 'none';
+      if (activeMode() !== 'district' || !showPoints.checked) return;
+      if (!map.getPane('entityPoints')) { map.createPane('entityPoints').style.zIndex = 450; pointRenderer = L.canvas({ pane: 'entityPoints' }); }
+      pointLayer = L.geoJSON(pointFeatures(), { pointToLayer: (feature, latlng) => L.circleMarker(latlng, Object.assign(stylePoint(feature), { pane: 'entityPoints', renderer: pointRenderer })), style: stylePoint, onEachFeature }).addTo(map);
+    }
+    function findLayerById(id) { let found = null; [geoLayer, pointLayer].forEach(group => { if (group && !found) group.eachLayer(layer => { if (!found && layer.feature && layer.feature.properties.id === id) found = layer; }); }); return found; }
+    function zoomToLayer(layer) { if (layer.getBounds) map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: activeMode() === 'district' ? 10 : 8 }); else map.setView(layer.getLatLng(), Math.max(map.getZoom(), 9)); }
+    function onEachFeature(feature, layer) { if (!activeSource().items[feature.properties.id]) return; layer.bindPopup(() => popupHtml(feature)); layer.on({ mouseover: () => layer.setStyle({ weight: 2.4, color: '#17202a' }), mouseout: () => { if (layer !== selectedLayer) resetLayerStyle(layer); }, click: () => highlightLayer(layer) }); }
+    function renderLegend() { const metric = METRICS.find(m => m.key === metricSelect.value), s = colorScale(metric.key), selectedPercent = selectedLegendPercent(metric.key); document.getElementById('legend-title').textContent = `${selectedYearLabel()} - ${metric.label}`; document.getElementById('legend-content').innerHTML = `<div class="swatches" id="swatches">${selectedPercent === null ? '' : `<span class="legend-marker" style="left:${Math.round(selectedPercent * 1000) / 10}%">|</span>`}</div><div class="scale"><span id="legend-min"></span><span id="legend-mid">50th pct</span><span id="legend-max"></span></div><div class="legend-note"><span class="hatch-sample"></span><span>Hatching = metric contains one or more suppressed cells (&lt;10)</span></div><div class="legend-footnote">* Asterisks = value omits one or more suppressed cells (&lt;10)</div>`; document.getElementById('legend-min').textContent = formatValue(metric.key, s.min); document.getElementById('legend-max').textContent = formatValue(metric.key, s.max); }
+    function updateStats() { const metricKey = metricSelect.value, source = activeSource(), items = Object.values(source.items), totals = sourceTotalsForSelection(source); document.getElementById('state-total').textContent = formatValue(metricKey, totals.metrics[metricKey] || 0); document.getElementById('area-count').textContent = fmt.format(items.length); document.getElementById('area-label').textContent = labels[activeMode()].represented; document.getElementById('district-total').textContent = fmt.format(items.reduce((sum, item) => sum + item.districtCount, 0)); document.getElementById('suppressed-total').textContent = fmt.format(selectedCellCount(totals, metricKey)); document.getElementById('suppressed-total-label').textContent = selectedCellCountLabel(); document.getElementById('state-total-label').textContent = datasetSelect.value === 'raw' ? 'statewide reported total for selected metric' : 'statewide estimated total for selected metric'; renderSummary(); renderLegend(); }
+    function loadLayer() { if (geoLayer) map.removeLayer(geoLayer); selectedLayer = null; geoLayer = L.geoJSON(boundaries[activeMode()], { style: styleFeature, onEachFeature, smoothFactor: 1.4 }).addTo(map); refreshPoints(); map.fitBounds(geoLayer.getBounds(), { padding: [14, 14], maxZoom: 7 }); scheduleHatches(80); }
+    function redraw(resetPanel = true) { updateStats(); if (geoLayer) geoLayer.setStyle(styleFeature); if (pointLayer) pointLayer.setStyle(stylePoint); scheduleHatches(0); if (resetPanel) { selectedLayer = null; renderLegend(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); } else if (selectedLayer) { const item = activeItem(selectedLayer.feature); renderPanel(item); renderDrawer(item); renderLegend(); } else { renderStateDrawer(); } updateHash(); }
     function switchView() { refreshScope(); refreshYears(); refreshSearch(); loadLayer(); redraw(true); }
     function htmlText(value) { return String(value === undefined || value === null ? '' : value).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/<[^>]+>/g, ''); }
     function displayText(data, key) { return htmlText(displayValue(data, key)); }
@@ -360,7 +436,14 @@
         if (patterned) stripeCurrentPath(ctx, scale);
         ctx.stroke();
       });
-      if (selectedLayer) {
+      if (pointLayer) pointLayer.eachLayer(layer => {
+        const item = activeItem(layer.feature); if (!item) return;
+        const point = map.latLngToContainerPoint(layer.getLatLng());
+        ctx.beginPath(); ctx.arc(point.x * scale, point.y * scale, 5.5 * scale, 0, Math.PI * 2);
+        ctx.fillStyle = percentileColor(yearData(item).metrics[metricKey] || 0, metricKey); ctx.fill();
+        ctx.strokeStyle = layer === selectedLayer ? '#17202a' : '#17202a'; ctx.lineWidth = (layer === selectedLayer ? 3 : 1) * scale; ctx.stroke();
+      });
+      if (selectedLayer && selectedLayer.feature.geometry.type !== 'Point') {
         ctx.beginPath();
         drawFeaturePath(ctx, selectedLayer.feature.geometry, scale);
         ctx.strokeStyle = '#17202a';
@@ -491,25 +574,83 @@
     }
     function exportCurrentSelection() { exportMapPng(); exportDetailsPng('raw'); exportDetailsPng('approximated'); }
     function excelEscape(value) { return String(value === undefined || value === null ? '' : value).replace(/\s+/g, ' ').trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    const CRC_TABLE = (() => { const table = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; table[n] = c >>> 0; } return table; })();
+    function crc32(bytes) { let crc = 0xFFFFFFFF; for (let i = 0; i < bytes.length; i++) crc = CRC_TABLE[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8); return (crc ^ 0xFFFFFFFF) >>> 0; }
+    function zipFiles(files) {
+      const encoder = new TextEncoder(), parts = [], central = []; let offset = 0;
+      files.forEach(file => {
+        const name = encoder.encode(file.name), data = encoder.encode(file.text), crc = crc32(data);
+        const local = new DataView(new ArrayBuffer(30)); local.setUint32(0, 0x04034b50, true); local.setUint16(4, 20, true); local.setUint16(8, 0, true); local.setUint32(14, crc, true); local.setUint32(18, data.length, true); local.setUint32(22, data.length, true); local.setUint16(26, name.length, true);
+        parts.push(new Uint8Array(local.buffer), name, data);
+        const entry = new DataView(new ArrayBuffer(46)); entry.setUint32(0, 0x02014b50, true); entry.setUint16(4, 20, true); entry.setUint16(6, 20, true); entry.setUint32(16, crc, true); entry.setUint32(20, data.length, true); entry.setUint32(24, data.length, true); entry.setUint16(28, name.length, true); entry.setUint32(42, offset, true);
+        central.push(new Uint8Array(entry.buffer), name);
+        offset += 30 + name.length + data.length;
+      });
+      const centralSize = central.reduce((sum, part) => sum + part.length, 0);
+      const end = new DataView(new ArrayBuffer(22)); end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true); end.setUint16(10, files.length, true); end.setUint32(12, centralSize, true); end.setUint32(16, offset, true);
+      return new Blob([...parts, ...central, new Uint8Array(end.buffer)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    }
+    function xmlEscape(value) { return String(value === undefined || value === null ? '' : value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function columnName(index) { let name = ''; index += 1; while (index > 0) { const rem = (index - 1) % 26; name = String.fromCharCode(65 + rem) + name; index = Math.floor((index - 1) / 26); } return name; }
+    function buildXlsx(rows, headerRows) {
+      const sheetRows = rows.map((row, r) => `<row r="${r + 1}">${row.map((value, c) => {
+        const ref = `${columnName(c)}${r + 1}`, style = headerRows.has(r) ? ' s="1"' : '', text = String(value === undefined || value === null ? '' : value).trim();
+        if (/^-?[0-9][0-9,]*(\.[0-9]+)?$/.test(text) && !headerRows.has(r)) return `<c r="${ref}"${style}><v>${text.replace(/,/g, '')}</v></c>`;
+        return text ? `<c r="${ref}" t="inlineStr"${style}><is><t>${xmlEscape(text)}</t></is></c>` : '';
+      }).join('')}</row>`).join('');
+      const widths = (rows[rows.length - 1] || []).map((_, c) => Math.min(42, Math.max(10, ...rows.map(row => String(row[c] === undefined ? '' : row[c]).length + 2))));
+      const cols = `<cols>${widths.map((w, c) => `<col min="${c + 1}" max="${c + 1}" width="${w}" customWidth="1"/>`).join('')}</cols>`;
+      return zipFiles([
+        { name: '[Content_Types].xml', text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>' },
+        { name: '_rels/.rels', text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>' },
+        { name: 'xl/workbook.xml', text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="EndSaR Data" sheetId="1" r:id="rId1"/></sheets></workbook>' },
+        { name: 'xl/_rels/workbook.xml.rels', text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>' },
+        { name: 'xl/styles.xml', text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>' },
+        { name: 'xl/worksheets/sheet1.xml', text: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">${cols}<sheetData>${sheetRows}</sheetData></worksheet>` }
+      ]);
+    }
     function exportDrawerTable() {
       const table = drawerContent.querySelector('table');
       if (!table) return;
       const metadataRows = [
+        ['EndSaR Interactive Data Map export'],
         ['Dataset', activeDataset().label],
         ['Map View', activeSource().label],
         ['Selected School Year', selectedYearLabel()],
         ['Selected Metric', METRICS.find(m => m.key === metricSelect.value).label],
-        ['Drawer', drawerTitle.textContent]
-      ].map(row => `<tr><td>${excelEscape(row[0])}</td><td>${excelEscape(row[1])}</td></tr>`).join('');
-      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => {
-        const tag = row.querySelector('th') ? 'th' : 'td';
-        return `<tr>${Array.from(row.children).map(cell => `<${tag}>${excelEscape(cell.textContent)}</${tag}>`).join('')}</tr>`;
-      }).join('');
-      const html = `<!doctype html><html><head><meta charset="utf-8"><style>table{border-collapse:collapse;font-family:Arial,sans-serif;font-size:12px}td,th{border:1px solid #b8c6d6;padding:5px 7px;text-align:left}th{background:${datasetSelect.value === 'approximated' ? '#72dd44' : '#203a5f'};color:${datasetSelect.value === 'approximated' ? '#17202a' : '#ffffff'};font-weight:700}.meta td{font-weight:700;background:#eef2f5}</style></head><body><table class="meta">${metadataRows}</table><br><table>${tableRows}</table></body></html>`;
-      downloadDataUrl(`endsar-table-${exportSlug()}.xls`, 'application/vnd.ms-excel', html);
+        ['Drawer', drawerTitle.textContent],
+        ['Source', 'MI School Data, CEPI Use of seclusion and restraint data files'],
+        ['Note', datasetSelect.value === 'raw' ? 'Values marked * omit one or more suppressed cells (<10).' : 'Approximated data estimates suppressed cells (<10) from ISD totals.']
+      ];
+      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => Array.from(row.children).map(cell => cell.textContent.replace(/\s+/g, ' ').trim()));
+      const rows = metadataRows.concat([[]], tableRows), headerRows = new Set([0, metadataRows.length + 1]);
+      const link = document.createElement('a'); link.download = `endsar-table-${exportSlug()}.xlsx`; link.href = URL.createObjectURL(buildXlsx(rows, headerRows)); link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 4000);
     }
 
-    refreshScope(); refreshYears(); refreshSearch(); loadLayer(); updateStats(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); drawerToggle.addEventListener('click', () => { const isOpen = drawer.classList.toggle('open'); document.body.classList.toggle('drawer-open', isOpen); drawerToggle.textContent = isOpen ? '?' : '?'; });
+    // Shareable links: the current selections are kept in the address bar (after #).
+    let hashReady = false;
+    function updateHash() {
+      if (!hashReady) return;
+      const params = new URLSearchParams({ data: datasetSelect.value, view: viewSelect.value, year: selectedYear(), metric: metricSelect.value });
+      if (activeMode() === 'isd' || activeMode() === 'region') params.set('scope', scopeSelect.value);
+      if (selectedLayer) params.set('area', selectedLayer.feature.properties.id);
+      history.replaceState(null, '', `#${params.toString()}`);
+    }
+    function setIfValid(select, value) { if (value && Array.from(select.options).some(option => option.value === value)) { select.value = value; return true; } return false; }
+    function readHash() { return new URLSearchParams(location.hash.replace(/^#/, '')); }
+    const lastYear = MAP_METADATA.years[MAP_METADATA.years.length - 1];
+    document.getElementById('data-through').textContent = `Data through the ${lastYear} school year (${MAP_METADATA.years.length} school years)`;
+    const initial = readHash();
+    setIfValid(datasetSelect, initial.get('data')); setIfValid(viewSelect, initial.get('view')); setIfValid(scopeSelect, initial.get('scope')); setIfValid(metricSelect, initial.get('metric'));
+    refreshScope(); refreshYears(); setIfValid(yearSelect, initial.get('year')); refreshSearch(); loadLayer(); updateStats(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer();
+    hashReady = true;
+    const initialArea = initial.get('area') && findLayerById(initial.get('area'));
+    if (initialArea) { zoomToLayer(initialArea); highlightLayer(initialArea); } else { renderLegend(); scheduleHatches(80); updateHash(); }
+    loadingEl.classList.add('hidden');
+    setTimeout(() => { map.invalidateSize(); scheduleHatches(0); }, 250);
+    drawerToggle.addEventListener('click', () => { const isOpen = drawer.classList.toggle('open'); document.body.classList.toggle('drawer-open', isOpen); drawerToggle.textContent = isOpen ? '\u25BC' : '\u25B2'; });
+    showPoints.addEventListener('change', () => { if (selectedLayer && pointLayer && pointLayer.hasLayer(selectedLayer)) clearSelection(); refreshPoints(); updateHash(); });
+    copyLinkButton.addEventListener('click', async () => { updateHash(); try { await navigator.clipboard.writeText(location.href); shareStatus.textContent = 'Link copied'; } catch (error) { window.prompt('Copy this link:', location.href); } setTimeout(() => { shareStatus.textContent = ''; }, 2500); });
     legendToggle.addEventListener('click', () => { const isHidden = legend.classList.toggle('hidden'); legendToggle.textContent = isHidden ? 'Show Legend' : 'Hide Legend'; });
     datasetSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); loadLayer(); redraw(true); });
     viewSelect.addEventListener('change', switchView);
@@ -524,7 +665,21 @@
     infoOverlay.addEventListener('click', event => { if (event.target === infoOverlay) closeInfo(); });
     document.addEventListener('click', event => { if (!event.target.closest('.info-menu')) toggleInfoList(false); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape') { toggleInfoList(false); if (infoOverlay.classList.contains('open')) closeInfo(); } });
-    search.addEventListener('change', () => { const term = search.value.trim().toLowerCase(); if (!term) return; geoLayer.eachLayer(layer => { const item = activeItem(layer.feature); if (item && (item.name.toLowerCase() === term || item.id.toLowerCase() === term)) { map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: activeMode() === 'district' ? 10 : 8 }); highlightLayer(layer); layer.openPopup(); } }); });
+    search.addEventListener('change', () => {
+      const term = search.value.trim().toLowerCase(); if (!term) return;
+      const item = Object.values(activeSource().items).find(entry => entry.name.toLowerCase() === term || entry.id.toLowerCase() === term);
+      if (!item) return;
+      if (activeMode() === 'district' && !showPoints.checked && !findLayerById(item.id) && ENTITY_POINTS[item.id]) { showPoints.checked = true; refreshPoints(); }
+      const layer = findLayerById(item.id);
+      if (layer) { zoomToLayer(layer); if (selectedLayer !== layer) highlightLayer(layer); layer.openPopup(); return; }
+      if (selectedLayer) resetLayerStyle(selectedLayer); selectedLayer = null; renderPanel(item); renderDrawer(item); renderLegend(); updateHash();
+    });
+    })().catch(error => {
+      console.error(error);
+      const panel = document.getElementById('entity-panel');
+      if (panel) panel.innerHTML = '<p><strong>Map data could not be loaded.</strong> Please refresh the page or try again later.</p>';
+      const loading = document.getElementById('loading'); if (loading) loading.innerHTML = 'Map data could not be loaded. Please refresh the page.';
+    });
   </script>
 </body>
 </html>
