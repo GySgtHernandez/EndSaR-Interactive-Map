@@ -1,388 +1,388 @@
-district_code,name,latitude,longitude,location_source
-03000,Allegan Area Educational Service Agency,42.55027,-85.80541,approximate: centre of ISD
-03900,Innocademy Allegan Campus,42.60941,-86.09409,NCES 2024-25 district office geocode
-03902,Outlook Academy,42.53506,-85.82684,NCES 2024-25 district office geocode
-04000,Alpena-Montmorency-Alcona ESD,44.9629,-83.73273,approximate: centre of ISD
-08000,Barry ISD,42.55654,-85.32687,approximate: centre of ISD
-09000,Bay-Arenac ISD,43.86384,-83.96614,approximate: centre of ISD
-09901,Bay-Arenac Community High School,43.61253,-83.83906,NCES 2024-25 district office geocode
-09902,State Street Academy,43.618,-83.894,NCES 2024-25 district office geocode
-09903,Bay City Academy,43.59294,-83.88007,NCES 2024-25 district office geocode
-11000,Berrien RESA,41.94882,-86.39738,approximate: centre of ISD
-11900,Bridge Academy of Southwest Michigan,42.11406,-86.46533,NCES 2024-25 district office geocode
-11901,Countryside Academy,42.07773,-86.34341,NCES 2024-25 district office geocode
-11903,Benton Harbor Charter School Academy,42.1102,-86.4623,NCES 2024-25 district office geocode
-11904,Mildred C. Wells Preparatory Academy,42.11289,-86.45902,NCES 2024-25 district office geocode
-12000,Branch ISD,41.89254,-85.03316,approximate: centre of ISD
-12901,Pansophia Academy,41.94992,-84.99659,NCES 2024-25 district office geocode
-13000,Calhoun Intermediate School District,42.25727,-85.01302,approximate: centre of ISD
-13900,Battle Creek Montessori Academy,42.3206,-85.2204,NCES 2024-25 district office geocode
-13901,Arbor Academy,42.30054,-85.21271,NCES 2024-25 district office geocode
-13902,Endeavor Charter Academy,42.32446,-85.23792,NCES 2024-25 district office geocode
-13903,Marshall Academy,42.25158,-84.93956,NCES 2024-25 district office geocode
-13904,Battle Creek Area Learning Center,42.32191,-85.22697,NCES 2024-25 district office geocode
-13905,Lakeside Charter School - Albion,42.26021,-84.89521,approximate: centre of host district (CEPI EEM)
-14000,Lewis Cass ISD,41.94395,-86.00394,approximate: centre of ISD
-15000,Charlevoix-Emmet ISD,45.35362,-84.98486,approximate: centre of ISD
-15901,Concord Academy - Boyne,45.1915,-84.9696,NCES 2024-25 district office geocode
-15902,Charlevoix Montessori Academy for the Arts,45.2804,-85.24736,approximate: centre of host district (CEPI EEM)
-16000,Cheb-Otsego-Presque Isle ESD,45.2672,-84.34734,approximate: centre of ISD
-17000,Eastern Upper Peninsula ISD,46.30474,-85.12985,approximate: centre of ISD
-17900,Lake Superior Academy,46.3755,-84.40713,NCES 2024-25 district office geocode
-17901,Joseph K. Lumsden Bahweting Anishnabe Academy,46.4814,-84.3319,NCES 2024-25 district office geocode
-17902,Ojibwe Charter School,46.45,-84.60171,NCES 2024-25 district office geocode
-17903,DeTour Arts and Technology Academy,45.9907,-83.9059,NCES 2024-25 district office geocode
-18000,Clare-Gladwin Regional Education Service District,43.96502,-84.64863,approximate: centre of ISD
-19000,Clinton County RESA,42.98108,-84.56133,approximate: centre of ISD
-19900,Michigan International Prep School,43.01859,-83.57505,NCES 2024-25 district office geocode
-21000,Delta-Schoolcraft ISD,46.02282,-86.68387,approximate: centre of ISD
-22000,Dickinson-Iron ISD,46.11825,-88.25898,approximate: centre of ISD
-23000,Eaton RESA,42.62435,-84.82695,approximate: centre of ISD
-23900,LifeTech Academy,42.50273,-84.64057,NCES 2024-25 district office geocode
-23901,Island City Academy,42.47413,-84.65825,NCES 2024-25 district office geocode
-23902,Relevant Academy of Eaton County,42.74966,-84.74851,NCES 2024-25 district office geocode
-23903,Insight School of Michigan,42.72824,-84.64307,NCES 2024-25 district office geocode
-24901,Concord Academy - Petoskey,45.3614,-84.9178,NCES 2024-25 district office geocode
-25000,Genesee ISD,43.0181,-83.6792,approximate: centre of ISD
-25900,Genesee STEM Academy,42.97731,-83.74746,approximate: centre of host district (CEPI EEM)
-25902,Woodland Park Academy,42.9172,-83.6683,NCES 2024-25 district office geocode
-25903,Grand Blanc Academy,42.9461,-83.608,NCES 2024-25 district office geocode
-25904,Northridge Academy,43.09148,-83.75756,NCES 2024-25 district office geocode
-25905,International Academy of Flint,42.99641,-83.67852,NCES 2024-25 district office geocode
-25907,Linden Charter Academy,43.0529,-83.7709,NCES 2024-25 district office geocode
-25909,Burton Glen Charter Academy,42.993,-83.6275,NCES 2024-25 district office geocode
-25910,Richfield Public School Academy,43.0491,-83.6366,NCES 2024-25 district office geocode
-25911,Madison Academy,42.93946,-83.73358,NCES 2024-25 district office geocode
-25912,The New Standard Academy,43.07731,-83.71564,NCES 2024-25 district office geocode
-25914,Greater Heights Academy,43.0467,-83.7408,NCES 2024-25 district office geocode
-25915,WAY Academy - Flint,43.0215,-83.6824,NCES 2024-25 district office geocode
-25916,Eagle's Nest Academy,43.06011,-83.73027,NCES 2024-25 district office geocode
-25917,The Paris Academy,43.11904,-83.61108,approximate: centre of host district (CEPI EEM)
-25918,Flex High School of Michigan,43.0595,-83.73516,NCES 2024-25 district office geocode
-25919,Flint Cultural Center Academy,43.02401,-83.67993,NCES 2024-25 district office geocode
-27000,Gogebic-Ontonagon ISD,46.53913,-89.47851,approximate: centre of ISD
-28000,Traverse Bay Area ISD,44.74058,-85.49437,approximate: centre of ISD
-28900,Old Mission Peninsula School,44.87376,-85.52104,NCES 2024-25 district office geocode
-28901,Woodland School,44.69311,-85.43215,NCES 2024-25 district office geocode
-28902,Grand Traverse Academy,44.7175,-85.5527,NCES 2024-25 district office geocode
-28904,The Greenspire School,44.75236,-85.64655,NCES 2024-25 district office geocode
-28905,Mill Creek Academy,44.7747,-85.3929,NCES 2024-25 district office geocode
-29000,Gratiot-Isabella RESD,43.41352,-84.64115,approximate: centre of ISD
-30000,Hillsdale ISD,41.88214,-84.6166,approximate: centre of ISD
-30901,Hillsdale Preparatory School,41.9342,-84.6478,NCES 2024-25 district office geocode
-30902,Will Carleton Charter School Academy,41.9119,-84.6529,NCES 2024-25 district office geocode
-31000,Copper Country ISD,46.91603,-88.48649,approximate: centre of ISD
-31900,Copper Island Academy,47.17262,-88.50624,NCES 2024-25 district office geocode
-32000,Huron ISD,43.81746,-82.98544,approximate: centre of ISD
-33000,Ingham ISD,42.58401,-84.36255,approximate: centre of ISD
-33901,Cole Academy,42.7116,-84.5788,NCES 2024-25 district office geocode
-33902,El-Hajj Malik El-Shabazz Academy,42.73871,-84.55138,approximate: centre of host district (CEPI EEM)
-33904,Mid-Michigan Leadership Academy,42.7464,-84.56294,NCES 2024-25 district office geocode
-33906,White Pine Academy,42.45407,-84.44399,approximate: centre of host district (CEPI EEM)
-33909,Windemere Park Charter Academy,42.7418,-84.5916,NCES 2024-25 district office geocode
-33910,Lansing Charter Academy,42.69912,-84.57524,NCES 2024-25 district office geocode
-33911,Michigan Connections Academy,42.6963,-84.43621,NCES 2024-25 district office geocode
-33913,NexTech High School of Lansing,42.70279,-84.42031,approximate: centre of host district (CEPI EEM)
-33914,Great Lakes Cyber Academy,42.71628,-84.45748,NCES 2024-25 district office geocode
-33915,Blended Learning Academies Credit Recovery High School,42.81217,-84.52755,NCES 2024-25 district office geocode
-34000,Ionia ISD,42.90512,-85.09712,approximate: centre of ISD
-35000,Iosco RESA,44.37277,-83.67637,approximate: centre of ISD
-35902,Alternative Educational Academy of Iosco County,44.27921,-83.51999,NCES 2024-25 district office geocode
-37900,Flextech High School Shepherd,43.52545,-84.85421,NCES 2024-25 district office geocode
-37901,Renaissance Public School Academy,43.6003,-84.7465,NCES 2024-25 district office geocode
-38000,Jackson ISD,42.23914,-84.4433,approximate: centre of ISD
-38900,Jackson Preparatory & Early College,42.16502,-84.40395,NCES 2024-25 district office geocode
-38901,Da Vinci Institute,42.27835,-84.45147,NCES 2024-25 district office geocode
-38902,Paragon Charter Academy,42.2347,-84.4664,NCES 2024-25 district office geocode
-38904,Francis Street Primary School,42.21531,-84.42105,approximate: centre of host district (CEPI EEM)
-39000,Kalamazoo RESA,42.2425,-85.48498,approximate: centre of ISD
-39900,Lakeside Charter School - Kalamazoo,42.27834,-85.63755,approximate: centre of host district (CEPI EEM)
-39903,Oakland Academy,42.2258,-85.6131,NCES 2024-25 district office geocode
-39905,Paramount Charter Academy,42.255,-85.591,NCES 2024-25 district office geocode
-39906,Youth Advancement Academy,42.25673,-85.67943,NCES 2024-25 district office geocode
-39907,Forest Academy,42.27757,-85.50248,approximate: centre of host district (CEPI EEM)
-39908,Evergreen Academy,42.26507,-85.62134,approximate: centre of host district (CEPI EEM)
-39909,Augusta Academy,42.2944,-85.38288,approximate: centre of host district (CEPI EEM)
-39911,Kalamazoo Covenant Academy,42.27649,-85.58775,NCES 2024-25 district office geocode
-41000,Kent ISD,42.98342,-85.56541,approximate: centre of ISD
-41900,Covenant House Academy Grand Rapids,42.9475,-85.6695,NCES 2024-25 district office geocode
-41901,New Branches Charter Academy,42.8968,-85.6346,NCES 2024-25 district office geocode
-41904,West MI Academy of Environmental Science,42.9877,-85.778,NCES 2024-25 district office geocode
-41905,Excel Charter Academy,42.8893,-85.608,NCES 2024-25 district office geocode
-41908,Byron Center Charter School,42.7837,-85.7019,NCES 2024-25 district office geocode
-41909,Vista Charter Academy,42.9063,-85.6487,NCES 2024-25 district office geocode
-41910,Vanguard Charter Academy,42.869,-85.705,NCES 2024-25 district office geocode
-41911,Flat River Academy,43.15975,-85.25972,NCES 2024-25 district office geocode
-41914,Knapp Charter Academy,42.9938,-85.6026,NCES 2024-25 district office geocode
-41915,Walker Charter Academy,43.0161,-85.7153,NCES 2024-25 district office geocode
-41916,Cross Creek Charter Academy,42.8254,-85.62584,NCES 2024-25 district office geocode
-41917,William C. Abney Academy,42.9636,-85.6348,NCES 2024-25 district office geocode
-41918,Creative Technologies Academy,43.22607,-85.5603,NCES 2024-25 district office geocode
-41919,Ridge Park Charter Academy,42.9209,-85.5658,NCES 2024-25 district office geocode
-41920,Chandler Woods Charter Academy,43.089,-85.6282,NCES 2024-25 district office geocode
-41921,Grand Rapids Child Discovery Center,42.95534,-85.66223,NCES 2024-25 district office geocode
-41922,Lighthouse Academy,42.89768,-85.58444,NCES 2024-25 district office geocode
-41923,Wellspring Preparatory High School,42.98698,-85.64321,NCES 2024-25 district office geocode
-41924,West Michigan Aviation Academy,42.88525,-85.53423,NCES 2024-25 district office geocode
-41925,Michigan Virtual Charter Academy,42.4513,-83.0874,NCES 2024-25 district office geocode
-41926,Hope Academy of West Michigan,42.93176,-85.66186,NCES 2024-25 district office geocode
-41928,River City Scholars Charter Academy,42.93601,-85.64456,NCES 2024-25 district office geocode
-41929,NexTech High School,42.9781,-85.6809,NCES 2024-25 district office geocode
-41930,Grand River Preparatory High School,42.86846,-85.64922,NCES 2024-25 district office geocode
-41931,Michigan Preparatory Virtual School,42.89511,-85.57031,NCES 2024-25 district office geocode
-41932,Gerald Dawkins Academy,42.94258,-85.64266,NCES 2024-25 district office geocode
-41933,Grove Montessori: A Wildflower Public School,42.96366,-85.65735,approximate: centre of host district (CEPI EEM)
-44000,Lapeer ISD,43.06272,-83.20746,approximate: centre of ISD
-44901,Chatfield School,43.0476,-83.3386,NCES 2024-25 district office geocode
-45901,Leelanau Montessori Public School Academy,44.98711,-85.70484,NCES 2024-25 district office geocode
-46000,Lenawee ISD,41.90485,-84.07349,approximate: centre of ISD
-47000,Livingston ESA,42.60272,-83.91721,approximate: centre of ISD
-47900,Light of the World Academy,42.45942,-83.94102,NCES 2024-25 district office geocode
-47901,Kensington Woods Schools,42.45743,-83.83662,NCES 2024-25 district office geocode
-47902,Charyl Stockwell Academy,42.63039,-83.75875,NCES 2024-25 district office geocode
-47903,FlexTech High School,42.5522,-83.798,NCES 2024-25 district office geocode
-49901,Three Lakes Academy,46.20636,-85.7584,NCES 2024-25 district office geocode
-50000,Macomb ISD,42.70502,-82.91293,approximate: centre of ISD
-50901,Macomb Academy,42.58505,-82.95118,NCES 2024-25 district office geocode
-50902,Conner Creek Academy East,42.514,-82.947,NCES 2024-25 district office geocode
-50903,Huron Academy,42.5678,-83.0133,NCES 2024-25 district office geocode
-50904,Global Preparatory Academy,42.50647,-82.93564,approximate: centre of host district (CEPI EEM)
-50905,Arts Academy in the Woods,42.5324,-82.9519,NCES 2024-25 district office geocode
-50906,Merritt Academy,42.7409,-82.8002,NCES 2024-25 district office geocode
-50908,Mt. Clemens Montessori Academy,42.5862,-82.8918,NCES 2024-25 district office geocode
-50909,Prevail Academy,42.5981,-82.8945,NCES 2024-25 district office geocode
-50911,Academy of Warren,42.4512,-82.9813,NCES 2024-25 district office geocode
-50912,Reach Charter Academy,42.48308,-82.92415,NCES 2024-25 district office geocode
-50913,Noor International Academy,42.5667,-83.0883,NCES 2024-25 district office geocode
-50914,Macomb Montessori Academy,42.46464,-82.98024,NCES 2024-25 district office geocode
-50915,Rising Stars Academy,42.47015,-83.03221,NCES 2024-25 district office geocode
-50916,Success Mile Academy,42.53471,-83.04343,approximate: centre of host district (CEPI EEM)
-50917,Red Oak Academy,42.56241,-82.89127,NCES 2024-25 district office geocode
-50918,Center Line Preparatory Academy,42.48,-83.02451,NCES 2024-25 district office geocode
-50920,New Dawn Academy of Warren,42.54529,-83.02706,NCES 2024-25 district office geocode
-50921,Unity Academy,42.52143,-83.02722,approximate: centre of host district (CEPI EEM)
-51000,Manistee ISD,44.29835,-86.07962,approximate: centre of ISD
-51903,Casman Alternative Academy,44.2369,-86.3122,NCES 2024-25 district office geocode
-51905,Michigan Great Lakes Virtual Academy,44.24792,-86.31973,NCES 2024-25 district office geocode
-52000,Marquette-Alger RESA,46.44241,-87.35328,approximate: centre of ISD
-52901,North Star Academy,46.55576,-87.4591,NCES 2024-25 district office geocode
-53000,West Shore Educational Service District,43.87494,-86.14286,approximate: centre of ISD
-53901,Gateway To Success Academy,43.96433,-86.2781,NCES 2024-25 district office geocode
-54000,Mecosta-Osceola ISD,43.74343,-85.32212,approximate: centre of ISD
-54901,Crossroads Charter Academy,43.69928,-85.48589,NCES 2024-25 district office geocode
-55000,Menominee ISD,45.53809,-87.56958,approximate: centre of ISD
-55900,Uplift Michigan Academy,45.41764,-87.61061,NCES 2024-25 district office geocode
-55901,Nah Tah Wahsh Public School Academy,45.6603,-87.3436,NCES 2024-25 district office geocode
-56000,Midland County Educational Service Agency,43.68792,-84.38454,approximate: centre of ISD
-56901,Windover High School,43.61637,-84.28373,NCES 2024-25 district office geocode
-56902,Midland Academy of Advanced and Creative Studies,43.67625,-84.23819,approximate: centre of host district (CEPI EEM)
-56903,Academic and Career Education Academy,43.61185,-84.33517,NCES 2024-25 district office geocode
-58000,Monroe ISD,41.91618,-83.52622,approximate: centre of ISD
-58901,New Bedford Academy,41.7301,-83.6271,NCES 2024-25 district office geocode
-58902,Triumph Academy,41.9537,-83.3621,NCES 2024-25 district office geocode
-59000,Montcalm Area ISD,43.31597,-85.14668,approximate: centre of ISD
-59900,Success Virtual Learning Centers of Michigan,43.39679,-84.90756,NCES 2024-25 district office geocode
-61000,Muskegon Area ISD,43.31537,-86.18616,approximate: centre of ISD
-61900,Muskegon Montessori Academy for Environmental Change,43.19906,-86.29267,NCES 2024-25 district office geocode
-61902,Timberland Academy,43.2314,-86.1797,NCES 2024-25 district office geocode
-61904,Three Oaks Public School Academy,43.2298,-86.2223,NCES 2024-25 district office geocode
-61906,Muskegon Covenant Academy,43.22796,-86.24067,NCES 2024-25 district office geocode
-61907,Muskegon Maritime Academy,43.23385,-86.22989,NCES 2024-25 district office geocode
-62000,Newaygo County RESA,43.52371,-85.84259,approximate: centre of ISD
-63000,Oakland Schools,42.65237,-83.39435,approximate: centre of ISD
-63900,Sarah J. Webber Media Arts Academy,42.66017,-83.27847,approximate: centre of host district (CEPI EEM)
-63901,AGBU Alex-Marie Manoogian School,42.4551,-83.2192,NCES 2024-25 district office geocode
-63906,Pontiac Academy for Excellence,42.64485,-83.29829,NCES 2024-25 district office geocode
-63907,Great Lakes Academy,42.6319,-83.2874,NCES 2024-25 district office geocode
-63909,Oakside Scholars Charter Academy,42.6433,-83.3351,NCES 2024-25 district office geocode
-63910,Dr. Joseph F. Pollack Academic Center of Excellence,42.46559,-83.22178,NCES 2024-25 district office geocode
-63911,Holly Academy,42.7924,-83.6412,NCES 2024-25 district office geocode
-63912,Oakland International Academy,42.38982,-83.04274,NCES 2024-25 district office geocode
-63913,Walton Charter Academy,42.676,-83.2738,NCES 2024-25 district office geocode
-63914,Advanced Technology Academy,42.32225,-83.16887,NCES 2024-25 district office geocode
-63915,Arts and Technology Academy of Pontiac,42.62093,-83.25182,NCES 2024-25 district office geocode
-63917,Bradford Academy,42.4638,-83.2826,NCES 2024-25 district office geocode
-63918,Laurus Academy,42.4694,-83.2598,NCES 2024-25 district office geocode
-63920,Life Skills Center of Pontiac,42.634,-83.2857,NCES 2024-25 district office geocode
-63921,Crescent Academy,42.5031,-83.2204,NCES 2024-25 district office geocode
-63922,Great Oaks Academy,42.46616,-83.06249,NCES 2024-25 district office geocode
-63923,Four Corners Montessori Academy,42.4986,-83.0961,NCES 2024-25 district office geocode
-63924,Michigan Mathematics and Science Academy,42.49412,-83.08361,NCES 2024-25 district office geocode
-63926,Faxon Academy,42.48083,-83.25894,NCES 2024-25 district office geocode
-63928,Momentum Academy,42.6338,-83.336,NCES 2024-25 district office geocode
-63929,Waterford Montessori Academy,42.6948,-83.3847,NCES 2024-25 district office geocode
-63930,NexTech High School of Metro Detroit,42.53974,-83.25649,approximate: centre of host district (CEPI EEM)
-63931,FlexTech High School - Novi,42.46228,-83.42358,NCES 2024-25 district office geocode
-63933,Jefferson International Academy,42.65886,-83.39435,approximate: centre of host district (CEPI EEM)
-63934,Kingsbury Country Day School,42.87141,-83.2024,NCES 2024-25 district office geocode
-63935,Frederick Douglass International Academy,42.45872,-83.18702,approximate: centre of host district (CEPI EEM)
-63938,Keys Grace Academy,42.49356,-83.11412,NCES 2024-25 district office geocode
-63939,Lighthouse Connections Academy,42.48197,-83.25006,NCES 2024-25 district office geocode
-63940,Pillars Academy,42.47682,-83.2612,approximate: centre of host district (CEPI EEM)
-65900,Alternative Educational Academy of Ogemaw County,44.26299,-84.125,NCES 2024-25 district office geocode
-70000,Ottawa Area ISD,42.89007,-86.01747,approximate: centre of ISD
-70901,Walden Green Montessori,43.08888,-86.21926,NCES 2024-25 district office geocode
-70902,West MI Academy of Arts and Academics,43.0854,-86.2141,NCES 2024-25 district office geocode
-70904,Black River Public School,42.77903,-86.0999,NCES 2024-25 district office geocode
-70905,Vanderbilt Charter Academy,42.7832,-86.1217,NCES 2024-25 district office geocode
-70906,Eagle Crest Charter Academy,42.8256,-86.07655,NCES 2024-25 district office geocode
-70908,Innocademy,42.81081,-85.99117,NCES 2024-25 district office geocode
-70909,ICademy Global,42.81081,-85.99117,NCES 2024-25 district office geocode
-71902,Presque Isle Academy,45.36157,-84.23063,NCES 2024-25 district office geocode
-72000,C.O.O.R. ISD,44.51211,-84.37912,approximate: centre of ISD
-72901,Charlton Heston Academy,44.35284,-84.40699,NCES 2024-25 district office geocode
-73000,Saginaw ISD,43.34259,-84.06781,approximate: centre of ISD
-73900,Saginaw Covenant Academy,43.42815,-83.93992,NCES 2024-25 district office geocode
-73901,The Woodley Leadership Academy,43.45568,-83.93304,approximate: centre of host district (CEPI EEM)
-73908,Saginaw Preparatory Academy,43.3961,-83.8783,NCES 2024-25 district office geocode
-73909,Francis Reh PSA,43.4073,-83.9451,NCES 2024-25 district office geocode
-73910,North Saginaw Charter Academy,43.4856,-83.962,NCES 2024-25 district office geocode
-73911,Saginaw Learn to Earn Academy,43.44241,-83.91683,approximate: centre of host district (CEPI EEM)
-73912,International Academy of Saginaw,43.3844,-83.9176,NCES 2024-25 district office geocode
-74000,St. Clair County RESA,42.9471,-82.67563,approximate: centre of ISD
-74900,East Shore Leadership Academy,42.96904,-82.42753,NCES 2024-25 district office geocode
-74903,Landmark Academy,42.98464,-82.51739,NCES 2024-25 district office geocode
-74911,St. Clair County Intervention Academy,42.94229,-82.47925,NCES 2024-25 district office geocode
-74912,Virtual Learning Academy of St. Clair County,42.97843,-82.46884,NCES 2024-25 district office geocode
-74914,Blue Water Middle College,42.97817,-82.42766,NCES 2024-25 district office geocode
-75000,St. Joseph County ISD,41.9059,-85.54701,approximate: centre of ISD
-76000,Sanilac ISD,43.36784,-82.81688,approximate: centre of ISD
-78000,Shiawassee Regional ESD,42.9371,-84.11751,approximate: centre of ISD
-79000,Tuscola ISD,43.48192,-83.40669,approximate: centre of ISD
-80000,Van Buren ISD,42.27143,-86.01499,approximate: centre of ISD
-80900,Michigan Online School,42.35912,-85.87866,NCES 2024-25 district office geocode
-81000,Washtenaw ISD,42.23487,-83.82906,approximate: centre of ISD
-81900,Global Tech Academy,42.25108,-83.57566,NCES 2024-25 district office geocode
-81901,Honey Creek Community School,42.26163,-83.79627,NCES 2024-25 district office geocode
-81902,Central Academy,42.2505,-83.73181,NCES 2024-25 district office geocode
-81903,Washtenaw Technical Middle College,42.26448,-83.6657,NCES 2024-25 district office geocode
-81904,Ann Arbor Learning Community,42.2873,-83.73387,approximate: centre of host district (CEPI EEM)
-81905,South Arbor Charter Academy,42.169,-83.6817,NCES 2024-25 district office geocode
-81906,Fortis Academy,42.23289,-83.65991,NCES 2024-25 district office geocode
-81908,Multicultural Academy,42.20754,-83.70047,NCES 2024-25 district office geocode
-81909,Arbor Preparatory High School,42.19013,-83.62256,NCES 2024-25 district office geocode
-81910,East Arbor Charter Academy,42.18858,-83.62224,NCES 2024-25 district office geocode
-81911,WSC Academy,42.262,-83.60486,approximate: centre of host district (CEPI EEM)
-81912,South Pointe Scholars Charter Academy,42.27591,-83.55272,NCES 2024-25 district office geocode
-81913,Livingston Classical Academy,42.41418,-83.76237,NCES 2024-25 district office geocode
-81915,Pittsfield Acres Academy,42.202,-83.67286,NCES 2024-25 district office geocode
-81916,GEE Compass Academy,42.22637,-83.64488,NCES 2024-25 district office geocode
-82000,Wayne RESA,42.29463,-83.29557,approximate: centre of ISD
-82700,Detroit Achievement Academy,42.41994,-83.20051,NCES 2024-25 district office geocode
-82701,University Preparatory Science and Math (PSAD),42.35913,-83.06225,NCES 2024-25 district office geocode
-82702,University Preparatory Academy (PSAD),42.36282,-83.07461,NCES 2024-25 district office geocode
-82703,University Prepararatory Art & Design,42.368,-83.07497,NCES 2024-25 district office geocode
-82704,Detroit Public Safety Academy,42.32517,-83.06744,NCES 2024-25 district office geocode
-82705,Branch Line School,42.4072,-83.363,NCES 2024-25 district office geocode
-82706,The James and Grace Lee Boggs School,42.3635,-83.00773,NCES 2024-25 district office geocode
-82710,WAY Michigan,42.33311,-83.04254,NCES 2024-25 district office geocode
-82711,Canton Preparatory High School,42.30879,-83.49753,NCES 2024-25 district office geocode
-82713,New Paradigm College Prep,42.33492,-83.10991,NCES 2024-25 district office geocode
-82714,Detroit Delta Preparatory Academy for Social Justice,42.38555,-83.1056,approximate: centre of host district (CEPI EEM)
-82716,Vista Meadows Academy,42.34082,-83.24375,NCES 2024-25 district office geocode
-82717,Achieve Charter Academy,42.28143,-83.52804,NCES 2024-25 district office geocode
-82718,Quest Charter Academy,42.26616,-83.27842,NCES 2024-25 district office geocode
-82719,Washington-Parks Academy,42.37261,-83.27268,NCES 2024-25 district office geocode
-82722,Detroit Leadership Academy,42.38442,-83.27078,NCES 2024-25 district office geocode
-82723,Legacy Charter Academy,42.42912,-83.05419,NCES 2024-25 district office geocode
-82724,University Yes Academy,42.4228,-83.1917,NCES 2024-25 district office geocode
-82725,Global Heights Academy,42.35628,-83.27096,NCES 2024-25 district office geocode
-82727,Regent Park Scholars Charter Academy,42.4361,-82.95747,NCES 2024-25 district office geocode
-82728,Jalen Rose Leadership Academy,42.44185,-83.19474,NCES 2024-25 district office geocode
-82729,South Canton Scholars Charter Academy,42.28429,-83.48428,NCES 2024-25 district office geocode
-82730,American International Academy,42.30847,-83.34096,NCES 2024-25 district office geocode
-82731,GEE Edmonson Academy,42.37228,-83.08939,approximate: centre of host district (CEPI EEM)
-82732,GEE White Academy,42.38778,-83.13941,approximate: centre of host district (CEPI EEM)
-82733,Hamilton Academy,42.40452,-83.07261,approximate: centre of host district (CEPI EEM)
-82735,New Paradigm Glazer-Loving Academy,42.39139,-83.07541,NCES 2024-25 district office geocode
-82737,Pathways Academy,42.36553,-82.97019,NCES 2024-25 district office geocode
-82739,Detroit Innovation Academy,42.3704,-83.218,NCES 2024-25 district office geocode
-82741,Cornerstone Health and Technology School,42.35011,-83.11397,approximate: centre of host district (CEPI EEM)
-82742,Madison-Carver Academy,42.43723,-83.26283,NCES 2024-25 district office geocode
-82743,Plymouth Scholars Charter Academy,42.3773,-83.5207,NCES 2024-25 district office geocode
-82744,Escuela Avancemos,42.32098,-83.07629,NCES 2024-25 district office geocode
-82745,Caniff Liberty Academy,42.39878,-83.0619,NCES 2024-25 district office geocode
-82746,W-A-Y Academy,42.30904,-83.13264,NCES 2024-25 district office geocode
-82747,MacDowell Preparatory Academy,42.43428,-83.16606,NCES 2024-25 district office geocode
-82748,Rutherford Winans Academy,42.42258,-83.20982,NCES 2024-25 district office geocode
-82751,Michigan Educational Choice Center,42.4443,-82.9909,NCES 2024-25 district office geocode
-82752,Capstone Academy Charter School (SDA),42.37027,-82.9484,NCES 2024-25 district office geocode
-82754,Tipton Academy,42.3217,-83.31413,NCES 2024-25 district office geocode
-82755,Southwest Detroit Community School,42.41952,-83.1344,approximate: centre of host district (CEPI EEM)
-82756,Taylor Preparatory High School,42.23795,-83.27033,NCES 2024-25 district office geocode
-82757,Grand River Academy,42.44091,-83.32264,NCES 2024-25 district office geocode
-82758,New School High,42.34718,-83.50701,approximate: centre of host district (CEPI EEM)
-82759,Regents Academy,42.41494,-83.29868,approximate: centre of host district (CEPI EEM)
-82760,Cornerstone Jefferson-Douglass Academy,42.42809,-83.03065,NCES 2024-25 district office geocode
-82762,Inkster Preparatory Academy,42.30708,-83.3098,NCES 2024-25 district office geocode
-82763,Distinctive College Prep.,42.42802,-82.92455,NCES 2024-25 district office geocode
-82764,Detroit Collegiate High School,42.3741,-83.04883,approximate: centre of host district (CEPI EEM)
-82765,Pembroke Academy,42.43798,-83.20616,NCES 2024-25 district office geocode
-82766,Westfield Charter Academy,42.36211,-83.31124,NCES 2024-25 district office geocode
-82767,Ivywood Classical Academy,42.38626,-83.51552,NCES 2024-25 district office geocode
-82768,Achieve-Detroit,42.36361,-83.16196,approximate: centre of host district (CEPI EEM)
-82770,Sigma Academy for Leadership and Early Middle College,42.40529,-83.09772,approximate: centre of host district (CEPI EEM)
-82772,Fostering Leadership Academy,42.41011,-83.30684,NCES 2024-25 district office geocode
-82773,Lincoln-King Adams-Young Academy,42.4872,-83.14135,NCES 2024-25 district office geocode
-82774,Explore Academy-Livonia,42.38727,-83.37559,approximate: centre of host district (CEPI EEM)
-82775,KIPP Detroit Imani Academy,42.36432,-83.23029,NCES 2024-25 district office geocode
-82776,SER YouthBuild Learning Academy,42.32797,-83.15401,NCES 2024-25 district office geocode
-82904,Plymouth Educational Center Charter School,42.36015,-83.04759,NCES 2024-25 district office geocode
-82910,"Martin Luther King, Jr. Education Center Academy",42.41458,-83.17141,NCES 2024-25 district office geocode
-82915,Eaton Academy,42.45633,-82.9576,NCES 2024-25 district office geocode
-82916,Summit Academy,42.0968,-83.286,approximate: centre of host district (CEPI EEM)
-82918,Cesar Chavez Academy,42.31103,-83.12935,NCES 2024-25 district office geocode
-82919,Commonwealth Community Development Academy,42.4164,-83.0558,NCES 2024-25 district office geocode
-82921,Academy for Business and Technology,42.2746,-83.1967,NCES 2024-25 district office geocode
-82923,Chandler Park Academy,42.44512,-82.94299,NCES 2024-25 district office geocode
-82924,Marvin L. Winans Academy of Performing Arts,42.43337,-83.08229,approximate: centre of host district (CEPI EEM)
-82925,Detroit Community Schools,42.3803,-83.24744,NCES 2024-25 district office geocode
-82926,Henry Ford Academy,42.30309,-83.23462,NCES 2024-25 district office geocode
-82928,The Dearborn Academy,42.33101,-83.2283,NCES 2024-25 district office geocode
-82929,Detroit Academy of Arts and Sciences,42.34046,-83.01826,NCES 2024-25 district office geocode
-82930,Dove Academy of Detroit,42.44159,-83.06645,NCES 2024-25 district office geocode
-82933,Barack Obama Leadership Academy,42.38086,-82.986,NCES 2024-25 district office geocode
-82937,George Crockett Academy,42.34909,-83.08711,NCES 2024-25 district office geocode
-82938,Summit Academy North,42.16845,-83.32361,NCES 2024-25 district office geocode
-82940,Voyageur Academy,42.33268,-83.12044,NCES 2024-25 district office geocode
-82941,Star International Academy,42.33374,-83.27648,NCES 2024-25 district office geocode
-82942,Hope Academy,42.3794,-83.1354,NCES 2024-25 district office geocode
-82943,Weston Preparatory Academy,42.4392,-83.27,NCES 2024-25 district office geocode
-82945,Detroit Edison Public School Academy,42.35176,-83.03754,NCES 2024-25 district office geocode
-82947,David Ellis Academy,42.43026,-83.1808,NCES 2024-25 district office geocode
-82950,Universal Academy,42.3281,-83.14544,NCES 2024-25 district office geocode
-82953,Detroit Service Learning Academy,42.42845,-83.25633,NCES 2024-25 district office geocode
-82956,Old Redford Academy,42.41621,-83.25998,NCES 2024-25 district office geocode
-82957,Hope of Detroit Academy,42.33478,-83.11689,NCES 2024-25 district office geocode
-82958,Joy Preparatory Academy,42.40145,-83.13613,NCES 2024-25 district office geocode
-82959,West Village Academy,42.2846,-83.28195,NCES 2024-25 district office geocode
-82962,New Beginnings Academy,42.24873,-83.58865,approximate: centre of host district (CEPI EEM)
-82963,George Washington Carver Academy,42.4085,-83.10177,NCES 2024-25 district office geocode
-82967,Metro Charter Academy,42.2533,-83.3809,NCES 2024-25 district office geocode
-82968,Canton Charter Academy,42.32255,-83.5236,NCES 2024-25 district office geocode
-82969,Creative Montessori Academy,42.21489,-83.20864,NCES 2024-25 district office geocode
-82970,Warrendale Charter Academy,42.34732,-83.23037,NCES 2024-25 district office geocode
-82973,Trillium Academy,42.1913,-83.2502,NCES 2024-25 district office geocode
-82974,Detroit Merit Charter Academy,42.37595,-82.94089,NCES 2024-25 district office geocode
-82975,Riverside Academy,42.33695,-83.17773,NCES 2024-25 district office geocode
-82976,Keystone Academy,42.17366,-83.50596,NCES 2024-25 district office geocode
-82977,Hamtramck Academy,42.404,-83.0533,NCES 2024-25 district office geocode
-82979,Detroit Enterprise Academy,42.36852,-82.97271,NCES 2024-25 district office geocode
-82981,American Montessori Academy,42.3929,-83.3335,NCES 2024-25 district office geocode
-82982,Universal Learning Academy,42.35445,-83.31815,NCES 2024-25 district office geocode
-82983,Bridge Academy,42.39985,-83.04611,NCES 2024-25 district office geocode
-82985,Detroit Premier Academy,42.34964,-83.20642,NCES 2024-25 district office geocode
-82986,Hanley International Academy,42.38609,-83.0532,NCES 2024-25 district office geocode
-82987,Frontier International Academy,42.41233,-83.058,NCES 2024-25 district office geocode
-82991,Covenant House Academy Detroit,42.32063,-83.08523,NCES 2024-25 district office geocode
-82994,David Ellis Academy West,42.4349,-83.2964,NCES 2024-25 district office geocode
-82995,Taylor Exemplar Academy,42.2248,-83.3,NCES 2024-25 district office geocode
-82996,Clara B. Ford Academy (SDA),42.34082,-83.24375,NCES 2024-25 district office geocode
-82997,Flagship Charter Academy,42.38828,-83.15673,NCES 2024-25 district office geocode
-82998,ACE Academy (SDA),42.39201,-83.08151,approximate: centre of host district (CEPI EEM)
-83000,Wexford-Missaukee ISD,44.25177,-85.38712,approximate: centre of ISD
-83900,Highpoint Virtual Academy of Michigan,44.40522,-85.71028,NCES 2024-25 district office geocode
-84010,Michigan Department of Human Services,42.73052,-84.54997,NCES 2024-25 district office geocode
-84020,Michigan Department of Corrections,42.73322,-84.5503,NCES 2024-25 district office geocode
-84040,Michigan Department of Community Health,42.73213,-84.55499,NCES 2024-25 district office geocode
-84050,Michigan School for the Deaf,43.00585,-83.70052,NCES 2024-25 district office geocode
+district_code,name,entity_type,latitude,longitude,location_source
+03000,Allegan Area Educational Service Agency,ISD,42.55027,-85.80541,approximate: centre of ISD
+03900,Innocademy Allegan Campus,PSA,42.60941,-86.09409,NCES 2024-25 district office geocode
+03902,Outlook Academy,PSA,42.53506,-85.82684,NCES 2024-25 district office geocode
+04000,Alpena-Montmorency-Alcona ESD,ISD,44.9629,-83.73273,approximate: centre of ISD
+08000,Barry ISD,ISD,42.55654,-85.32687,approximate: centre of ISD
+09000,Bay-Arenac ISD,ISD,43.86384,-83.96614,approximate: centre of ISD
+09901,Bay-Arenac Community High School,PSA,43.61253,-83.83906,NCES 2024-25 district office geocode
+09902,State Street Academy,PSA,43.618,-83.894,NCES 2024-25 district office geocode
+09903,Bay City Academy,PSA,43.59294,-83.88007,NCES 2024-25 district office geocode
+11000,Berrien RESA,ISD,41.94882,-86.39738,approximate: centre of ISD
+11900,Bridge Academy of Southwest Michigan,PSA,42.11406,-86.46533,NCES 2024-25 district office geocode
+11901,Countryside Academy,PSA,42.07773,-86.34341,NCES 2024-25 district office geocode
+11903,Benton Harbor Charter School Academy,PSA,42.1102,-86.4623,NCES 2024-25 district office geocode
+11904,Mildred C. Wells Preparatory Academy,PSA,42.11289,-86.45902,NCES 2024-25 district office geocode
+12000,Branch ISD,ISD,41.89254,-85.03316,approximate: centre of ISD
+12901,Pansophia Academy,PSA,41.94992,-84.99659,NCES 2024-25 district office geocode
+13000,Calhoun Intermediate School District,ISD,42.25727,-85.01302,approximate: centre of ISD
+13900,Battle Creek Montessori Academy,PSA,42.3206,-85.2204,NCES 2024-25 district office geocode
+13901,Arbor Academy,PSA,42.30054,-85.21271,NCES 2024-25 district office geocode
+13902,Endeavor Charter Academy,PSA,42.32446,-85.23792,NCES 2024-25 district office geocode
+13903,Marshall Academy,PSA,42.25158,-84.93956,NCES 2024-25 district office geocode
+13904,Battle Creek Area Learning Center,PSA,42.32191,-85.22697,NCES 2024-25 district office geocode
+13905,Lakeside Charter School - Albion,PSA,42.26021,-84.89521,approximate: centre of host district (CEPI EEM)
+14000,Lewis Cass ISD,ISD,41.94395,-86.00394,approximate: centre of ISD
+15000,Charlevoix-Emmet ISD,ISD,45.35362,-84.98486,approximate: centre of ISD
+15901,Concord Academy - Boyne,PSA,45.1915,-84.9696,NCES 2024-25 district office geocode
+15902,Charlevoix Montessori Academy for the Arts,PSA,45.2804,-85.24736,approximate: centre of host district (CEPI EEM)
+16000,Cheb-Otsego-Presque Isle ESD,ISD,45.2672,-84.34734,approximate: centre of ISD
+17000,Eastern Upper Peninsula ISD,ISD,46.30474,-85.12985,approximate: centre of ISD
+17900,Lake Superior Academy,PSA,46.3755,-84.40713,NCES 2024-25 district office geocode
+17901,Joseph K. Lumsden Bahweting Anishnabe Academy,PSA,46.4814,-84.3319,NCES 2024-25 district office geocode
+17902,Ojibwe Charter School,PSA,46.45,-84.60171,NCES 2024-25 district office geocode
+17903,DeTour Arts and Technology Academy,PSA,45.9907,-83.9059,NCES 2024-25 district office geocode
+18000,Clare-Gladwin Regional Education Service District,ISD,43.96502,-84.64863,approximate: centre of ISD
+19000,Clinton County RESA,ISD,42.98108,-84.56133,approximate: centre of ISD
+19900,Michigan International Prep School,PSA,43.01859,-83.57505,NCES 2024-25 district office geocode
+21000,Delta-Schoolcraft ISD,ISD,46.02282,-86.68387,approximate: centre of ISD
+22000,Dickinson-Iron ISD,ISD,46.11825,-88.25898,approximate: centre of ISD
+23000,Eaton RESA,ISD,42.62435,-84.82695,approximate: centre of ISD
+23900,LifeTech Academy,PSA,42.50273,-84.64057,NCES 2024-25 district office geocode
+23901,Island City Academy,PSA,42.47413,-84.65825,NCES 2024-25 district office geocode
+23902,Relevant Academy of Eaton County,PSA,42.74966,-84.74851,NCES 2024-25 district office geocode
+23903,Insight School of Michigan,PSA,42.72824,-84.64307,NCES 2024-25 district office geocode
+24901,Concord Academy - Petoskey,PSA,45.3614,-84.9178,NCES 2024-25 district office geocode
+25000,Genesee ISD,ISD,43.0181,-83.6792,approximate: centre of ISD
+25900,Genesee STEM Academy,PSA,42.97731,-83.74746,approximate: centre of host district (CEPI EEM)
+25902,Woodland Park Academy,PSA,42.9172,-83.6683,NCES 2024-25 district office geocode
+25903,Grand Blanc Academy,PSA,42.9461,-83.608,NCES 2024-25 district office geocode
+25904,Northridge Academy,PSA,43.09148,-83.75756,NCES 2024-25 district office geocode
+25905,International Academy of Flint,PSA,42.99641,-83.67852,NCES 2024-25 district office geocode
+25907,Linden Charter Academy,PSA,43.0529,-83.7709,NCES 2024-25 district office geocode
+25909,Burton Glen Charter Academy,PSA,42.993,-83.6275,NCES 2024-25 district office geocode
+25910,Richfield Public School Academy,PSA,43.0491,-83.6366,NCES 2024-25 district office geocode
+25911,Madison Academy,PSA,42.93946,-83.73358,NCES 2024-25 district office geocode
+25912,The New Standard Academy,PSA,43.07731,-83.71564,NCES 2024-25 district office geocode
+25914,Greater Heights Academy,PSA,43.0467,-83.7408,NCES 2024-25 district office geocode
+25915,WAY Academy - Flint,PSA,43.0215,-83.6824,NCES 2024-25 district office geocode
+25916,Eagle's Nest Academy,PSA,43.06011,-83.73027,NCES 2024-25 district office geocode
+25917,The Paris Academy,PSA,43.11904,-83.61108,approximate: centre of host district (CEPI EEM)
+25918,Flex High School of Michigan,PSA,43.0595,-83.73516,NCES 2024-25 district office geocode
+25919,Flint Cultural Center Academy,PSA,43.02401,-83.67993,NCES 2024-25 district office geocode
+27000,Gogebic-Ontonagon ISD,ISD,46.53913,-89.47851,approximate: centre of ISD
+28000,Traverse Bay Area ISD,ISD,44.74058,-85.49437,approximate: centre of ISD
+28900,Old Mission Peninsula School,PSA,44.87376,-85.52104,NCES 2024-25 district office geocode
+28901,Woodland School,PSA,44.69311,-85.43215,NCES 2024-25 district office geocode
+28902,Grand Traverse Academy,PSA,44.7175,-85.5527,NCES 2024-25 district office geocode
+28904,The Greenspire School,PSA,44.75236,-85.64655,NCES 2024-25 district office geocode
+28905,Mill Creek Academy,PSA,44.7747,-85.3929,NCES 2024-25 district office geocode
+29000,Gratiot-Isabella RESD,ISD,43.41352,-84.64115,approximate: centre of ISD
+30000,Hillsdale ISD,ISD,41.88214,-84.6166,approximate: centre of ISD
+30901,Hillsdale Preparatory School,PSA,41.9342,-84.6478,NCES 2024-25 district office geocode
+30902,Will Carleton Charter School Academy,PSA,41.9119,-84.6529,NCES 2024-25 district office geocode
+31000,Copper Country ISD,ISD,46.91603,-88.48649,approximate: centre of ISD
+31900,Copper Island Academy,PSA,47.17262,-88.50624,NCES 2024-25 district office geocode
+32000,Huron ISD,ISD,43.81746,-82.98544,approximate: centre of ISD
+33000,Ingham ISD,ISD,42.58401,-84.36255,approximate: centre of ISD
+33901,Cole Academy,PSA,42.7116,-84.5788,NCES 2024-25 district office geocode
+33902,El-Hajj Malik El-Shabazz Academy,PSA,42.73871,-84.55138,approximate: centre of host district (CEPI EEM)
+33904,Mid-Michigan Leadership Academy,PSA,42.7464,-84.56294,NCES 2024-25 district office geocode
+33906,White Pine Academy,PSA,42.45407,-84.44399,approximate: centre of host district (CEPI EEM)
+33909,Windemere Park Charter Academy,PSA,42.7418,-84.5916,NCES 2024-25 district office geocode
+33910,Lansing Charter Academy,PSA,42.69912,-84.57524,NCES 2024-25 district office geocode
+33911,Michigan Connections Academy,PSA,42.6963,-84.43621,NCES 2024-25 district office geocode
+33913,NexTech High School of Lansing,PSA,42.70279,-84.42031,approximate: centre of host district (CEPI EEM)
+33914,Great Lakes Cyber Academy,PSA,42.71628,-84.45748,NCES 2024-25 district office geocode
+33915,Blended Learning Academies Credit Recovery High School,PSA,42.81217,-84.52755,NCES 2024-25 district office geocode
+34000,Ionia ISD,ISD,42.90512,-85.09712,approximate: centre of ISD
+35000,Iosco RESA,ISD,44.37277,-83.67637,approximate: centre of ISD
+35902,Alternative Educational Academy of Iosco County,PSA,44.27921,-83.51999,NCES 2024-25 district office geocode
+37900,Flextech High School Shepherd,PSA,43.52545,-84.85421,NCES 2024-25 district office geocode
+37901,Renaissance Public School Academy,PSA,43.6003,-84.7465,NCES 2024-25 district office geocode
+38000,Jackson ISD,ISD,42.23914,-84.4433,approximate: centre of ISD
+38900,Jackson Preparatory & Early College,PSA,42.16502,-84.40395,NCES 2024-25 district office geocode
+38901,Da Vinci Institute,PSA,42.27835,-84.45147,NCES 2024-25 district office geocode
+38902,Paragon Charter Academy,PSA,42.2347,-84.4664,NCES 2024-25 district office geocode
+38904,Francis Street Primary School,PSA,42.21531,-84.42105,approximate: centre of host district (CEPI EEM)
+39000,Kalamazoo RESA,ISD,42.2425,-85.48498,approximate: centre of ISD
+39900,Lakeside Charter School - Kalamazoo,PSA,42.27834,-85.63755,approximate: centre of host district (CEPI EEM)
+39903,Oakland Academy,PSA,42.2258,-85.6131,NCES 2024-25 district office geocode
+39905,Paramount Charter Academy,PSA,42.255,-85.591,NCES 2024-25 district office geocode
+39906,Youth Advancement Academy,PSA,42.25673,-85.67943,NCES 2024-25 district office geocode
+39907,Forest Academy,PSA,42.27757,-85.50248,approximate: centre of host district (CEPI EEM)
+39908,Evergreen Academy,PSA,42.26507,-85.62134,approximate: centre of host district (CEPI EEM)
+39909,Augusta Academy,PSA,42.2944,-85.38288,approximate: centre of host district (CEPI EEM)
+39911,Kalamazoo Covenant Academy,PSA,42.27649,-85.58775,NCES 2024-25 district office geocode
+41000,Kent ISD,ISD,42.98342,-85.56541,approximate: centre of ISD
+41900,Covenant House Academy Grand Rapids,PSA,42.9475,-85.6695,NCES 2024-25 district office geocode
+41901,New Branches Charter Academy,PSA,42.8968,-85.6346,NCES 2024-25 district office geocode
+41904,West MI Academy of Environmental Science,PSA,42.9877,-85.778,NCES 2024-25 district office geocode
+41905,Excel Charter Academy,PSA,42.8893,-85.608,NCES 2024-25 district office geocode
+41908,Byron Center Charter School,PSA,42.7837,-85.7019,NCES 2024-25 district office geocode
+41909,Vista Charter Academy,PSA,42.9063,-85.6487,NCES 2024-25 district office geocode
+41910,Vanguard Charter Academy,PSA,42.869,-85.705,NCES 2024-25 district office geocode
+41911,Flat River Academy,PSA,43.15975,-85.25972,NCES 2024-25 district office geocode
+41914,Knapp Charter Academy,PSA,42.9938,-85.6026,NCES 2024-25 district office geocode
+41915,Walker Charter Academy,PSA,43.0161,-85.7153,NCES 2024-25 district office geocode
+41916,Cross Creek Charter Academy,PSA,42.8254,-85.62584,NCES 2024-25 district office geocode
+41917,William C. Abney Academy,PSA,42.9636,-85.6348,NCES 2024-25 district office geocode
+41918,Creative Technologies Academy,PSA,43.22607,-85.5603,NCES 2024-25 district office geocode
+41919,Ridge Park Charter Academy,PSA,42.9209,-85.5658,NCES 2024-25 district office geocode
+41920,Chandler Woods Charter Academy,PSA,43.089,-85.6282,NCES 2024-25 district office geocode
+41921,Grand Rapids Child Discovery Center,PSA,42.95534,-85.66223,NCES 2024-25 district office geocode
+41922,Lighthouse Academy,PSA,42.89768,-85.58444,NCES 2024-25 district office geocode
+41923,Wellspring Preparatory High School,PSA,42.98698,-85.64321,NCES 2024-25 district office geocode
+41924,West Michigan Aviation Academy,PSA,42.88525,-85.53423,NCES 2024-25 district office geocode
+41925,Michigan Virtual Charter Academy,PSA,42.4513,-83.0874,NCES 2024-25 district office geocode
+41926,Hope Academy of West Michigan,PSA,42.93176,-85.66186,NCES 2024-25 district office geocode
+41928,River City Scholars Charter Academy,PSA,42.93601,-85.64456,NCES 2024-25 district office geocode
+41929,NexTech High School,PSA,42.9781,-85.6809,NCES 2024-25 district office geocode
+41930,Grand River Preparatory High School,PSA,42.86846,-85.64922,NCES 2024-25 district office geocode
+41931,Michigan Preparatory Virtual School,PSA,42.89511,-85.57031,NCES 2024-25 district office geocode
+41932,Gerald Dawkins Academy,PSA,42.94258,-85.64266,NCES 2024-25 district office geocode
+41933,Grove Montessori: A Wildflower Public School,PSA,42.96366,-85.65735,approximate: centre of host district (CEPI EEM)
+44000,Lapeer ISD,ISD,43.06272,-83.20746,approximate: centre of ISD
+44901,Chatfield School,PSA,43.0476,-83.3386,NCES 2024-25 district office geocode
+45901,Leelanau Montessori Public School Academy,PSA,44.98711,-85.70484,NCES 2024-25 district office geocode
+46000,Lenawee ISD,ISD,41.90485,-84.07349,approximate: centre of ISD
+47000,Livingston ESA,ISD,42.60272,-83.91721,approximate: centre of ISD
+47900,Light of the World Academy,PSA,42.45942,-83.94102,NCES 2024-25 district office geocode
+47901,Kensington Woods Schools,PSA,42.45743,-83.83662,NCES 2024-25 district office geocode
+47902,Charyl Stockwell Academy,PSA,42.63039,-83.75875,NCES 2024-25 district office geocode
+47903,FlexTech High School,PSA,42.5522,-83.798,NCES 2024-25 district office geocode
+49901,Three Lakes Academy,PSA,46.20636,-85.7584,NCES 2024-25 district office geocode
+50000,Macomb ISD,ISD,42.70502,-82.91293,approximate: centre of ISD
+50901,Macomb Academy,PSA,42.58505,-82.95118,NCES 2024-25 district office geocode
+50902,Conner Creek Academy East,PSA,42.514,-82.947,NCES 2024-25 district office geocode
+50903,Huron Academy,PSA,42.5678,-83.0133,NCES 2024-25 district office geocode
+50904,Global Preparatory Academy,PSA,42.50647,-82.93564,approximate: centre of host district (CEPI EEM)
+50905,Arts Academy in the Woods,PSA,42.5324,-82.9519,NCES 2024-25 district office geocode
+50906,Merritt Academy,PSA,42.7409,-82.8002,NCES 2024-25 district office geocode
+50908,Mt. Clemens Montessori Academy,PSA,42.5862,-82.8918,NCES 2024-25 district office geocode
+50909,Prevail Academy,PSA,42.5981,-82.8945,NCES 2024-25 district office geocode
+50911,Academy of Warren,PSA,42.4512,-82.9813,NCES 2024-25 district office geocode
+50912,Reach Charter Academy,PSA,42.48308,-82.92415,NCES 2024-25 district office geocode
+50913,Noor International Academy,PSA,42.5667,-83.0883,NCES 2024-25 district office geocode
+50914,Macomb Montessori Academy,PSA,42.46464,-82.98024,NCES 2024-25 district office geocode
+50915,Rising Stars Academy,PSA,42.47015,-83.03221,NCES 2024-25 district office geocode
+50916,Success Mile Academy,PSA,42.53471,-83.04343,approximate: centre of host district (CEPI EEM)
+50917,Red Oak Academy,PSA,42.56241,-82.89127,NCES 2024-25 district office geocode
+50918,Center Line Preparatory Academy,PSA,42.48,-83.02451,NCES 2024-25 district office geocode
+50920,New Dawn Academy of Warren,PSA,42.54529,-83.02706,NCES 2024-25 district office geocode
+50921,Unity Academy,PSA,42.52143,-83.02722,approximate: centre of host district (CEPI EEM)
+51000,Manistee ISD,ISD,44.29835,-86.07962,approximate: centre of ISD
+51903,Casman Alternative Academy,PSA,44.2369,-86.3122,NCES 2024-25 district office geocode
+51905,Michigan Great Lakes Virtual Academy,PSA,44.24792,-86.31973,NCES 2024-25 district office geocode
+52000,Marquette-Alger RESA,ISD,46.44241,-87.35328,approximate: centre of ISD
+52901,North Star Academy,PSA,46.55576,-87.4591,NCES 2024-25 district office geocode
+53000,West Shore Educational Service District,ISD,43.87494,-86.14286,approximate: centre of ISD
+53901,Gateway To Success Academy,PSA,43.96433,-86.2781,NCES 2024-25 district office geocode
+54000,Mecosta-Osceola ISD,ISD,43.74343,-85.32212,approximate: centre of ISD
+54901,Crossroads Charter Academy,PSA,43.69928,-85.48589,NCES 2024-25 district office geocode
+55000,Menominee ISD,ISD,45.53809,-87.56958,approximate: centre of ISD
+55900,Uplift Michigan Academy,PSA,45.41764,-87.61061,NCES 2024-25 district office geocode
+55901,Nah Tah Wahsh Public School Academy,PSA,45.6603,-87.3436,NCES 2024-25 district office geocode
+56000,Midland County Educational Service Agency,ISD,43.68792,-84.38454,approximate: centre of ISD
+56901,Windover High School,PSA,43.61637,-84.28373,NCES 2024-25 district office geocode
+56902,Midland Academy of Advanced and Creative Studies,PSA,43.67625,-84.23819,approximate: centre of host district (CEPI EEM)
+56903,Academic and Career Education Academy,PSA,43.61185,-84.33517,NCES 2024-25 district office geocode
+58000,Monroe ISD,ISD,41.91618,-83.52622,approximate: centre of ISD
+58901,New Bedford Academy,PSA,41.7301,-83.6271,NCES 2024-25 district office geocode
+58902,Triumph Academy,PSA,41.9537,-83.3621,NCES 2024-25 district office geocode
+59000,Montcalm Area ISD,ISD,43.31597,-85.14668,approximate: centre of ISD
+59900,Success Virtual Learning Centers of Michigan,PSA,43.39679,-84.90756,NCES 2024-25 district office geocode
+61000,Muskegon Area ISD,ISD,43.31537,-86.18616,approximate: centre of ISD
+61900,Muskegon Montessori Academy for Environmental Change,PSA,43.19906,-86.29267,NCES 2024-25 district office geocode
+61902,Timberland Academy,PSA,43.2314,-86.1797,NCES 2024-25 district office geocode
+61904,Three Oaks Public School Academy,PSA,43.2298,-86.2223,NCES 2024-25 district office geocode
+61906,Muskegon Covenant Academy,PSA,43.22796,-86.24067,NCES 2024-25 district office geocode
+61907,Muskegon Maritime Academy,PSA,43.23385,-86.22989,NCES 2024-25 district office geocode
+62000,Newaygo County RESA,ISD,43.52371,-85.84259,approximate: centre of ISD
+63000,Oakland Schools,ISD,42.65237,-83.39435,approximate: centre of ISD
+63900,Sarah J. Webber Media Arts Academy,PSA,42.66017,-83.27847,approximate: centre of host district (CEPI EEM)
+63901,AGBU Alex-Marie Manoogian School,PSA,42.4551,-83.2192,NCES 2024-25 district office geocode
+63906,Pontiac Academy for Excellence,PSA,42.64485,-83.29829,NCES 2024-25 district office geocode
+63907,Great Lakes Academy,PSA,42.6319,-83.2874,NCES 2024-25 district office geocode
+63909,Oakside Scholars Charter Academy,PSA,42.6433,-83.3351,NCES 2024-25 district office geocode
+63910,Dr. Joseph F. Pollack Academic Center of Excellence,PSA,42.46559,-83.22178,NCES 2024-25 district office geocode
+63911,Holly Academy,PSA,42.7924,-83.6412,NCES 2024-25 district office geocode
+63912,Oakland International Academy,PSA,42.38982,-83.04274,NCES 2024-25 district office geocode
+63913,Walton Charter Academy,PSA,42.676,-83.2738,NCES 2024-25 district office geocode
+63914,Advanced Technology Academy,PSA,42.32225,-83.16887,NCES 2024-25 district office geocode
+63915,Arts and Technology Academy of Pontiac,PSA,42.62093,-83.25182,NCES 2024-25 district office geocode
+63917,Bradford Academy,PSA,42.4638,-83.2826,NCES 2024-25 district office geocode
+63918,Laurus Academy,PSA,42.4694,-83.2598,NCES 2024-25 district office geocode
+63920,Life Skills Center of Pontiac,PSA,42.634,-83.2857,NCES 2024-25 district office geocode
+63921,Crescent Academy,PSA,42.5031,-83.2204,NCES 2024-25 district office geocode
+63922,Great Oaks Academy,PSA,42.46616,-83.06249,NCES 2024-25 district office geocode
+63923,Four Corners Montessori Academy,PSA,42.4986,-83.0961,NCES 2024-25 district office geocode
+63924,Michigan Mathematics and Science Academy,PSA,42.49412,-83.08361,NCES 2024-25 district office geocode
+63926,Faxon Academy,PSA,42.48083,-83.25894,NCES 2024-25 district office geocode
+63928,Momentum Academy,PSA,42.6338,-83.336,NCES 2024-25 district office geocode
+63929,Waterford Montessori Academy,PSA,42.6948,-83.3847,NCES 2024-25 district office geocode
+63930,NexTech High School of Metro Detroit,PSA,42.53974,-83.25649,approximate: centre of host district (CEPI EEM)
+63931,FlexTech High School - Novi,PSA,42.46228,-83.42358,NCES 2024-25 district office geocode
+63933,Jefferson International Academy,PSA,42.65886,-83.39435,approximate: centre of host district (CEPI EEM)
+63934,Kingsbury Country Day School,PSA,42.87141,-83.2024,NCES 2024-25 district office geocode
+63935,Frederick Douglass International Academy,PSA,42.45872,-83.18702,approximate: centre of host district (CEPI EEM)
+63938,Keys Grace Academy,PSA,42.49356,-83.11412,NCES 2024-25 district office geocode
+63939,Lighthouse Connections Academy,PSA,42.48197,-83.25006,NCES 2024-25 district office geocode
+63940,Pillars Academy,PSA,42.47682,-83.2612,approximate: centre of host district (CEPI EEM)
+65900,Alternative Educational Academy of Ogemaw County,PSA,44.26299,-84.125,NCES 2024-25 district office geocode
+70000,Ottawa Area ISD,ISD,42.89007,-86.01747,approximate: centre of ISD
+70901,Walden Green Montessori,PSA,43.08888,-86.21926,NCES 2024-25 district office geocode
+70902,West MI Academy of Arts and Academics,PSA,43.0854,-86.2141,NCES 2024-25 district office geocode
+70904,Black River Public School,PSA,42.77903,-86.0999,NCES 2024-25 district office geocode
+70905,Vanderbilt Charter Academy,PSA,42.7832,-86.1217,NCES 2024-25 district office geocode
+70906,Eagle Crest Charter Academy,PSA,42.8256,-86.07655,NCES 2024-25 district office geocode
+70908,Innocademy,PSA,42.81081,-85.99117,NCES 2024-25 district office geocode
+70909,ICademy Global,PSA,42.81081,-85.99117,NCES 2024-25 district office geocode
+71902,Presque Isle Academy,PSA,45.36157,-84.23063,NCES 2024-25 district office geocode
+72000,C.O.O.R. ISD,ISD,44.51211,-84.37912,approximate: centre of ISD
+72901,Charlton Heston Academy,PSA,44.35284,-84.40699,NCES 2024-25 district office geocode
+73000,Saginaw ISD,ISD,43.34259,-84.06781,approximate: centre of ISD
+73900,Saginaw Covenant Academy,PSA,43.42815,-83.93992,NCES 2024-25 district office geocode
+73901,The Woodley Leadership Academy,PSA,43.45568,-83.93304,approximate: centre of host district (CEPI EEM)
+73908,Saginaw Preparatory Academy,PSA,43.3961,-83.8783,NCES 2024-25 district office geocode
+73909,Francis Reh PSA,PSA,43.4073,-83.9451,NCES 2024-25 district office geocode
+73910,North Saginaw Charter Academy,PSA,43.4856,-83.962,NCES 2024-25 district office geocode
+73911,Saginaw Learn to Earn Academy,PSA,43.44241,-83.91683,approximate: centre of host district (CEPI EEM)
+73912,International Academy of Saginaw,PSA,43.3844,-83.9176,NCES 2024-25 district office geocode
+74000,St. Clair County RESA,ISD,42.9471,-82.67563,approximate: centre of ISD
+74900,East Shore Leadership Academy,PSA,42.96904,-82.42753,NCES 2024-25 district office geocode
+74903,Landmark Academy,PSA,42.98464,-82.51739,NCES 2024-25 district office geocode
+74911,St. Clair County Intervention Academy,PSA,42.94229,-82.47925,NCES 2024-25 district office geocode
+74912,Virtual Learning Academy of St. Clair County,PSA,42.97843,-82.46884,NCES 2024-25 district office geocode
+74914,Blue Water Middle College,PSA,42.97817,-82.42766,NCES 2024-25 district office geocode
+75000,St. Joseph County ISD,ISD,41.9059,-85.54701,approximate: centre of ISD
+76000,Sanilac ISD,ISD,43.36784,-82.81688,approximate: centre of ISD
+78000,Shiawassee Regional ESD,ISD,42.9371,-84.11751,approximate: centre of ISD
+79000,Tuscola ISD,ISD,43.48192,-83.40669,approximate: centre of ISD
+80000,Van Buren ISD,ISD,42.27143,-86.01499,approximate: centre of ISD
+80900,Michigan Online School,PSA,42.35912,-85.87866,NCES 2024-25 district office geocode
+81000,Washtenaw ISD,ISD,42.23487,-83.82906,approximate: centre of ISD
+81900,Global Tech Academy,PSA,42.25108,-83.57566,NCES 2024-25 district office geocode
+81901,Honey Creek Community School,PSA,42.26163,-83.79627,NCES 2024-25 district office geocode
+81902,Central Academy,PSA,42.2505,-83.73181,NCES 2024-25 district office geocode
+81903,Washtenaw Technical Middle College,PSA,42.26448,-83.6657,NCES 2024-25 district office geocode
+81904,Ann Arbor Learning Community,PSA,42.2873,-83.73387,approximate: centre of host district (CEPI EEM)
+81905,South Arbor Charter Academy,PSA,42.169,-83.6817,NCES 2024-25 district office geocode
+81906,Fortis Academy,PSA,42.23289,-83.65991,NCES 2024-25 district office geocode
+81908,Multicultural Academy,PSA,42.20754,-83.70047,NCES 2024-25 district office geocode
+81909,Arbor Preparatory High School,PSA,42.19013,-83.62256,NCES 2024-25 district office geocode
+81910,East Arbor Charter Academy,PSA,42.18858,-83.62224,NCES 2024-25 district office geocode
+81911,WSC Academy,PSA,42.262,-83.60486,approximate: centre of host district (CEPI EEM)
+81912,South Pointe Scholars Charter Academy,PSA,42.27591,-83.55272,NCES 2024-25 district office geocode
+81913,Livingston Classical Academy,PSA,42.41418,-83.76237,NCES 2024-25 district office geocode
+81915,Pittsfield Acres Academy,PSA,42.202,-83.67286,NCES 2024-25 district office geocode
+81916,GEE Compass Academy,PSA,42.22637,-83.64488,NCES 2024-25 district office geocode
+82000,Wayne RESA,ISD,42.29463,-83.29557,approximate: centre of ISD
+82700,Detroit Achievement Academy,PSA,42.41994,-83.20051,NCES 2024-25 district office geocode
+82701,University Preparatory Science and Math (PSAD),PSA,42.35913,-83.06225,NCES 2024-25 district office geocode
+82702,University Preparatory Academy (PSAD),PSA,42.36282,-83.07461,NCES 2024-25 district office geocode
+82703,University Prepararatory Art & Design,PSA,42.368,-83.07497,NCES 2024-25 district office geocode
+82704,Detroit Public Safety Academy,PSA,42.32517,-83.06744,NCES 2024-25 district office geocode
+82705,Branch Line School,PSA,42.4072,-83.363,NCES 2024-25 district office geocode
+82706,The James and Grace Lee Boggs School,PSA,42.3635,-83.00773,NCES 2024-25 district office geocode
+82710,WAY Michigan,PSA,42.33311,-83.04254,NCES 2024-25 district office geocode
+82711,Canton Preparatory High School,PSA,42.30879,-83.49753,NCES 2024-25 district office geocode
+82713,New Paradigm College Prep,PSA,42.33492,-83.10991,NCES 2024-25 district office geocode
+82714,Detroit Delta Preparatory Academy for Social Justice,PSA,42.38555,-83.1056,approximate: centre of host district (CEPI EEM)
+82716,Vista Meadows Academy,PSA,42.34082,-83.24375,NCES 2024-25 district office geocode
+82717,Achieve Charter Academy,PSA,42.28143,-83.52804,NCES 2024-25 district office geocode
+82718,Quest Charter Academy,PSA,42.26616,-83.27842,NCES 2024-25 district office geocode
+82719,Washington-Parks Academy,PSA,42.37261,-83.27268,NCES 2024-25 district office geocode
+82722,Detroit Leadership Academy,PSA,42.38442,-83.27078,NCES 2024-25 district office geocode
+82723,Legacy Charter Academy,PSA,42.42912,-83.05419,NCES 2024-25 district office geocode
+82724,University Yes Academy,PSA,42.4228,-83.1917,NCES 2024-25 district office geocode
+82725,Global Heights Academy,PSA,42.35628,-83.27096,NCES 2024-25 district office geocode
+82727,Regent Park Scholars Charter Academy,PSA,42.4361,-82.95747,NCES 2024-25 district office geocode
+82728,Jalen Rose Leadership Academy,PSA,42.44185,-83.19474,NCES 2024-25 district office geocode
+82729,South Canton Scholars Charter Academy,PSA,42.28429,-83.48428,NCES 2024-25 district office geocode
+82730,American International Academy,PSA,42.30847,-83.34096,NCES 2024-25 district office geocode
+82731,GEE Edmonson Academy,PSA,42.37228,-83.08939,approximate: centre of host district (CEPI EEM)
+82732,GEE White Academy,PSA,42.38778,-83.13941,approximate: centre of host district (CEPI EEM)
+82733,Hamilton Academy,PSA,42.40452,-83.07261,approximate: centre of host district (CEPI EEM)
+82735,New Paradigm Glazer-Loving Academy,PSA,42.39139,-83.07541,NCES 2024-25 district office geocode
+82737,Pathways Academy,PSA,42.36553,-82.97019,NCES 2024-25 district office geocode
+82739,Detroit Innovation Academy,PSA,42.3704,-83.218,NCES 2024-25 district office geocode
+82741,Cornerstone Health and Technology School,PSA,42.35011,-83.11397,approximate: centre of host district (CEPI EEM)
+82742,Madison-Carver Academy,PSA,42.43723,-83.26283,NCES 2024-25 district office geocode
+82743,Plymouth Scholars Charter Academy,PSA,42.3773,-83.5207,NCES 2024-25 district office geocode
+82744,Escuela Avancemos,PSA,42.32098,-83.07629,NCES 2024-25 district office geocode
+82745,Caniff Liberty Academy,PSA,42.39878,-83.0619,NCES 2024-25 district office geocode
+82746,W-A-Y Academy,PSA,42.30904,-83.13264,NCES 2024-25 district office geocode
+82747,MacDowell Preparatory Academy,PSA,42.43428,-83.16606,NCES 2024-25 district office geocode
+82748,Rutherford Winans Academy,PSA,42.42258,-83.20982,NCES 2024-25 district office geocode
+82751,Michigan Educational Choice Center,PSA,42.4443,-82.9909,NCES 2024-25 district office geocode
+82752,Capstone Academy Charter School (SDA),PSA,42.37027,-82.9484,NCES 2024-25 district office geocode
+82754,Tipton Academy,PSA,42.3217,-83.31413,NCES 2024-25 district office geocode
+82755,Southwest Detroit Community School,PSA,42.41952,-83.1344,approximate: centre of host district (CEPI EEM)
+82756,Taylor Preparatory High School,PSA,42.23795,-83.27033,NCES 2024-25 district office geocode
+82757,Grand River Academy,PSA,42.44091,-83.32264,NCES 2024-25 district office geocode
+82758,New School High,PSA,42.34718,-83.50701,approximate: centre of host district (CEPI EEM)
+82759,Regents Academy,PSA,42.41494,-83.29868,approximate: centre of host district (CEPI EEM)
+82760,Cornerstone Jefferson-Douglass Academy,PSA,42.42809,-83.03065,NCES 2024-25 district office geocode
+82762,Inkster Preparatory Academy,PSA,42.30708,-83.3098,NCES 2024-25 district office geocode
+82763,Distinctive College Prep.,PSA,42.42802,-82.92455,NCES 2024-25 district office geocode
+82764,Detroit Collegiate High School,PSA,42.3741,-83.04883,approximate: centre of host district (CEPI EEM)
+82765,Pembroke Academy,PSA,42.43798,-83.20616,NCES 2024-25 district office geocode
+82766,Westfield Charter Academy,PSA,42.36211,-83.31124,NCES 2024-25 district office geocode
+82767,Ivywood Classical Academy,PSA,42.38626,-83.51552,NCES 2024-25 district office geocode
+82768,Achieve-Detroit,PSA,42.36361,-83.16196,approximate: centre of host district (CEPI EEM)
+82770,Sigma Academy for Leadership and Early Middle College,PSA,42.40529,-83.09772,approximate: centre of host district (CEPI EEM)
+82772,Fostering Leadership Academy,PSA,42.41011,-83.30684,NCES 2024-25 district office geocode
+82773,Lincoln-King Adams-Young Academy,PSA,42.4872,-83.14135,NCES 2024-25 district office geocode
+82774,Explore Academy-Livonia,PSA,42.38727,-83.37559,approximate: centre of host district (CEPI EEM)
+82775,KIPP Detroit Imani Academy,PSA,42.36432,-83.23029,NCES 2024-25 district office geocode
+82776,SER YouthBuild Learning Academy,PSA,42.32797,-83.15401,NCES 2024-25 district office geocode
+82904,Plymouth Educational Center Charter School,PSA,42.36015,-83.04759,NCES 2024-25 district office geocode
+82910,"Martin Luther King, Jr. Education Center Academy",PSA,42.41458,-83.17141,NCES 2024-25 district office geocode
+82915,Eaton Academy,PSA,42.45633,-82.9576,NCES 2024-25 district office geocode
+82916,Summit Academy,PSA,42.0968,-83.286,approximate: centre of host district (CEPI EEM)
+82918,Cesar Chavez Academy,PSA,42.31103,-83.12935,NCES 2024-25 district office geocode
+82919,Commonwealth Community Development Academy,PSA,42.4164,-83.0558,NCES 2024-25 district office geocode
+82921,Academy for Business and Technology,PSA,42.2746,-83.1967,NCES 2024-25 district office geocode
+82923,Chandler Park Academy,PSA,42.44512,-82.94299,NCES 2024-25 district office geocode
+82924,Marvin L. Winans Academy of Performing Arts,PSA,42.43337,-83.08229,approximate: centre of host district (CEPI EEM)
+82925,Detroit Community Schools,PSA,42.3803,-83.24744,NCES 2024-25 district office geocode
+82926,Henry Ford Academy,PSA,42.30309,-83.23462,NCES 2024-25 district office geocode
+82928,The Dearborn Academy,PSA,42.33101,-83.2283,NCES 2024-25 district office geocode
+82929,Detroit Academy of Arts and Sciences,PSA,42.34046,-83.01826,NCES 2024-25 district office geocode
+82930,Dove Academy of Detroit,PSA,42.44159,-83.06645,NCES 2024-25 district office geocode
+82933,Barack Obama Leadership Academy,PSA,42.38086,-82.986,NCES 2024-25 district office geocode
+82937,George Crockett Academy,PSA,42.34909,-83.08711,NCES 2024-25 district office geocode
+82938,Summit Academy North,PSA,42.16845,-83.32361,NCES 2024-25 district office geocode
+82940,Voyageur Academy,PSA,42.33268,-83.12044,NCES 2024-25 district office geocode
+82941,Star International Academy,PSA,42.33374,-83.27648,NCES 2024-25 district office geocode
+82942,Hope Academy,PSA,42.3794,-83.1354,NCES 2024-25 district office geocode
+82943,Weston Preparatory Academy,PSA,42.4392,-83.27,NCES 2024-25 district office geocode
+82945,Detroit Edison Public School Academy,PSA,42.35176,-83.03754,NCES 2024-25 district office geocode
+82947,David Ellis Academy,PSA,42.43026,-83.1808,NCES 2024-25 district office geocode
+82950,Universal Academy,PSA,42.3281,-83.14544,NCES 2024-25 district office geocode
+82953,Detroit Service Learning Academy,PSA,42.42845,-83.25633,NCES 2024-25 district office geocode
+82956,Old Redford Academy,PSA,42.41621,-83.25998,NCES 2024-25 district office geocode
+82957,Hope of Detroit Academy,PSA,42.33478,-83.11689,NCES 2024-25 district office geocode
+82958,Joy Preparatory Academy,PSA,42.40145,-83.13613,NCES 2024-25 district office geocode
+82959,West Village Academy,PSA,42.2846,-83.28195,NCES 2024-25 district office geocode
+82962,New Beginnings Academy,PSA,42.24873,-83.58865,approximate: centre of host district (CEPI EEM)
+82963,George Washington Carver Academy,PSA,42.4085,-83.10177,NCES 2024-25 district office geocode
+82967,Metro Charter Academy,PSA,42.2533,-83.3809,NCES 2024-25 district office geocode
+82968,Canton Charter Academy,PSA,42.32255,-83.5236,NCES 2024-25 district office geocode
+82969,Creative Montessori Academy,PSA,42.21489,-83.20864,NCES 2024-25 district office geocode
+82970,Warrendale Charter Academy,PSA,42.34732,-83.23037,NCES 2024-25 district office geocode
+82973,Trillium Academy,PSA,42.1913,-83.2502,NCES 2024-25 district office geocode
+82974,Detroit Merit Charter Academy,PSA,42.37595,-82.94089,NCES 2024-25 district office geocode
+82975,Riverside Academy,PSA,42.33695,-83.17773,NCES 2024-25 district office geocode
+82976,Keystone Academy,PSA,42.17366,-83.50596,NCES 2024-25 district office geocode
+82977,Hamtramck Academy,PSA,42.404,-83.0533,NCES 2024-25 district office geocode
+82979,Detroit Enterprise Academy,PSA,42.36852,-82.97271,NCES 2024-25 district office geocode
+82981,American Montessori Academy,PSA,42.3929,-83.3335,NCES 2024-25 district office geocode
+82982,Universal Learning Academy,PSA,42.35445,-83.31815,NCES 2024-25 district office geocode
+82983,Bridge Academy,PSA,42.39985,-83.04611,NCES 2024-25 district office geocode
+82985,Detroit Premier Academy,PSA,42.34964,-83.20642,NCES 2024-25 district office geocode
+82986,Hanley International Academy,PSA,42.38609,-83.0532,NCES 2024-25 district office geocode
+82987,Frontier International Academy,PSA,42.41233,-83.058,NCES 2024-25 district office geocode
+82991,Covenant House Academy Detroit,PSA,42.32063,-83.08523,NCES 2024-25 district office geocode
+82994,David Ellis Academy West,PSA,42.4349,-83.2964,NCES 2024-25 district office geocode
+82995,Taylor Exemplar Academy,PSA,42.2248,-83.3,NCES 2024-25 district office geocode
+82996,Clara B. Ford Academy (SDA),PSA,42.34082,-83.24375,NCES 2024-25 district office geocode
+82997,Flagship Charter Academy,PSA,42.38828,-83.15673,NCES 2024-25 district office geocode
+82998,ACE Academy (SDA),PSA,42.39201,-83.08151,approximate: centre of host district (CEPI EEM)
+83000,Wexford-Missaukee ISD,ISD,44.25177,-85.38712,approximate: centre of ISD
+83900,Highpoint Virtual Academy of Michigan,PSA,44.40522,-85.71028,NCES 2024-25 district office geocode
+84010,Michigan Department of Human Services,State District,42.73052,-84.54997,NCES 2024-25 district office geocode
+84020,Michigan Department of Corrections,State District,42.73322,-84.5503,NCES 2024-25 district office geocode
+84040,Michigan Department of Community Health,State District,42.73213,-84.55499,NCES 2024-25 district office geocode
+84050,Michigan School for the Deaf,State District,43.00585,-83.70052,NCES 2024-25 district office geocode
