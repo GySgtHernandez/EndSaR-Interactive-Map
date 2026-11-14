@@ -7,12 +7,13 @@
     "2021-2022",
     "2022-2023",
     "2023-2024",
-    "2024-2025"
+    "2024-2025",
+    "2025-2026"
   ],
   "datasets": {
     "raw": {
       "district": {
-        "items": 923,
+        "items": 926,
         "itemIds": [
           "01010",
           "02010",
@@ -398,6 +399,7 @@
           "41930",
           "41931",
           "41932",
+          "41933",
           "42030",
           "43040",
           "44000",
@@ -481,6 +483,7 @@
           "50917",
           "50918",
           "50920",
+          "50921",
           "51000",
           "51020",
           "51045",
@@ -630,6 +633,7 @@
           "63935",
           "63938",
           "63939",
+          "63940",
           "64040",
           "64070",
           "64080",
@@ -938,8 +942,8 @@
           "84040",
           "84050"
         ],
-        "contentSha256": "31de3ffc0ac700ec6a785cb0aabd2ff239462a7156a34a96c078fa8de45506ce",
-        "unmatched": 387,
+        "contentSha256": "1b9e953dc5868ade89f07285ea09c62f24bfdf3c6613683a81aefebe425e49a1",
+        "unmatched": 390,
         "stateTotals": {
           "2017-2018": {
             "metrics": {
@@ -963,7 +967,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -1017,7 +1024,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.1384
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 206,
@@ -1071,7 +1081,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.0497
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 251,
@@ -1125,7 +1138,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.9488
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 194,
@@ -1179,7 +1195,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.2156
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 232,
@@ -1233,7 +1252,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 252,
@@ -1287,7 +1309,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.4529
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 256,
@@ -1341,7 +1366,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.6334
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 265,
@@ -1370,6 +1398,63 @@
               "seclusion_total": 9680.0,
               "restraint_total": 8197.0,
               "combined_event_total": 17877.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "suppressedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
             },
             "topDistricts": []
           }
@@ -1435,7 +1520,7 @@
           "82",
           "83"
         ],
-        "contentSha256": "d9b1e06e97f23f39ada4d257ac07b23a2f36939d58d7ec71a375bb8f9fa9d49f",
+        "contentSha256": "146b5894ae190605eaa5ed9bf0ff4789d056fa33f4f804271913579412d51aca",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -1460,7 +1545,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -1514,7 +1602,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.1384
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 206,
@@ -1568,7 +1659,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.0497
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 251,
@@ -1622,7 +1716,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.9488
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 194,
@@ -1676,7 +1773,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.2156
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 232,
@@ -1730,7 +1830,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 252,
@@ -1784,7 +1887,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.4529
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 256,
@@ -1838,7 +1944,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.6334
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 265,
@@ -1867,6 +1976,63 @@
               "seclusion_total": 9680.0,
               "restraint_total": 8197.0,
               "combined_event_total": 17877.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "suppressedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
             },
             "topDistricts": []
           }
@@ -1932,7 +2098,7 @@
           "82",
           "83"
         ],
-        "contentSha256": "3b12bdebe48084ea8eb56d7aad6b31474ef58f2136b741e96bd8ee0cf1ec8ee9",
+        "contentSha256": "e09cec09e36598f62d598f4747d6674a42bf362a136677108be3c6e4a39953a7",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -1940,8 +2106,8 @@
               "swd_students": 713.0,
               "swd_seclusions": 3663.0,
               "swd_restraints": 3208.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 15.0,
               "all_events": 6886.0,
               "event_student_ratio": 9.6578,
@@ -1953,11 +2119,14 @@
               "swd_students": 713.0,
               "swd_seclusions": 3663.0,
               "swd_restraints": 3208.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 15.0,
               "all_events": 6886.0,
-              "event_student_ratio": 9.657784011220196
+              "event_student_ratio": 9.6578,
+              "all_students": 713.0,
+              "all_seclusions": 3663.0,
+              "all_restraints": 3223.0
             },
             "approximatedCells": {
               "swd_students": 15,
@@ -1981,7 +2150,7 @@
             },
             "summary": {
               "swd_total": 713.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 713.0,
               "seclusion_total": 3663.0,
               "restraint_total": 3223.0,
@@ -1995,7 +2164,7 @@
               "swd_seclusions": 3994.0,
               "swd_restraints": 3453.0,
               "nonswd_students": 20.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 53.0,
               "all_events": 7500.0,
               "event_student_ratio": 9.4937,
@@ -2008,10 +2177,13 @@
               "swd_seclusions": 3994.0,
               "swd_restraints": 3453.0,
               "nonswd_students": 20.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 53.0,
               "all_events": 7500.0,
-              "event_student_ratio": 9.49367088607595
+              "event_student_ratio": 9.4937,
+              "all_students": 790.0,
+              "all_seclusions": 3994.0,
+              "all_restraints": 3506.0
             },
             "approximatedCells": {
               "swd_students": 17,
@@ -2049,7 +2221,7 @@
               "swd_seclusions": 4784.0,
               "swd_restraints": 3187.0,
               "nonswd_students": 27.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 40.0,
               "all_events": 8011.0,
               "event_student_ratio": 10.0894,
@@ -2062,10 +2234,13 @@
               "swd_seclusions": 4784.0,
               "swd_restraints": 3187.0,
               "nonswd_students": 27.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 40.0,
               "all_events": 8011.0,
-              "event_student_ratio": 10.089420654911839
+              "event_student_ratio": 10.0894,
+              "all_students": 794.0,
+              "all_seclusions": 4784.0,
+              "all_restraints": 3227.0
             },
             "approximatedCells": {
               "swd_students": 20,
@@ -2102,8 +2277,8 @@
               "swd_students": 476.0,
               "swd_seclusions": 3092.0,
               "swd_restraints": 1972.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 12.0,
               "all_events": 5076.0,
               "event_student_ratio": 10.6639,
@@ -2115,11 +2290,14 @@
               "swd_students": 476.0,
               "swd_seclusions": 3092.0,
               "swd_restraints": 1972.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 12.0,
               "all_events": 5076.0,
-              "event_student_ratio": 10.663865546218487
+              "event_student_ratio": 10.6639,
+              "all_students": 476.0,
+              "all_seclusions": 3092.0,
+              "all_restraints": 1984.0
             },
             "approximatedCells": {
               "swd_students": 26,
@@ -2143,7 +2321,7 @@
             },
             "summary": {
               "swd_total": 476.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 476.0,
               "seclusion_total": 3092.0,
               "restraint_total": 1984.0,
@@ -2157,7 +2335,7 @@
               "swd_seclusions": 4655.0,
               "swd_restraints": 2877.0,
               "nonswd_students": 11.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 18.0,
               "all_events": 7550.0,
               "event_student_ratio": 12.3974,
@@ -2170,10 +2348,13 @@
               "swd_seclusions": 4655.0,
               "swd_restraints": 2877.0,
               "nonswd_students": 11.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 18.0,
               "all_events": 7550.0,
-              "event_student_ratio": 12.397372742200329
+              "event_student_ratio": 12.3974,
+              "all_students": 609.0,
+              "all_seclusions": 4655.0,
+              "all_restraints": 2895.0
             },
             "approximatedCells": {
               "swd_students": 27,
@@ -2211,7 +2392,7 @@
               "swd_seclusions": 5888.0,
               "swd_restraints": 4004.0,
               "nonswd_students": 16.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 27.0,
               "all_events": 9919.0,
               "event_student_ratio": 13.7192,
@@ -2224,10 +2405,13 @@
               "swd_seclusions": 5888.0,
               "swd_restraints": 4004.0,
               "nonswd_students": 16.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 27.0,
               "all_events": 9919.0,
-              "event_student_ratio": 13.719225449515905
+              "event_student_ratio": 13.7192,
+              "all_students": 723.0,
+              "all_seclusions": 5888.0,
+              "all_restraints": 4031.0
             },
             "approximatedCells": {
               "swd_students": 20,
@@ -2264,9 +2448,9 @@
               "swd_students": 684.0,
               "swd_seclusions": 4328.0,
               "swd_restraints": 3277.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 7605.0,
               "event_student_ratio": 11.1184,
               "all_students": 684.0,
@@ -2277,11 +2461,14 @@
               "swd_students": 684.0,
               "swd_seclusions": 4328.0,
               "swd_restraints": 3277.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 7605.0,
-              "event_student_ratio": 11.118421052631579
+              "event_student_ratio": 11.1184,
+              "all_students": 684.0,
+              "all_seclusions": 4328.0,
+              "all_restraints": 3277.0
             },
             "approximatedCells": {
               "swd_students": 21,
@@ -2305,7 +2492,7 @@
             },
             "summary": {
               "swd_total": 684.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 684.0,
               "seclusion_total": 4328.0,
               "restraint_total": 3277.0,
@@ -2318,9 +2505,9 @@
               "swd_students": 609.0,
               "swd_seclusions": 3853.0,
               "swd_restraints": 2712.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 6565.0,
               "event_student_ratio": 10.78,
               "all_students": 609.0,
@@ -2331,11 +2518,14 @@
               "swd_students": 609.0,
               "swd_seclusions": 3853.0,
               "swd_restraints": 2712.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 6565.0,
-              "event_student_ratio": 10.779967159277504
+              "event_student_ratio": 10.78,
+              "all_students": 609.0,
+              "all_seclusions": 3853.0,
+              "all_restraints": 2712.0
             },
             "approximatedCells": {
               "swd_students": 21,
@@ -2359,11 +2549,68 @@
             },
             "summary": {
               "swd_total": 609.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 609.0,
               "seclusion_total": 3853.0,
               "restraint_total": 2712.0,
               "combined_event_total": 6565.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 566.0,
+              "swd_seclusions": 3049.0,
+              "swd_restraints": 2196.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 5245.0,
+              "event_student_ratio": 9.2668,
+              "all_students": 566.0,
+              "all_seclusions": 3049.0,
+              "all_restraints": 2196.0
+            },
+            "displayMetrics": {
+              "swd_students": 566.0,
+              "swd_seclusions": 3049.0,
+              "swd_restraints": 2196.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 5245.0,
+              "event_student_ratio": 9.2668,
+              "all_students": 566.0,
+              "all_seclusions": 3049.0,
+              "all_restraints": 2196.0
+            },
+            "approximatedCells": {
+              "swd_students": 23,
+              "swd_seclusions": 6,
+              "swd_restraints": 17,
+              "nonswd_students": 3,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 3,
+              "all_events": 52,
+              "event_student_ratio": 52
+            },
+            "suppressedCells": {
+              "swd_students": 23,
+              "swd_seclusions": 6,
+              "swd_restraints": 17,
+              "nonswd_students": 3,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 3,
+              "all_events": 52,
+              "event_student_ratio": 52
+            },
+            "summary": {
+              "swd_total": 566.0,
+              "nonswd_total": 0,
+              "student_total": 566.0,
+              "seclusion_total": 3049.0,
+              "restraint_total": 2196.0,
+              "combined_event_total": 5245.0
             },
             "topDistricts": []
           }
@@ -2383,7 +2630,7 @@
           "8",
           "9"
         ],
-        "contentSha256": "0a052816e153053e0a886cb4e54e2960a4fa41082a36d796f3563e2552dd063e",
+        "contentSha256": "39094f225152ad45930bd18e392bc8e974c7b815ad965209af8aa8e1404b6283",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -2408,7 +2655,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -2462,7 +2712,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.1384
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 206,
@@ -2516,7 +2769,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.0497
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 251,
@@ -2570,7 +2826,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.9488
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 194,
@@ -2624,7 +2883,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.2156
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 232,
@@ -2678,7 +2940,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 252,
@@ -2732,7 +2997,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.4529
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 256,
@@ -2786,7 +3054,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.6334
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 265,
@@ -2817,6 +3088,63 @@
               "combined_event_total": 17877.0
             },
             "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "suppressedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
+            },
+            "topDistricts": []
           }
         }
       },
@@ -2834,7 +3162,7 @@
           "8",
           "9"
         ],
-        "contentSha256": "7452c1977d5fd525dd96d26b3f1acc4baca457d5c698b6680d568b9bf0d65267",
+        "contentSha256": "4b764972bfa66b9ca4d383cd3580d12e7f7c3c8f119d5149f0412f3dc75f688e",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -2842,8 +3170,8 @@
               "swd_students": 713.0,
               "swd_seclusions": 3663.0,
               "swd_restraints": 3208.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 15.0,
               "all_events": 6886.0,
               "event_student_ratio": 9.6578,
@@ -2855,11 +3183,14 @@
               "swd_students": 713.0,
               "swd_seclusions": 3663.0,
               "swd_restraints": 3208.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 15.0,
               "all_events": 6886.0,
-              "event_student_ratio": 9.657784011220196
+              "event_student_ratio": 9.6578,
+              "all_students": 713.0,
+              "all_seclusions": 3663.0,
+              "all_restraints": 3223.0
             },
             "approximatedCells": {
               "swd_students": 15,
@@ -2883,7 +3214,7 @@
             },
             "summary": {
               "swd_total": 713.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 713.0,
               "seclusion_total": 3663.0,
               "restraint_total": 3223.0,
@@ -2897,7 +3228,7 @@
               "swd_seclusions": 3994.0,
               "swd_restraints": 3453.0,
               "nonswd_students": 20.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 53.0,
               "all_events": 7500.0,
               "event_student_ratio": 9.4937,
@@ -2910,10 +3241,13 @@
               "swd_seclusions": 3994.0,
               "swd_restraints": 3453.0,
               "nonswd_students": 20.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 53.0,
               "all_events": 7500.0,
-              "event_student_ratio": 9.49367088607595
+              "event_student_ratio": 9.4937,
+              "all_students": 790.0,
+              "all_seclusions": 3994.0,
+              "all_restraints": 3506.0
             },
             "approximatedCells": {
               "swd_students": 17,
@@ -2951,7 +3285,7 @@
               "swd_seclusions": 4784.0,
               "swd_restraints": 3187.0,
               "nonswd_students": 27.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 40.0,
               "all_events": 8011.0,
               "event_student_ratio": 10.0894,
@@ -2964,10 +3298,13 @@
               "swd_seclusions": 4784.0,
               "swd_restraints": 3187.0,
               "nonswd_students": 27.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 40.0,
               "all_events": 8011.0,
-              "event_student_ratio": 10.089420654911839
+              "event_student_ratio": 10.0894,
+              "all_students": 794.0,
+              "all_seclusions": 4784.0,
+              "all_restraints": 3227.0
             },
             "approximatedCells": {
               "swd_students": 20,
@@ -3004,8 +3341,8 @@
               "swd_students": 476.0,
               "swd_seclusions": 3092.0,
               "swd_restraints": 1972.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 12.0,
               "all_events": 5076.0,
               "event_student_ratio": 10.6639,
@@ -3017,11 +3354,14 @@
               "swd_students": 476.0,
               "swd_seclusions": 3092.0,
               "swd_restraints": 1972.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 12.0,
               "all_events": 5076.0,
-              "event_student_ratio": 10.663865546218487
+              "event_student_ratio": 10.6639,
+              "all_students": 476.0,
+              "all_seclusions": 3092.0,
+              "all_restraints": 1984.0
             },
             "approximatedCells": {
               "swd_students": 26,
@@ -3045,7 +3385,7 @@
             },
             "summary": {
               "swd_total": 476.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 476.0,
               "seclusion_total": 3092.0,
               "restraint_total": 1984.0,
@@ -3059,7 +3399,7 @@
               "swd_seclusions": 4655.0,
               "swd_restraints": 2877.0,
               "nonswd_students": 11.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 18.0,
               "all_events": 7550.0,
               "event_student_ratio": 12.3974,
@@ -3072,10 +3412,13 @@
               "swd_seclusions": 4655.0,
               "swd_restraints": 2877.0,
               "nonswd_students": 11.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 18.0,
               "all_events": 7550.0,
-              "event_student_ratio": 12.397372742200329
+              "event_student_ratio": 12.3974,
+              "all_students": 609.0,
+              "all_seclusions": 4655.0,
+              "all_restraints": 2895.0
             },
             "approximatedCells": {
               "swd_students": 27,
@@ -3113,7 +3456,7 @@
               "swd_seclusions": 5888.0,
               "swd_restraints": 4004.0,
               "nonswd_students": 16.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 27.0,
               "all_events": 9919.0,
               "event_student_ratio": 13.7192,
@@ -3126,10 +3469,13 @@
               "swd_seclusions": 5888.0,
               "swd_restraints": 4004.0,
               "nonswd_students": 16.0,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 27.0,
               "all_events": 9919.0,
-              "event_student_ratio": 13.719225449515905
+              "event_student_ratio": 13.7192,
+              "all_students": 723.0,
+              "all_seclusions": 5888.0,
+              "all_restraints": 4031.0
             },
             "approximatedCells": {
               "swd_students": 20,
@@ -3166,9 +3512,9 @@
               "swd_students": 684.0,
               "swd_seclusions": 4328.0,
               "swd_restraints": 3277.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 7605.0,
               "event_student_ratio": 11.1184,
               "all_students": 684.0,
@@ -3179,11 +3525,14 @@
               "swd_students": 684.0,
               "swd_seclusions": 4328.0,
               "swd_restraints": 3277.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 7605.0,
-              "event_student_ratio": 11.118421052631579
+              "event_student_ratio": 11.1184,
+              "all_students": 684.0,
+              "all_seclusions": 4328.0,
+              "all_restraints": 3277.0
             },
             "approximatedCells": {
               "swd_students": 21,
@@ -3207,7 +3556,7 @@
             },
             "summary": {
               "swd_total": 684.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 684.0,
               "seclusion_total": 4328.0,
               "restraint_total": 3277.0,
@@ -3220,9 +3569,9 @@
               "swd_students": 609.0,
               "swd_seclusions": 3853.0,
               "swd_restraints": 2712.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 6565.0,
               "event_student_ratio": 10.78,
               "all_students": 609.0,
@@ -3233,11 +3582,14 @@
               "swd_students": 609.0,
               "swd_seclusions": 3853.0,
               "swd_restraints": 2712.0,
-              "nonswd_students": 0.0,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 0.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
               "all_events": 6565.0,
-              "event_student_ratio": 10.779967159277504
+              "event_student_ratio": 10.78,
+              "all_students": 609.0,
+              "all_seclusions": 3853.0,
+              "all_restraints": 2712.0
             },
             "approximatedCells": {
               "swd_students": 21,
@@ -3261,11 +3613,68 @@
             },
             "summary": {
               "swd_total": 609.0,
-              "nonswd_total": 0.0,
+              "nonswd_total": 0,
               "student_total": 609.0,
               "seclusion_total": 3853.0,
               "restraint_total": 2712.0,
               "combined_event_total": 6565.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 566.0,
+              "swd_seclusions": 3049.0,
+              "swd_restraints": 2196.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 5245.0,
+              "event_student_ratio": 9.2668,
+              "all_students": 566.0,
+              "all_seclusions": 3049.0,
+              "all_restraints": 2196.0
+            },
+            "displayMetrics": {
+              "swd_students": 566.0,
+              "swd_seclusions": 3049.0,
+              "swd_restraints": 2196.0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 5245.0,
+              "event_student_ratio": 9.2668,
+              "all_students": 566.0,
+              "all_seclusions": 3049.0,
+              "all_restraints": 2196.0
+            },
+            "approximatedCells": {
+              "swd_students": 23,
+              "swd_seclusions": 6,
+              "swd_restraints": 17,
+              "nonswd_students": 3,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 3,
+              "all_events": 52,
+              "event_student_ratio": 52
+            },
+            "suppressedCells": {
+              "swd_students": 23,
+              "swd_seclusions": 6,
+              "swd_restraints": 17,
+              "nonswd_students": 3,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 3,
+              "all_events": 52,
+              "event_student_ratio": 52
+            },
+            "summary": {
+              "swd_total": 566.0,
+              "nonswd_total": 0,
+              "student_total": 566.0,
+              "seclusion_total": 3049.0,
+              "restraint_total": 2196.0,
+              "combined_event_total": 5245.0
             },
             "topDistricts": []
           }
@@ -3358,7 +3767,7 @@
           "26163",
           "26165"
         ],
-        "contentSha256": "bdc99d7ab04db3675253782bc3a0c726c6b390f39ad3019dbc2f7f092b55be09",
+        "contentSha256": "e5ab220c6e38d2b8ab6361703a3f117322843f18b370f7a931ac02f48fe322ca",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -3383,7 +3792,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -3437,7 +3849,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.1384
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 206,
@@ -3491,7 +3906,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.0497
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 251,
@@ -3545,7 +3963,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.9488
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 194,
@@ -3599,7 +4020,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.2156
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 232,
@@ -3653,7 +4077,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 252,
@@ -3707,7 +4134,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.4529
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 256,
@@ -3761,7 +4191,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.6334
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 265,
@@ -3792,13 +4225,70 @@
               "combined_event_total": 17877.0
             },
             "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "suppressedCells": {
+              "swd_students": 272,
+              "swd_seclusions": 135,
+              "swd_restraints": 184,
+              "nonswd_students": 177,
+              "nonswd_seclusions": 94,
+              "nonswd_restraints": 135,
+              "all_events": 997,
+              "event_student_ratio": 997
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
+            },
+            "topDistricts": []
           }
         }
       }
     },
     "approximated": {
       "district": {
-        "items": 923,
+        "items": 926,
         "itemIds": [
           "01010",
           "02010",
@@ -4184,6 +4674,7 @@
           "41930",
           "41931",
           "41932",
+          "41933",
           "42030",
           "43040",
           "44000",
@@ -4267,6 +4758,7 @@
           "50917",
           "50918",
           "50920",
+          "50921",
           "51000",
           "51020",
           "51045",
@@ -4416,6 +4908,7 @@
           "63935",
           "63938",
           "63939",
+          "63940",
           "64040",
           "64070",
           "64080",
@@ -4724,8 +5217,8 @@
           "84040",
           "84050"
         ],
-        "contentSha256": "9ffd5b643a0e62e069f27c0005ff70a177df4282c8ee3e622646e1b0124452e7",
-        "unmatched": 387,
+        "contentSha256": "2aa599f2c0b5337d951e858d468f88cc209bc7a8be428f42357500d5c6a3ca53",
+        "unmatched": 390,
         "stateTotals": {
           "2017-2018": {
             "metrics": {
@@ -4749,7 +5242,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193001841620626
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -4803,7 +5299,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.138432951378135
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -4857,7 +5356,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.049677419354839
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -4911,7 +5413,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.948765432098766
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -4965,7 +5470,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.215616329766151
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 98,
@@ -5019,7 +5527,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995038979447201
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 89,
@@ -5073,7 +5584,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.452927079767203
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 185,
@@ -5127,7 +5641,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.633395176252319
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 183,
@@ -5156,6 +5673,63 @@
               "seclusion_total": 9680.0,
               "restraint_total": 8197.0,
               "combined_event_total": 17877.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 127,
+              "swd_seclusions": 184,
+              "swd_restraints": 161,
+              "nonswd_students": 89,
+              "nonswd_seclusions": 123,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "suppressedCells": {
+              "swd_students": 0,
+              "swd_seclusions": 0,
+              "swd_restraints": 0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
             },
             "topDistricts": []
           }
@@ -5221,7 +5795,7 @@
           "82",
           "83"
         ],
-        "contentSha256": "7ead942a751f973fa117dcf0dbe353532c0b51eb954ac05febc9bb3354d16988",
+        "contentSha256": "367aa70ffa6f23aa1df9a581a7fc8728863db1ad352a2c01b289c418ce5bc75a",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -5246,7 +5820,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193001841620626
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -5300,7 +5877,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.138432951378135
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -5354,7 +5934,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.049677419354839
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -5408,7 +5991,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.948765432098766
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -5462,7 +6048,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.215616329766151
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 98,
@@ -5516,7 +6105,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995038979447201
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 89,
@@ -5570,7 +6162,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.452927079767203
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 185,
@@ -5624,7 +6219,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.633395176252319
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 183,
@@ -5653,6 +6251,63 @@
               "seclusion_total": 9680.0,
               "restraint_total": 8197.0,
               "combined_event_total": 17877.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 127,
+              "swd_seclusions": 184,
+              "swd_restraints": 161,
+              "nonswd_students": 89,
+              "nonswd_seclusions": 123,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "suppressedCells": {
+              "swd_students": 0,
+              "swd_seclusions": 0,
+              "swd_restraints": 0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
             },
             "topDistricts": []
           }
@@ -5718,7 +6373,7 @@
           "82",
           "83"
         ],
-        "contentSha256": "76735bdd8567735cf7bc511ad94683f34189f6b9b4af9f76f58ff2b24ee4483a",
+        "contentSha256": "78348c0faa97b168543a48abf769b675c55a51f7c4e5d86a3ebaf61033963436",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -5727,7 +6382,7 @@
               "swd_seclusions": 3675.5,
               "swd_restraints": 3233.3334,
               "nonswd_students": 13.7083,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 29.5833,
               "all_events": 6938.4167,
               "event_student_ratio": 8.9495,
@@ -5739,11 +6394,14 @@
               "swd_students": 761.5774,
               "swd_seclusions": 3675.5,
               "swd_restraints": 3233.3334,
-              "nonswd_students": 13.708300000000001,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 13.7083,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 29.5833,
               "all_events": 6938.4167,
-              "event_student_ratio": 8.949496553335113
+              "event_student_ratio": 8.949496553335113,
+              "all_students": 775.2857,
+              "all_seclusions": 3675.5,
+              "all_restraints": 3262.9167
             },
             "approximatedCells": {
               "swd_students": 15,
@@ -5793,11 +6451,14 @@
               "swd_students": 819.9,
               "swd_seclusions": 4024.0,
               "swd_restraints": 3488.4167,
-              "nonswd_students": 39.499399999999994,
+              "nonswd_students": 39.4994,
               "nonswd_seclusions": 2.7,
-              "nonswd_restraints": 76.81660000000001,
-              "all_events": 7591.933300000001,
-              "event_student_ratio": 8.833998836862117
+              "nonswd_restraints": 76.8166,
+              "all_events": 7591.9333,
+              "event_student_ratio": 8.834,
+              "all_students": 859.3994,
+              "all_seclusions": 4026.7,
+              "all_restraints": 3565.2333
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -5846,12 +6507,15 @@
             "displayMetrics": {
               "swd_students": 823.5972,
               "swd_seclusions": 4819.3,
-              "swd_restraints": 3241.4666999999995,
+              "swd_restraints": 3241.4667,
               "nonswd_students": 40.6666,
               "nonswd_seclusions": 4.5,
               "nonswd_restraints": 58.1333,
               "all_events": 8123.4,
-              "event_student_ratio": 9.399213527166125
+              "event_student_ratio": 9.3992,
+              "all_students": 864.2638,
+              "all_seclusions": 4823.8,
+              "all_restraints": 3299.6
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -5889,7 +6553,7 @@
               "swd_seclusions": 3143.25,
               "swd_restraints": 2033.4999,
               "nonswd_students": 6.131,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 16.25,
               "all_events": 5192.9999,
               "event_student_ratio": 9.4441,
@@ -5902,10 +6566,13 @@
               "swd_seclusions": 3143.25,
               "swd_restraints": 2033.4999,
               "nonswd_students": 6.131,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 16.25,
               "all_events": 5192.9999,
-              "event_student_ratio": 9.444146411369786
+              "event_student_ratio": 9.4441,
+              "all_students": 549.8644,
+              "all_seclusions": 3143.25,
+              "all_restraints": 2049.7499
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -5943,7 +6610,7 @@
               "swd_seclusions": 4702.9999,
               "swd_restraints": 2937.7357,
               "nonswd_students": 15.0625,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 23.3333,
               "all_events": 7664.0689,
               "event_student_ratio": 10.8958,
@@ -5954,12 +6621,15 @@
             "displayMetrics": {
               "swd_students": 688.3333,
               "swd_seclusions": 4702.9999,
-              "swd_restraints": 2937.7356999999997,
+              "swd_restraints": 2937.7357,
               "nonswd_students": 15.0625,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 23.3333,
-              "all_events": 7664.068899999999,
-              "event_student_ratio": 10.895812713126805
+              "all_events": 7664.0689,
+              "event_student_ratio": 10.8958,
+              "all_students": 703.3958,
+              "all_seclusions": 4702.9999,
+              "all_restraints": 2961.069
             },
             "approximatedCells": {
               "swd_students": 2,
@@ -5997,7 +6667,7 @@
               "swd_seclusions": 5897.75,
               "swd_restraints": 4032.0833,
               "nonswd_students": 28.458,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 41.719,
               "all_events": 9971.5523,
               "event_student_ratio": 12.4498,
@@ -6010,10 +6680,13 @@
               "swd_seclusions": 5897.75,
               "swd_restraints": 4032.0833,
               "nonswd_students": 28.458,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 41.719,
               "all_events": 9971.5523,
-              "event_student_ratio": 12.449791638912863
+              "event_student_ratio": 12.4498,
+              "all_students": 800.9413,
+              "all_seclusions": 5897.75,
+              "all_restraints": 4073.8023
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6051,7 +6724,7 @@
               "swd_seclusions": 4359.8333,
               "swd_restraints": 3321.8167,
               "nonswd_students": 2.3333,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 3.75,
               "all_events": 7685.4,
               "event_student_ratio": 10.3012,
@@ -6062,12 +6735,15 @@
             "displayMetrics": {
               "swd_students": 743.7333,
               "swd_seclusions": 4359.8333,
-              "swd_restraints": 3321.8167000000003,
+              "swd_restraints": 3321.8167,
               "nonswd_students": 2.3333,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 3.75,
-              "all_events": 7685.400000000001,
-              "event_student_ratio": 10.301225118508187
+              "all_events": 7685.4,
+              "event_student_ratio": 10.3012,
+              "all_students": 746.0666,
+              "all_seclusions": 4359.8333,
+              "all_restraints": 3325.5667
             },
             "approximatedCells": {
               "swd_students": 4,
@@ -6105,7 +6781,7 @@
               "swd_seclusions": 3890.0833,
               "swd_restraints": 2754.1666,
               "nonswd_students": 6.375,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 8.8571,
               "all_events": 6653.107,
               "event_student_ratio": 9.8252,
@@ -6114,14 +6790,17 @@
               "all_restraints": 2763.0237
             },
             "displayMetrics": {
-              "swd_students": 670.7749999999999,
+              "swd_students": 670.775,
               "swd_seclusions": 3890.0833,
               "swd_restraints": 2754.1666,
               "nonswd_students": 6.375,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 8.857099999999999,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 8.8571,
               "all_events": 6653.107,
-              "event_student_ratio": 9.8251598611829
+              "event_student_ratio": 9.8252,
+              "all_students": 677.15,
+              "all_seclusions": 3890.0833,
+              "all_restraints": 2763.0237
             },
             "approximatedCells": {
               "swd_students": 12,
@@ -6152,6 +6831,63 @@
               "combined_event_total": 6653.107
             },
             "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 644.5775,
+              "swd_seclusions": 3078.0,
+              "swd_restraints": 2259.8332,
+              "nonswd_students": 6.3773,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 7.625,
+              "all_events": 5345.4582,
+              "event_student_ratio": 8.2117,
+              "all_students": 650.9548,
+              "all_seclusions": 3078.0,
+              "all_restraints": 2267.4582
+            },
+            "displayMetrics": {
+              "swd_students": 644.5775,
+              "swd_seclusions": 3078.0,
+              "swd_restraints": 2259.8332,
+              "nonswd_students": 6.3773,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 7.625,
+              "all_events": 5345.4582,
+              "event_student_ratio": 8.2117,
+              "all_students": 650.9548,
+              "all_seclusions": 3078.0,
+              "all_restraints": 2267.4582
+            },
+            "approximatedCells": {
+              "swd_students": 10,
+              "swd_seclusions": 11,
+              "swd_restraints": 3,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 3,
+              "nonswd_restraints": 0,
+              "all_events": 27,
+              "event_student_ratio": 27
+            },
+            "suppressedCells": {
+              "swd_students": 0,
+              "swd_seclusions": 0,
+              "swd_restraints": 0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 27,
+              "event_student_ratio": 27
+            },
+            "summary": {
+              "swd_total": 644.5775,
+              "nonswd_total": 6.3773,
+              "student_total": 650.9548,
+              "seclusion_total": 3078.0,
+              "restraint_total": 2267.4582,
+              "combined_event_total": 5345.4582
+            },
+            "topDistricts": []
           }
         }
       },
@@ -6169,7 +6905,7 @@
           "8",
           "9"
         ],
-        "contentSha256": "5f43042a02e5a7043b59ddb2b8031524ec6f67c44b9e522a3745582f0dc3cbaa",
+        "contentSha256": "9c50929478eed62556546acb8f66a1f189b3c44d459575bb2230be472c32e602",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -6194,7 +6930,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193001841620626
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -6248,7 +6987,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.138432951378135
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6302,7 +7044,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.049677419354839
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6356,7 +7101,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.948765432098766
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6410,7 +7158,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.215616329766151
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 98,
@@ -6464,7 +7215,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995038979447201
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 89,
@@ -6518,7 +7272,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.452927079767203
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 185,
@@ -6572,7 +7329,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.633395176252319
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 183,
@@ -6603,6 +7363,63 @@
               "combined_event_total": 17877.0
             },
             "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 127,
+              "swd_seclusions": 184,
+              "swd_restraints": 161,
+              "nonswd_students": 89,
+              "nonswd_seclusions": 123,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "suppressedCells": {
+              "swd_students": 0,
+              "swd_seclusions": 0,
+              "swd_restraints": 0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
+            },
+            "topDistricts": []
           }
         }
       },
@@ -6620,7 +7437,7 @@
           "8",
           "9"
         ],
-        "contentSha256": "4258977ccdf59d0ac8f1118eb78f8f8ae891d5e0aa9644570cc95e3ba80846f4",
+        "contentSha256": "dcbe6ee7ed6177b9a3bd551d024e9b58377ed5887567e206f84186af61f18171",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -6629,7 +7446,7 @@
               "swd_seclusions": 3675.5,
               "swd_restraints": 3233.3334,
               "nonswd_students": 13.7083,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 29.5833,
               "all_events": 6938.4167,
               "event_student_ratio": 8.9495,
@@ -6641,11 +7458,14 @@
               "swd_students": 761.5774,
               "swd_seclusions": 3675.5,
               "swd_restraints": 3233.3334,
-              "nonswd_students": 13.708300000000001,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 13.7083,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 29.5833,
               "all_events": 6938.4167,
-              "event_student_ratio": 8.949496553335113
+              "event_student_ratio": 8.949496553335113,
+              "all_students": 775.2857,
+              "all_seclusions": 3675.5,
+              "all_restraints": 3262.9167
             },
             "approximatedCells": {
               "swd_students": 15,
@@ -6694,12 +7514,15 @@
             "displayMetrics": {
               "swd_students": 819.9,
               "swd_seclusions": 4024.0,
-              "swd_restraints": 3488.4166999999998,
-              "nonswd_students": 39.499399999999994,
+              "swd_restraints": 3488.4167,
+              "nonswd_students": 39.4994,
               "nonswd_seclusions": 2.7,
               "nonswd_restraints": 76.8166,
               "all_events": 7591.9333,
-              "event_student_ratio": 8.833998836862115
+              "event_student_ratio": 8.834,
+              "all_students": 859.3994,
+              "all_seclusions": 4026.7,
+              "all_restraints": 3565.2333
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6747,13 +7570,16 @@
             },
             "displayMetrics": {
               "swd_students": 823.5973,
-              "swd_seclusions": 4819.299999999999,
+              "swd_seclusions": 4819.3,
               "swd_restraints": 3241.4667,
               "nonswd_students": 40.6666,
               "nonswd_seclusions": 4.5,
               "nonswd_restraints": 58.1333,
               "all_events": 8123.4,
-              "event_student_ratio": 9.399212439626368
+              "event_student_ratio": 9.3992,
+              "all_students": 864.2639,
+              "all_seclusions": 4823.8,
+              "all_restraints": 3299.6
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6791,7 +7617,7 @@
               "swd_seclusions": 3143.25,
               "swd_restraints": 2033.4999,
               "nonswd_students": 6.131,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 16.25,
               "all_events": 5192.9999,
               "event_student_ratio": 9.4441,
@@ -6803,11 +7629,14 @@
               "swd_students": 543.7334,
               "swd_seclusions": 3143.25,
               "swd_restraints": 2033.4999,
-              "nonswd_students": 6.130999999999999,
-              "nonswd_seclusions": 0.0,
+              "nonswd_students": 6.131,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 16.25,
               "all_events": 5192.9999,
-              "event_student_ratio": 9.444146411369786
+              "event_student_ratio": 9.4441,
+              "all_students": 549.8644,
+              "all_seclusions": 3143.25,
+              "all_restraints": 2049.7499
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6845,7 +7674,7 @@
               "swd_seclusions": 4702.9999,
               "swd_restraints": 2937.7357,
               "nonswd_students": 15.0625,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 23.3333,
               "all_events": 7664.0689,
               "event_student_ratio": 10.8958,
@@ -6855,13 +7684,16 @@
             },
             "displayMetrics": {
               "swd_students": 688.3332,
-              "swd_seclusions": 4702.999900000001,
+              "swd_seclusions": 4702.9999,
               "swd_restraints": 2937.7357,
               "nonswd_students": 15.0625,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 23.3333,
               "all_events": 7664.0689,
-              "event_student_ratio": 10.895814262157133
+              "event_student_ratio": 10.8958,
+              "all_students": 703.3957,
+              "all_seclusions": 4702.9999,
+              "all_restraints": 2961.069
             },
             "approximatedCells": {
               "swd_students": 2,
@@ -6899,7 +7731,7 @@
               "swd_seclusions": 5897.75,
               "swd_restraints": 4032.0833,
               "nonswd_students": 28.458,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 41.7191,
               "all_events": 9971.5524,
               "event_student_ratio": 12.4498,
@@ -6910,12 +7742,15 @@
             "displayMetrics": {
               "swd_students": 772.4833,
               "swd_seclusions": 5897.75,
-              "swd_restraints": 4032.0833000000002,
+              "swd_restraints": 4032.0833,
               "nonswd_students": 28.458,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 41.719100000000005,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 41.7191,
               "all_events": 9971.5524,
-              "event_student_ratio": 12.44979176376596
+              "event_student_ratio": 12.4498,
+              "all_students": 800.9413,
+              "all_seclusions": 5897.75,
+              "all_restraints": 4073.8024
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -6953,7 +7788,7 @@
               "swd_seclusions": 4359.8333,
               "swd_restraints": 3321.8167,
               "nonswd_students": 2.3333,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 3.75,
               "all_events": 7685.4,
               "event_student_ratio": 10.3012,
@@ -6962,14 +7797,17 @@
               "all_restraints": 3325.5667
             },
             "displayMetrics": {
-              "swd_students": 743.7333000000001,
+              "swd_students": 743.7333,
               "swd_seclusions": 4359.8333,
               "swd_restraints": 3321.8167,
               "nonswd_students": 2.3333,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 3.75,
               "all_events": 7685.4,
-              "event_student_ratio": 10.301225118508185
+              "event_student_ratio": 10.3012,
+              "all_students": 746.0666,
+              "all_seclusions": 4359.8333,
+              "all_restraints": 3325.5667
             },
             "approximatedCells": {
               "swd_students": 4,
@@ -7007,7 +7845,7 @@
               "swd_seclusions": 3890.0833,
               "swd_restraints": 2754.1666,
               "nonswd_students": 6.375,
-              "nonswd_seclusions": 0.0,
+              "nonswd_seclusions": 0,
               "nonswd_restraints": 8.8571,
               "all_events": 6653.107,
               "event_student_ratio": 9.8252,
@@ -7016,14 +7854,17 @@
               "all_restraints": 2763.0237
             },
             "displayMetrics": {
-              "swd_students": 670.7750000000001,
-              "swd_seclusions": 3890.0833000000002,
+              "swd_students": 670.775,
+              "swd_seclusions": 3890.0833,
               "swd_restraints": 2754.1666,
               "nonswd_students": 6.375,
-              "nonswd_seclusions": 0.0,
-              "nonswd_restraints": 8.857099999999999,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 8.8571,
               "all_events": 6653.107,
-              "event_student_ratio": 9.825159861182897
+              "event_student_ratio": 9.8252,
+              "all_students": 677.15,
+              "all_seclusions": 3890.0833,
+              "all_restraints": 2763.0237
             },
             "approximatedCells": {
               "swd_students": 12,
@@ -7052,6 +7893,63 @@
               "seclusion_total": 3890.0833,
               "restraint_total": 2763.0237,
               "combined_event_total": 6653.107
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 644.5774,
+              "swd_seclusions": 3078.0,
+              "swd_restraints": 2259.8333,
+              "nonswd_students": 6.3773,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 7.625,
+              "all_events": 5345.4583,
+              "event_student_ratio": 8.2117,
+              "all_students": 650.9547,
+              "all_seclusions": 3078.0,
+              "all_restraints": 2267.4583
+            },
+            "displayMetrics": {
+              "swd_students": 644.5774,
+              "swd_seclusions": 3078.0,
+              "swd_restraints": 2259.8333,
+              "nonswd_students": 6.3773,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 7.625,
+              "all_events": 5345.4583,
+              "event_student_ratio": 8.2117,
+              "all_students": 650.9547,
+              "all_seclusions": 3078.0,
+              "all_restraints": 2267.4583
+            },
+            "approximatedCells": {
+              "swd_students": 10,
+              "swd_seclusions": 11,
+              "swd_restraints": 3,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 3,
+              "nonswd_restraints": 0,
+              "all_events": 27,
+              "event_student_ratio": 27
+            },
+            "suppressedCells": {
+              "swd_students": 0,
+              "swd_seclusions": 0,
+              "swd_restraints": 0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 27,
+              "event_student_ratio": 27
+            },
+            "summary": {
+              "swd_total": 644.5774,
+              "nonswd_total": 6.3773,
+              "student_total": 650.9547,
+              "seclusion_total": 3078.0,
+              "restraint_total": 2267.4583,
+              "combined_event_total": 5345.4583
             },
             "topDistricts": []
           }
@@ -7144,7 +8042,7 @@
           "26163",
           "26165"
         ],
-        "contentSha256": "3fb4b586dc69762f1e16f92aa5e519f7925b70b033428bd3cbc110a5d9514eda",
+        "contentSha256": "a7396da9303687b6dc04ae4c912a9804d6b5a00a8934936303121ea3cbbbc52c",
         "unmatched": 0,
         "stateTotals": {
           "2017-2018": {
@@ -7169,7 +8067,10 @@
               "nonswd_seclusions": 451.0,
               "nonswd_restraints": 792.0,
               "all_events": 19529.0,
-              "event_student_ratio": 7.193001841620626
+              "event_student_ratio": 7.193,
+              "all_students": 2715.0,
+              "all_seclusions": 9506.0,
+              "all_restraints": 10023.0
             },
             "approximatedCells": {
               "swd_students": 203,
@@ -7223,7 +8124,10 @@
               "nonswd_seclusions": 751.0,
               "nonswd_restraints": 891.0,
               "all_events": 23050.0,
-              "event_student_ratio": 7.138432951378135
+              "event_student_ratio": 7.1384,
+              "all_students": 3229.0,
+              "all_seclusions": 11866.0,
+              "all_restraints": 11184.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -7277,7 +8181,10 @@
               "nonswd_seclusions": 835.0,
               "nonswd_restraints": 1150.0,
               "all_events": 21854.0,
-              "event_student_ratio": 7.049677419354839
+              "event_student_ratio": 7.0497,
+              "all_students": 3100.0,
+              "all_seclusions": 11697.0,
+              "all_restraints": 10157.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -7331,7 +8238,10 @@
               "nonswd_seclusions": 349.0,
               "nonswd_restraints": 465.0,
               "all_events": 11257.0,
-              "event_student_ratio": 6.948765432098766
+              "event_student_ratio": 6.9488,
+              "all_students": 1620.0,
+              "all_seclusions": 6262.0,
+              "all_restraints": 4995.0
             },
             "approximatedCells": {
               "swd_students": 0,
@@ -7385,7 +8295,10 @@
               "nonswd_seclusions": 590.0,
               "nonswd_restraints": 834.0,
               "all_events": 18205.0,
-              "event_student_ratio": 7.215616329766151
+              "event_student_ratio": 7.2156,
+              "all_students": 2523.0,
+              "all_seclusions": 9756.0,
+              "all_restraints": 8449.0
             },
             "approximatedCells": {
               "swd_students": 98,
@@ -7439,7 +8352,10 @@
               "nonswd_seclusions": 642.0,
               "nonswd_restraints": 934.0,
               "all_events": 22562.0,
-              "event_student_ratio": 7.995038979447201
+              "event_student_ratio": 7.995,
+              "all_students": 2822.0,
+              "all_seclusions": 12552.0,
+              "all_restraints": 10010.0
             },
             "approximatedCells": {
               "swd_students": 89,
@@ -7493,7 +8409,10 @@
               "nonswd_seclusions": 680.0,
               "nonswd_restraints": 897.0,
               "all_events": 21770.0,
-              "event_student_ratio": 7.452927079767203
+              "event_student_ratio": 7.4529,
+              "all_students": 2921.0,
+              "all_seclusions": 11780.0,
+              "all_restraints": 9990.0
             },
             "approximatedCells": {
               "swd_students": 185,
@@ -7547,7 +8466,10 @@
               "nonswd_seclusions": 562.0,
               "nonswd_restraints": 726.0,
               "all_events": 17877.0,
-              "event_student_ratio": 6.633395176252319
+              "event_student_ratio": 6.6334,
+              "all_students": 2695.0,
+              "all_seclusions": 9680.0,
+              "all_restraints": 8197.0
             },
             "approximatedCells": {
               "swd_students": 183,
@@ -7576,6 +8498,63 @@
               "seclusion_total": 9680.0,
               "restraint_total": 8197.0,
               "combined_event_total": 17877.0
+            },
+            "topDistricts": []
+          },
+          "2025-2026": {
+            "metrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "displayMetrics": {
+              "swd_students": 2404.0,
+              "swd_seclusions": 7901.0,
+              "swd_restraints": 6489.0,
+              "nonswd_students": 430.0,
+              "nonswd_seclusions": 540.0,
+              "nonswd_restraints": 725.0,
+              "all_events": 15655.0,
+              "event_student_ratio": 5.524,
+              "all_students": 2834.0,
+              "all_seclusions": 8441.0,
+              "all_restraints": 7214.0
+            },
+            "approximatedCells": {
+              "swd_students": 127,
+              "swd_seclusions": 184,
+              "swd_restraints": 161,
+              "nonswd_students": 89,
+              "nonswd_seclusions": 123,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "suppressedCells": {
+              "swd_students": 0,
+              "swd_seclusions": 0,
+              "swd_restraints": 0,
+              "nonswd_students": 0,
+              "nonswd_seclusions": 0,
+              "nonswd_restraints": 0,
+              "all_events": 684,
+              "event_student_ratio": 684
+            },
+            "summary": {
+              "swd_total": 2404.0,
+              "nonswd_total": 430.0,
+              "student_total": 2834.0,
+              "seclusion_total": 8441.0,
+              "restraint_total": 7214.0,
+              "combined_event_total": 15655.0
             },
             "topDistricts": []
           }

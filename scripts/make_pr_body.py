@@ -1,5 +1,9 @@
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from map_data_format import expand  # noqa: E402
 
 
 source = json.loads(Path("reports/source-report.json").read_text(encoding="utf-8"))
@@ -23,9 +27,17 @@ if review_sources:
     for item in review_sources:
         lines.append(f"- `{item.get('schoolYear') or 'unknown year'}` / `{item.get('period')}`: {item['url']}")
     lines.append("")
+map_data = expand(json.loads(Path("site/data/map-data.json").read_text(encoding="utf-8")))
+totals = map_data["datasets"]["approximated"]["sources"]["district"]["stateTotals"]
+lines.extend(["### Statewide totals in the new map data (approximated data)", "", "| School year | Students reported | Seclusions | Restraints | Total incidents |", "|---|---:|---:|---:|---:|"])
+for year in map_data["metadata"]["years"]:
+    m = totals[year]["metrics"]
+    lines.append(f"| {year} | {m['all_students']:,.0f} | {m['all_seclusions']:,.0f} | {m['all_restraints']:,.0f} | {m['all_events']:,.0f} |")
+lines.append("")
 lines.extend([
     "### Review guidance",
     "",
     "Confirm that any new reporting period is correctly classified before merging. Quarterly files are recorded for review but are not published as full-year map data. The live site changes only after this pull request is merged.",
 ])
+Path("build").mkdir(exist_ok=True)
 Path("build/pr-body.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

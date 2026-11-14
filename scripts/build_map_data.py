@@ -7,6 +7,8 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from map_data_format import compact
+
 
 PROJECT = Path(__file__).resolve().parent
 ROOT = PROJECT.parent
@@ -413,11 +415,11 @@ def main():
     global WORKBOOK, OUTPUT
     parser = argparse.ArgumentParser(description="Generate the browser map data artifact.")
     parser.add_argument("--workbook", type=Path, default=WORKBOOK)
-    parser.add_argument("--output", type=Path, default=OUTPUT)
-    parser.add_argument("--json-output", type=Path)
+    parser.add_argument("--output", type=Path, help="Optional legacy map-data.js (full format) for debugging.")
+    parser.add_argument("--json-output", type=Path, default=ROOT / "site" / "data" / "map-data.json", help="Compact JSON loaded by the map page.")
     args = parser.parse_args()
     WORKBOOK = args.workbook.resolve()
-    OUTPUT = args.output.resolve()
+    OUTPUT = args.output.resolve() if args.output else None
     datasets = {}
     years = []
     for key, config in DATASETS.items():
@@ -428,28 +430,28 @@ def main():
             "sheet": config["sheet"],
             "sources": sources,
         }
-    output = (
-        "const MAP_DATASETS = "
-        + json.dumps(datasets, indent=2)
-        + ";\nconst DEFAULT_DATASET = \"approximated\";\nconst MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources"
-        + ";\nconst METRICS = "
-        + json.dumps([{"key": key, "label": label} for key, label in BASE_METRICS], indent=2)
-        + ";\nconst MAP_METADATA = "
-        + json.dumps({
-            "title": "EndSaR Data Map",
-            "sourceWorkbook": WORKBOOK.name,
-            "sheets": {key: config["sheet"] for key, config in DATASETS.items()},
-            "years": years,
-            "suppressionNote": "Approximated_Data uses reconciled suppressed-value estimates from ISD totals where available.",
-        }, indent=2)
-        + ";\n"
-    )
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(output, encoding="utf-8")
-    if args.json_output:
-        args.json_output.parent.mkdir(parents=True, exist_ok=True)
-        args.json_output.write_text(json.dumps({"datasets": datasets, "defaultDataset": "approximated", "metrics": [{"key": key, "label": label} for key, label in BASE_METRICS], "metadata": {"title": "EndSaR Data Map", "sourceWorkbook": WORKBOOK.name, "sheets": {key: config["sheet"] for key, config in DATASETS.items()}, "years": years, "suppressionNote": "Approximated_Data uses reconciled suppressed-value estimates from ISD totals where available."}}, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(OUTPUT)
+    metrics = [{"key": key, "label": label} for key, label in BASE_METRICS]
+    metadata = {
+        "title": "EndSaR Data Map",
+        "sourceWorkbook": WORKBOOK.name,
+        "sheets": {key: config["sheet"] for key, config in DATASETS.items()},
+        "years": years,
+        "suppressionNote": "Approximated_Data uses reconciled suppressed-value estimates from ISD totals where available.",
+    }
+    payload = {"datasets": datasets, "defaultDataset": "approximated", "metrics": metrics, "metadata": metadata}
+    if OUTPUT:
+        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+        OUTPUT.write_text(
+            "const MAP_DATASETS = " + json.dumps(datasets, indent=2)
+            + ";\nconst DEFAULT_DATASET = \"approximated\";\nconst MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources"
+            + ";\nconst METRICS = " + json.dumps(metrics, indent=2)
+            + ";\nconst MAP_METADATA = " + json.dumps(metadata, indent=2) + ";\n",
+            encoding="utf-8",
+        )
+        print(OUTPUT)
+    args.json_output.parent.mkdir(parents=True, exist_ok=True)
+    args.json_output.write_text(json.dumps(compact(payload), separators=(",", ":")) + "\n", encoding="utf-8")
+    print(args.json_output)
     for dataset_key, dataset in datasets.items():
         print(dataset_key, dataset["sheet"])
         for key, source in dataset["sources"].items():

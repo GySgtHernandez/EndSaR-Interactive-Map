@@ -40,7 +40,7 @@ jobs:
         id: changes
         shell: bash
         run: |
-          if git diff --quiet -- data/sources.json reports site/data/map-data.json; then
+          if git diff --quiet -- data/sources.json reports site/data; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -56,7 +56,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          git add data/sources.json reports site/data/map-data.json
+          git add data/sources.json reports site/data
           git commit -m "Update CEPI map data"
           git push --set-upstream origin "$BRANCH"
           gh pr create --base main --head "$BRANCH" --title "Update CEPI map data" --body-file build/pr-body.md

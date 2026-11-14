@@ -35,8 +35,9 @@ def main():
         run(sys.executable, SCRIPTS / "download_sources.py", "--manifest", ROOT / "data" / "sources.json", "--output-dir", ROOT / "data" / "sources", "--report", REPORTS / "source-report.json")
     run(sys.executable, SCRIPTS / "combine_cepi_workbooks.py", "--source-dir", ROOT / "data" / "sources", "--output", WORKBOOK)
     run(sys.executable, SCRIPTS / "add_projection_tabs.py", "--workbook", WORKBOOK, "--roster", ROOT / "data" / "district-roster.csv", "--regions", SCRIPTS / "isd-code-to-region.txt")
-    run(sys.executable, SCRIPTS / "build_map_data.py", "--workbook", WORKBOOK, "--output", BUILD / "map-data.js", "--json-output", ROOT / "site" / "data" / "map-data.json")
-    validate = [sys.executable, SCRIPTS / "validate_map_data.py", BUILD / "map-data.js", "--baseline", args.baseline, "--report", REPORTS / "validation-report.json"]
+    run(sys.executable, SCRIPTS / "build_map_data.py", "--workbook", WORKBOOK, "--json-output", ROOT / "site" / "data" / "map-data.json")
+    run(sys.executable, SCRIPTS / "export_entity_locations.py")
+    validate = [sys.executable, SCRIPTS / "validate_map_data.py", ROOT / "site" / "data" / "map-data.json", "--baseline", args.baseline, "--report", REPORTS / "validation-report.json"]
     if args.allow_change:
         validate.append("--allow-change")
     run(*validate)

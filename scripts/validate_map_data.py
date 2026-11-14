@@ -6,6 +6,8 @@ import json
 import math
 from pathlib import Path
 
+from map_data_format import canonical
+
 
 def decode_constant(text: str, name: str):
     marker = f"const {name} = "
@@ -17,11 +19,12 @@ def summarize(path: Path):
     text = path.read_text(encoding="utf-8")
     if path.suffix.lower() == ".json":
         payload = json.loads(text)
-        datasets = payload["datasets"]
-        metadata = payload["metadata"]
     else:
-        datasets = decode_constant(text, "MAP_DATASETS")
-        metadata = decode_constant(text, "MAP_METADATA")
+        payload = {"datasets": decode_constant(text, "MAP_DATASETS"), "metadata": decode_constant(text, "MAP_METADATA")}
+    # Compare in one canonical form so the compact site file and a full build agree.
+    payload = canonical(payload)
+    datasets = payload["datasets"]
+    metadata = payload["metadata"]
     summary = {"years": metadata["years"], "datasets": {}}
     for dataset_key, dataset in datasets.items():
         sources = {}
