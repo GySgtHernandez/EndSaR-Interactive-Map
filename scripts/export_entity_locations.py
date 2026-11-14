@@ -22,9 +22,10 @@ def main():
     with args.csv.open(encoding="utf-8-sig", newline="") as handle:
         for row in csv.DictReader(handle):
             code = row["district_code"].strip().zfill(5)
-            points[code] = [round(float(row["latitude"]), 5), round(float(row["longitude"]), 5), 0 if row["location_source"].startswith("approximate") else 1]
+            kind = {"ISD": "isd", "PSA": "psa", "State District": "state"}.get(row.get("entity_type", "").strip(), "psa")
+            points[code] = [round(float(row["latitude"]), 5), round(float(row["longitude"]), 5), 0 if row["location_source"].startswith("approximate") else 1, kind]
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({"fields": ["latitude", "longitude", "exact"], "points": points}, separators=(",", ":")) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps({"fields": ["latitude", "longitude", "exact", "type"], "points": points}, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"{len(points)} entity locations -> {args.output}")
 
 

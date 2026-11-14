@@ -51,7 +51,8 @@ for code in sorted(items):
         n = stacked.get((lat, lon), 0); stacked[(lat, lon)] = n + 1
         if n: ang = n * 2.4; lat += 0.018 * math.sqrt(n) * math.cos(ang); lon += 0.024 * math.sqrt(n) * math.sin(ang)
     stats[how] = stats.get(how, 0) + 1
-    out.append({'district_code': code, 'name': items[code]['name'], 'latitude': round(lat, 5), 'longitude': round(lon, 5), 'location_source': how})
+    kind = 'ISD' if code.endswith('000') else {'PSA District': 'PSA', 'State District': 'State District'}.get(r[ix['District Type Name']] if r else '', 'PSA')
+    out.append({'district_code': code, 'name': items[code]['name'], 'entity_type': kind, 'latitude': round(lat, 5), 'longitude': round(lon, 5), 'location_source': how})
 with open(OUT, 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, fieldnames=list(out[0])); w.writeheader(); w.writerows(out)
 print(stats, len(out))

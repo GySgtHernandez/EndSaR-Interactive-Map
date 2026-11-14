@@ -44,8 +44,8 @@ The 2025-2026 update (November 2026) was checked against the September 2026 Netl
 
 - `site/` - the public website (map page, boundaries, data).
 - `site/data/map-data.json` - all map numbers in a compact format (about 5 MB; the page expands it on load).
-- `site/data/entity-locations.json` - dot locations for charter academies, ISD programs and state districts, which have no district boundary. Built from `data/entity-locations.csv`.
-- `data/entity-locations.csv` - edit in Excel to move or add a dot. Sources: NCES EDGE 2024-25 district office geocodes, or the centre of the host district/ISD (CEPI EEM) when no address exists.
+- `site/data/entity-locations.json` - marker locations for entities with no district boundary: charter academies (circles), ISD programs (squares) and state districts (diamonds). Built from `data/entity-locations.csv`.
+- `data/entity-locations.csv` - edit in Excel to move or add a marker; `entity_type` (PSA, ISD or State District) sets its shape. Sources: NCES EDGE 2024-25 district office geocodes, or the centre of the host district/ISD (CEPI EEM) when no address exists.
 - `data/sources.json` - approved CEPI source files.
 - `data/district-roster.csv` - district, ISD, region roster used for projections.
 - `scripts/run_pipeline.py` - the full rebuild (download > combine > approximate suppressed values > build map data > validate).
