@@ -95,6 +95,7 @@
     .loading.hidden { display: none; }
     .loading .spinner { width: 22px; height: 22px; margin-right: 10px; border: 3px solid #c9d5e0; border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .leaflet-entityPoints-pane svg { pointer-events: none; }
     .shape-key { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; font-size: 11px; color: var(--muted); }
     .shape-key span { display: inline-flex; align-items: center; gap: 5px; }
     .shape-key svg { width: 12px; height: 12px; }
@@ -376,8 +377,15 @@
     }
     const ShapeMarker = L.CircleMarker.extend({
       options: { shape: 'psa' },
-      _updatePath() { const renderer = this._renderer; if (!renderer._drawing || this._empty()) return; const r = Math.max(Math.round(this._radius), 1); tracePointShape(renderer._ctx, this.options.shape, this._point.x, this._point.y, r); renderer._fillStroke(renderer._ctx, this); },
-      _containsPoint(p) { const t = this._clickTolerance(), r = this._radius, dx = Math.abs(p.x - this._point.x), dy = Math.abs(p.y - this._point.y); if (this.options.shape === 'isd') return dx <= r * 0.9 + t && dy <= r * 0.9 + t; if (this.options.shape === 'state') return dx + dy <= r * 1.3 + t; return Math.hypot(dx, dy) <= r + t; }
+      // Drawn as SVG so only the marker itself catches clicks; district shapes underneath stay clickable.
+      _updatePath() {
+        if (this._empty()) { this._renderer._setPath(this, 'M0 0'); return; }
+        const x = this._point.x, y = this._point.y, r = Math.max(Math.round(this._radius), 1); let d;
+        if (this.options.shape === 'isd') { const h = r * 0.9; d = `M${x - h},${y - h}h${2 * h}v${2 * h}h${-2 * h}z`; }
+        else if (this.options.shape === 'state') { const k = r * 1.3; d = `M${x},${y - k}L${x + k},${y}L${x},${y + k}L${x - k},${y}z`; }
+        else d = `M${x - r},${y}a${r},${r} 0 1,0 ${2 * r},0a${r},${r} 0 1,0 ${-2 * r},0`;
+        this._renderer._setPath(this, d);
+      },
     });
     // Markers grow a little as you zoom in, so crowded areas separate at high zoom.
     function pointRadius() { const zoom = map.getZoom(); return zoom >= 10 ? 6.5 : zoom >= 8 ? 5.5 : 4.5; }
@@ -390,7 +398,7 @@
       if (pointLayer) { map.removeLayer(pointLayer); pointLayer = null; }
       pointsWrap.style.display = activeMode() === 'district' ? 'block' : 'none';
       if (activeMode() !== 'district' || !showPoints.checked) return;
-      if (!map.getPane('entityPoints')) { map.createPane('entityPoints').style.zIndex = 450; pointRenderer = L.canvas({ pane: 'entityPoints' }); }
+      if (!map.getPane('entityPoints')) { map.createPane('entityPoints').style.zIndex = 450; pointRenderer = L.svg({ pane: 'entityPoints' }); }
       pointLayer = L.geoJSON(pointFeatures(), { pointToLayer: (feature, latlng) => new ShapeMarker(latlng, Object.assign(stylePoint(feature), { shape: feature.properties.kind, pane: 'entityPoints', renderer: pointRenderer })), style: stylePoint, onEachFeature }).addTo(map);
     }
     function findLayerById(id) { let found = null; [geoLayer, pointLayer].forEach(group => { if (group && !found) group.eachLayer(layer => { if (!found && layer.feature && layer.feature.properties.id === id) found = layer; }); }); return found; }
