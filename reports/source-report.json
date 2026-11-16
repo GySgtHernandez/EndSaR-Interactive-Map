@@ -71,15 +71,18 @@
       "filename": "25CEPI60-Q34.xlsx",
       "bytes": 893713,
       "sha256": "c94a8131062fcac83a9bc6275e3c40ee731cde58f05c64cc14cb0e535e9ff865"
-    }
-  ],
-  "unapprovedCandidates": [
+    },
     {
-      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2025-26/26-CEPI-60-Q2.xlsx",
       "schoolYear": "2025-2026",
-      "period": "q2",
-      "approved": false
+      "period": "full_year",
+      "status": "final",
+      "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2025-26/26CEPI60-Q34.xlsx",
+      "filename": "26CEPI60-Q34.xlsx",
+      "bytes": 890625,
+      "sha256": "a4eccff1c68d79ddda401a528583d218b53042bc2d5ede92e2b467653120f0e2"
     }
   ],
+  "unapprovedCandidates": [],
+  "reviewSources": [],
   "manifestUpdated": false
 }

@@ -12,6 +12,9 @@
     "2025-2026"
   ],
   "errors": [],
-  "differenceCount": 0,
-  "differences": []
+  "differenceCount": 2,
+  "differences": [
+    "root.datasets.approximated.district.unmatched: 387 != 390",
+    "root.datasets.raw.district.unmatched: 387 != 390"
+  ]
 }
