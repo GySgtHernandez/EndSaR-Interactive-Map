@@ -4,9 +4,14 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      refreshed:
+        description: Time of the last CEPI check (set by the update job)
+        required: false
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -23,6 +28,17 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
+      - name: Stamp the last CEPI check time
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REFRESHED: ${{ inputs.refreshed }}
+        shell: bash
+        run: |
+          if [ -z "$REFRESHED" ]; then
+            REFRESHED="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow update-cepi-data.yml --status success --limit 1 --json updatedAt --jq '.[0].updatedAt // empty' || true)"
+          fi
+          if [ -n "$REFRESHED" ]; then python3 scripts/write_app_info.py --refreshed "$REFRESHED"; else python3 scripts/write_app_info.py; fi
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

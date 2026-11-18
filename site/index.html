@@ -85,6 +85,34 @@
     .detail-table.approximated-table th { background: #72dd44; color: #17202a; }
     .detail-table tr:nth-child(even) td { background: #f6f8fa; }
     .data-through { margin-top: 6px; font-size: 13px; font-weight: 700; color: #0f5f68; }
+    .new-data-banner { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1100; display: flex; align-items: center; gap: 10px; max-width: min(640px, calc(100% - 260px)); padding: 8px 10px 8px 14px; border: 1px solid #f0d58a; border-radius: 8px; background: #fff7e0; color: #4d3f0f; font-size: 13px; box-shadow: 0 3px 12px rgba(0,0,0,.15); }
+    .new-data-banner[hidden] { display: none; }
+    .new-data-banner button { white-space: nowrap; flex-shrink: 0; width: auto; min-height: 0; padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .new-data-banner .banner-view { border: 1px solid #0f5f68; background: #0f5f68; color: #fff; }
+    .new-data-banner .banner-close { border: 0; background: transparent; color: #4d3f0f; font-size: 17px; line-height: 1; padding: 2px 6px; }
+    .period-note { margin-top: 8px; padding: 6px 9px; border-radius: 6px; background: #fff7e0; border: 1px solid #f0d58a; font-size: 12px; color: #5a4a14; }
+    .period-note[hidden] { display: none; }
+    .data-updated { margin-top: 2px; font-size: 12px; font-weight: 400; color: #0f5f68; }
+    .tip-wrap { position: relative; }
+    .tip { display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 1200; width: min(330px, 100%); padding: 9px 11px; border-radius: 6px; background: #17202a; color: #fff; font-size: 12px; line-height: 1.4; font-weight: 400; text-transform: none; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+    .tip::before { content: ''; position: absolute; top: -5px; left: 14px; border: 5px solid transparent; border-top: 0; border-bottom-color: #17202a; }
+    .tip-wrap:hover .tip, .tip-wrap:focus-within .tip { display: block; }
+    .app-data-toggle { margin-top: 6px; padding: 3px 8px; border: 1px solid #c9d3dd; border-radius: 4px; background: #fff; color: #203a5f; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .app-data-toggle:hover, .app-data-toggle[aria-expanded="true"] { background: #eef6f7; }
+    .app-data-panel { position: fixed; z-index: 2000; width: 270px; padding: 12px 14px; border: 1px solid #c9d3dd; border-radius: 8px; background: #fff; box-shadow: 0 6px 22px rgba(0,0,0,.18); font-size: 13px; }
+    .app-data-panel[hidden] { display: none; }
+    .app-data-panel h3 { margin: 0 0 8px; font-size: 14px; color: #17202a; }
+    .app-data-panel dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 5px 10px; }
+    .app-data-panel dt { color: var(--muted); }
+    .app-data-panel dd { margin: 0; color: #17202a; font-weight: 700; word-break: break-word; }
+    .column-menu { position: relative; }
+    .drawer-bar .column-menu-button { width: 30px; font-size: 16px; line-height: 1; font-weight: 700; color: #203a5f; }
+    .column-list { position: absolute; right: 0; bottom: calc(100% + 6px); z-index: 1300; width: 230px; max-height: 60vh; overflow-y: auto; padding: 8px 10px; border: 1px solid #c9d3dd; border-radius: 8px; background: #fff; box-shadow: 0 6px 22px rgba(0,0,0,.18); font-size: 12px; }
+    .column-list[hidden] { display: none; }
+    .column-list-title { margin: 0 0 6px; font-weight: 700; color: #17202a; }
+    .column-list label { display: flex; align-items: center; gap: 7px; margin: 0; padding: 2px 0; color: #203a5f; cursor: pointer; text-transform: none; letter-spacing: normal; font-size: 12px; font-weight: 400; }
+    .column-list input { width: 14px; height: 14px; min-height: 14px; margin: 0; }
+    .column-list .column-reset { margin-top: 6px; width: auto; height: auto; padding: 3px 8px; font-size: 12px; }
     .toggle-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: #384653; text-transform: none; font-weight: 400; }
     .toggle-row input { width: 16px; min-height: 16px; height: 16px; margin: 0; }
     .share-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
@@ -109,12 +137,17 @@
       <h1>EndSaR Interactive Data Map</h1>
       <p>School-year data uses CEPI <em>Use of seclusion and restraint data files</em> [Data set] and CEPI district-code geography assignments.</p>
       <p class="data-through" id="data-through"></p>
-      <label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select>
+      <p class="data-updated" id="data-updated"></p>
       <div class="controls">
-        <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
+        <div><label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select></div>
         <div><label for="year">School Year</label><select id="year"></select></div>
       </div>
-      <div id="points-wrap"><label class="toggle-row" for="show-points"><input type="checkbox" id="show-points" checked> Show charter academies, ISD programs and state districts</label><p class="point-note">Circles = charter academies (PSAs). Squares = ISD programs. Diamonds = state districts. These have no district boundary, so each is placed at its office address, or near its host district or ISD when no address is on file. Zoom in to separate crowded markers.</p></div>
+      <div class="controls">
+        <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
+        <div><label for="period">Reporting Period</label><select id="period"><option value="q1">Q1</option><option value="q2">Q2</option><option value="q3">Q3</option><option value="q4">Q4</option><option value="sy" selected>School Year Totals</option></select></div>
+      </div>
+      <p class="period-note" id="period-note" hidden></p>
+      <div id="points-wrap" class="tip-wrap"><label class="toggle-row" for="show-points"><input type="checkbox" id="show-points" checked aria-describedby="points-tip"> Show charter academies, ISD programs and state districts</label><span class="tip" id="points-tip" role="tooltip">Circles = charter academies (PSAs). Squares = ISD programs. Diamonds = state districts. These have no district boundary, so each is placed at its office address, or near its host district or ISD when no address is on file. Zoom in to separate crowded markers.</span></div>
       <div id="scope-wrap"><label for="scope">Data Scope</label><select id="scope"><option value="combined">Combined entities</option><option value="entity">ISD entity only</option></select></div>
       <label for="metric">Metric</label><select id="metric"></select>
       <label>Export</label><div class="export-controls"><button class="command" id="export-png" type="button">Export Map as PNG</button><button class="command" id="export-table" type="button">Export Table as Excel</button></div>
@@ -123,17 +156,19 @@
       <div class="metric-grid">
         <div class="stat"><b id="state-total">0</b><span id="state-total-label">statewide estimated total for selected metric</span></div>
         <div class="stat"><b id="area-count">0</b><span id="area-label">areas represented</span></div>
-        <div class="stat"><b id="district-total">0</b><span>LEA rows included in aggregation</span></div>
+        <div class="stat"><b id="district-total">0</b><span id="district-total-label">entities included in totals</span></div>
         <div class="stat"><b id="suppressed-total">0</b><span id="suppressed-total-label">suppressed cells in selected metric</span></div>
       </div>
       <label>Michigan Overall Year Totals</label><table class="summary-table"><tbody id="summary-body"></tbody></table>
       <div id="entity-panel" class="details"><p>Select an area on the map to see details.</p></div>
       <p class="note">Michigan's Center for Educational Performance and Information. (2017-2026). <em>Use of seclusion and restraint data files</em> [Data set]. MI School Data. <a href="https://www.mischooldata.org/districtschool-data-files/" target="_blank" rel="noopener noreferrer">https://www.mischooldata.org/districtschool-data-files/</a></p>
       <p class="credit">Developed by Matt Rische</p>
+      <button class="app-data-toggle" id="app-data-toggle" type="button" aria-expanded="false" aria-controls="app-data-panel">App Data &#9656;</button>
     </aside>
-    <main><div id="map"></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
+    <div class="app-data-panel" id="app-data-panel" role="dialog" aria-label="App data" hidden><h3>App Data</h3><dl><dt>Last Updated:</dt><dd id="app-last-updated">-</dd><dt>Last Refreshed:</dt><dd id="app-last-refreshed">-</dd><dt>Last Import:</dt><dd id="app-last-import">-</dd></dl></div>
+      <main><div id="map"></div><div class="new-data-banner" id="new-data-banner" role="status" hidden><span id="new-data-text"></span><button class="banner-view" id="new-data-view" type="button">View it</button><button class="banner-close" id="new-data-close" type="button" aria-label="Dismiss">&times;</button></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
   </div>
-  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Show or hide the detail table" aria-label="Show or hide the detail table">&#9650;</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button></div><div class="drawer-content" id="drawer-content"></div></div>
+  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Show or hide the detail table" aria-label="Show or hide the detail table">&#9650;</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button><div class="column-menu"><button class="column-menu-button" id="column-menu-button" type="button" title="Choose table columns" aria-label="Choose table columns" aria-haspopup="true" aria-expanded="false">&#8942;</button><div class="column-list" id="column-list" role="menu" hidden></div></div></div><div class="drawer-content" id="drawer-content"></div></div>
   <div class="info-overlay" id="info-overlay" aria-hidden="true"><div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="info-dialog-header"><div class="info-dialog-title"><h2 id="info-title">Information</h2><p id="info-subtitle"></p></div><button class="info-close" id="info-close" type="button" aria-label="Close information">×</button></div><div class="info-dialog-body" id="info-body"></div></div></div>
   <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script>
   <script>
@@ -158,19 +193,26 @@
       return payload;
     }
     (async () => {
-    const [dataResponse, pointsResponse] = await Promise.all([
+    const [dataResponse, pointsResponse, appInfoResponse] = await Promise.all([
       fetch('data/map-data.json', { cache: 'no-cache' }),
-      fetch('data/entity-locations.json', { cache: 'no-cache' }).catch(() => null)
+      fetch('data/entity-locations.json', { cache: 'no-cache' }).catch(() => null),
+      fetch('data/app-info.json', { cache: 'no-cache' }).catch(() => null)
     ]);
     if (!dataResponse.ok) throw new Error(`Map data request failed (${dataResponse.status})`);
     const dataPayload = expandMapData(await dataResponse.json());
     const ENTITY_POINTS = pointsResponse && pointsResponse.ok ? (await pointsResponse.json()).points || {} : {};
-    const MAP_DATASETS = dataPayload.datasets;
+    const APP_INFO = appInfoResponse && appInfoResponse.ok ? await appInfoResponse.json().catch(() => ({})) : {};
+    // Each reporting period has its own data file. School Year Totals (map-data.json) loads first;
+    // a quarter file (map-data-q1.json ...) is loaded the first time someone picks that quarter.
+    // Nothing is added up across quarters: every period shows CEPI's own numbers for that period.
+    const PERIOD_LABELS = { q1: 'Q1', q2: 'Q2', q3: 'Q3', q4: 'Q4', sy: 'School Year Totals' };
+    const PERIOD_DATA = { sy: dataPayload };
+    const SCHOOL_YEAR_METADATA = dataPayload.metadata;
+    let MAP_DATASETS = dataPayload.datasets;
     const DEFAULT_DATASET = dataPayload.defaultDataset;
-    const MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources;
     const METRICS = dataPayload.metrics;
-    const MAP_METADATA = dataPayload.metadata;
-    const datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body'), pointsWrap = document.getElementById('points-wrap'), showPoints = document.getElementById('show-points'), copyLinkButton = document.getElementById('copy-link'), shareStatus = document.getElementById('share-status'), loadingEl = document.getElementById('loading');
+    let MAP_METADATA = dataPayload.metadata;
+    const periodSelect = document.getElementById('period'), datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body'), pointsWrap = document.getElementById('points-wrap'), showPoints = document.getElementById('show-points'), copyLinkButton = document.getElementById('copy-link'), shareStatus = document.getElementById('share-status'), loadingEl = document.getElementById('loading');
     const fmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
     const ratioFmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
     const HISTORIC_AVERAGE_YEAR = '__historic_average__';
@@ -204,8 +246,8 @@
         url: 'https://www.endsar-mi.org'
       }
     };
-    const MICHIGAN_BOUNDS = L.latLngBounds([41.25, -91.2], [48.75, -80.2]);
-    const MAP_NAVIGATION_BOUNDS = L.latLngBounds([39.2, -91.2], [48.75, -78.0]);
+    // Michigan's outer edges (from the county boundary file).
+    const MICHIGAN_EXTENT = L.latLngBounds([41.696, -90.418], [48.191, -82.416]);
     const boundaries = { county: COUNTY_BOUNDARIES_OPTIMIZED, district: DISTRICT_BOUNDARIES_OPTIMIZED, isd: ISD_BOUNDARIES_OPTIMIZED, region: REGION_BOUNDARIES_OPTIMIZED };
     const labels = { county: { find: 'Find County', ph: 'Type a county', represented: 'counties represented', empty: 'Select a county on the map to see details.' }, district: { find: 'Find District', ph: 'Type a district', represented: 'districts represented', empty: 'Select a district on the map to see details.' }, isd: { find: 'Find ISD', ph: 'Type an ISD', represented: 'ISDs represented', empty: 'Select an ISD on the map to see details.' }, region: { find: 'Find Region', ph: 'Type a region', represented: 'regions represented', empty: 'Select a region on the map to see details.' } };
     let selectedLayer = null, geoLayer = null, pointLayer = null, pointRenderer = null, hatchCanvas = null, hatchCtx = null, hatchFrame = 0, hatchTimer = 0, hatchDrawTopLeft = L.point(0, 0);
@@ -224,7 +266,9 @@
     function refreshScope() { const visible = activeMode() === 'isd' || activeMode() === 'region'; scopeWrap.style.display = visible ? 'block' : 'none'; if (!visible) scopeSelect.value = 'combined'; }
     function selectedYear() { return yearSelect.value; }
     function isHistoricAverage() { return selectedYear() === HISTORIC_AVERAGE_YEAR; }
-    function selectedYearLabel() { return isHistoricAverage() ? HISTORIC_AVERAGE_LABEL : selectedYear(); }
+    function periodSuffix() { return periodSelect.value === 'sy' ? '' : ` ${PERIOD_LABELS[periodSelect.value]}`; }
+    function provisionalInfo(year) { return (APP_INFO.provisionalYears || {})[year] || null; }
+    function selectedYearLabel() { return (isHistoricAverage() ? HISTORIC_AVERAGE_LABEL : selectedYear()) + periodSuffix(); }
     function activeItem(feature) { return activeSource().items[feature.properties.id]; }
     function formatValue(key, value) { return key === 'event_student_ratio' ? ratioFmt.format(value || 0) : fmt.format(value || 0); }
     function average(values) { const usable = values.filter(value => Number.isFinite(value)); return usable.length ? usable.reduce((sum, value) => sum + value, 0) / usable.length : 0; }
@@ -246,11 +290,12 @@
     // Speed: Historic Average and colour-scale values are computed once per selection and reused,
     // instead of being recalculated for every shape on every redraw.
     const averageCache = new Map(), scaleCache = new Map();
-    function selectionKey() { return `${datasetSelect.value}|${activeSourceKey()}|${selectedYear()}`; }
+    function selectionKey() { return `${periodSelect.value}|${datasetSelect.value}|${activeSourceKey()}|${selectedYear()}`; }
     function dataForSelection(years, dataByYear) {
       if (!isHistoricAverage()) return dataByYear[selectedYear()];
-      let perSelection = averageCache.get(datasetSelect.value);
-      if (!perSelection) { if (averageCache.size > 4) averageCache.clear(); perSelection = new WeakMap(); averageCache.set(datasetSelect.value, perSelection); }
+      const averageKey = `${periodSelect.value}|${datasetSelect.value}`;
+      let perSelection = averageCache.get(averageKey);
+      if (!perSelection) { if (averageCache.size > 12) averageCache.clear(); perSelection = new WeakMap(); averageCache.set(averageKey, perSelection); }
       let record = perSelection.get(dataByYear);
       if (!record) { record = averageYearRecords(years.map(year => dataByYear[year.year]).filter(Boolean)); perSelection.set(dataByYear, record); }
       return record;
@@ -275,8 +320,21 @@
     function cellCountTitleForDataset(datasetKey) { return datasetKey === 'raw' ? 'Suppressed cells' : 'Approximated cells'; }
     function styleFeature(feature) { const item = activeItem(feature), metricKey = metricSelect.value, data = item ? yearData(item) : null, value = data ? data.metrics[metricKey] || 0 : 0, patterned = data && hasSuppressionPattern(data, metricKey); return { color: '#ffffff', weight: activeMode() === 'district' ? 0.8 : activeMode() === 'region' ? 2 : 1.2, fillColor: datasetSelect.value === 'raw' && patterned && !isHistoricAverage() ? '#d8dde2' : percentileColor(value, metricKey), fillOpacity: 0.88 }; }
 
-    const map = L.map('map', { zoomControl: true, scrollWheelZoom: true, preferCanvas: true, maxBounds: MAP_NAVIGATION_BOUNDS, maxBoundsViscosity: 0.85, minZoom: 5, maxZoom: 11, attributionControl: false }).setView([44.35, -85.55], 6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { bounds: MICHIGAN_BOUNDS, noWrap: true, keepBuffer: 1, minZoom: 5, maxZoom: 11, opacity: 0.82, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+    const map = L.map('map', { zoomControl: true, scrollWheelZoom: true, preferCanvas: true, maxBoundsViscosity: 0.85, minZoom: 5, maxZoom: 11, attributionControl: false }).setView([44.35, -85.55], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { noWrap: true, keepBuffer: 1, minZoom: 5, maxZoom: 11, opacity: 0.82, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+    // Panning limit: any Michigan border can be dragged all the way to the opposite side of the screen
+    // (south border to the top, north to the bottom, east to the left, west to the right).
+    // The limit is Michigan's extent plus one full screen in every direction, recalculated for each zoom level.
+    function navigationBounds(zoom) {
+      const size = map.getSize(), sw = map.project(MICHIGAN_EXTENT.getSouthWest(), zoom), ne = map.project(MICHIGAN_EXTENT.getNorthEast(), zoom);
+      const low = map.unproject(L.point(sw.x - size.x, sw.y + size.y), zoom), high = map.unproject(L.point(ne.x + size.x, ne.y - size.y), zoom);
+      return L.latLngBounds([Math.max(low.lat, -85), low.lng], [Math.min(high.lat, 85), high.lng]);
+    }
+    const leafletLimitCenter = map._limitCenter;
+    map._limitCenter = function (center, zoom, bounds) { return leafletLimitCenter.call(this, center, zoom, bounds ? navigationBounds(zoom) : bounds); };
+    function updateNavigationBounds() { map.options.maxBounds = navigationBounds(map.getZoom()); }
+    map.setMaxBounds(navigationBounds(map.getZoom()));
+    map.on('zoomend resize', updateNavigationBounds);
     function ensureHatchCanvas() { if (hatchCanvas) return; hatchCanvas = document.createElement('canvas'); hatchCanvas.className = 'screen-hatch-canvas'; map.getPanes().overlayPane.appendChild(hatchCanvas); hatchCtx = hatchCanvas.getContext('2d'); }
     function resizeHatchCanvas() { ensureHatchCanvas(); const size = map.getSize(), dpr = window.devicePixelRatio || 1, topLeft = map.containerPointToLayerPoint([0, 0]); L.DomUtil.setPosition(hatchCanvas, topLeft); hatchCanvas.style.width = `${size.x}px`; hatchCanvas.style.height = `${size.y}px`; hatchCanvas.width = Math.ceil(size.x * dpr); hatchCanvas.height = Math.ceil(size.y * dpr); hatchCtx.setTransform(dpr, 0, 0, dpr, 0, 0); return { size, topLeft }; }
     function drawFeaturePathToContainer(ctx, geometry) {
@@ -313,24 +371,56 @@
     map.on('zoomend moveend resize viewreset', () => scheduleHatches(40));
     map.on('zoomend', () => { if (pointLayer) pointLayer.eachLayer(layer => layer.setRadius(pointRadius())); });
 
-    function refreshYears() { const current = yearSelect.value; yearSelect.innerHTML = ''; activeSource().years.forEach(item => { const option = document.createElement('option'); option.value = item.year; option.textContent = item.year; yearSelect.appendChild(option); }); const historic = document.createElement('option'); historic.value = HISTORIC_AVERAGE_YEAR; historic.textContent = HISTORIC_AVERAGE_LABEL; yearSelect.appendChild(historic); yearSelect.value = current === HISTORIC_AVERAGE_YEAR || activeSource().years.some(y => y.year === current) ? current : activeSource().years[activeSource().years.length - 1].year; }
+    function refreshYears() { const current = yearSelect.value; yearSelect.innerHTML = ''; activeSource().years.forEach(item => { const option = document.createElement('option'); option.value = item.year; option.textContent = provisionalInfo(item.year) ? `${item.year} (prov.)` : item.year; yearSelect.appendChild(option); }); const historic = document.createElement('option'); historic.value = HISTORIC_AVERAGE_YEAR; historic.textContent = HISTORIC_AVERAGE_LABEL; yearSelect.appendChild(historic); yearSelect.value = current === HISTORIC_AVERAGE_YEAR || activeSource().years.some(y => y.year === current) ? current : activeSource().years[activeSource().years.length - 1].year; }
     function refreshSearch() { const l = labels[activeMode()]; document.getElementById('search-label').textContent = l.find; search.placeholder = l.ph; search.value = ''; areaList.innerHTML = ''; Object.values(activeSource().items).sort((a, b) => a.name.localeCompare(b.name)).forEach(item => { const option = document.createElement('option'); option.value = item.name; areaList.appendChild(option); }); }
-    function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">LEA rows: ${fmt.format(item.districtCount)}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>${feature.geometry.type === 'Point' ? `<div class="popup-line"><em>${POINT_KINDS[feature.properties.kind] || 'Entity'} - ${feature.properties.exact ? 'marker shows office location (no district boundary)' : 'marker location is approximate (no district boundary)'}</em></div>` : ''}`; }
+    function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">${activeMode() === 'district' ? `Type: ${ENTITY_TYPE_LONG[item.entityType || 'Other']}` : `Entities included: ${fmt.format(entityBreakdown(memberEntities(item)).total)}`}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>${feature.geometry.type === 'Point' ? `<div class="popup-line"><em>${POINT_KINDS[feature.properties.kind] || 'Entity'} - ${feature.properties.exact ? 'marker shows office location (no district boundary)' : 'marker location is approximate (no district boundary)'}</em></div>` : ''}`; }
     function sourceTotalsForSelection(source = activeSource()) { return dataForSelection(source.years, source.stateTotals); }
     function renderSummary() { const totals = sourceTotalsForSelection(), s = totals.summary; document.getElementById('summary-body').innerHTML = `<tr><td>Total reported students with disabilities</td><td>${fmt.format(s.swd_total)}</td></tr><tr><td>Total reported students without disabilities</td><td>${fmt.format(s.nonswd_total)}</td></tr><tr><td>Combined reported students</td><td>${fmt.format(s.student_total)}</td></tr><tr><td>Total seclusions</td><td>${fmt.format(s.seclusion_total)}</td></tr><tr><td>Total restraints</td><td>${fmt.format(s.restraint_total)}</td></tr><tr><td>Combined seclusions and restraints</td><td>${fmt.format(s.combined_event_total)}</td></tr><tr><td>Combined Ratio</td><td>${formatValue('event_student_ratio', totals.metrics.event_student_ratio || 0)}</td></tr>`; }
+    // Optional columns (off by default), matching the extra columns in the EndSaR master workbook:
+    // SWD / Non-SWD incidents and ratios, and the row's suppressed (Raw) or approximated (Approximated) cell count.
+    // Calculated from the same values as the rest of the table. In Raw data, * = includes a suppressed (<10) value
+    // and "-" = the ratio cannot be calculated because the student count is suppressed or zero.
+    const OPTIONAL_COLUMN_START = 13;
+    function isSuppressedValue(data, key) { const shown = data.displayMetrics && data.displayMetrics[key]; return typeof shown === 'string' && shown.trim().startsWith('<'); }
+    function derivedCells(data, datasetKey = datasetSelect.value) {
+      if (!data || (data.displayMetrics && data.displayMetrics.swd_students === '-')) return ['-', '-', '-', '-', '-'];
+      const m = data.metrics, raw = datasetKey === 'raw';
+      const group = prefix => {
+        const parts = [`${prefix}_seclusions`, `${prefix}_restraints`], incidents = parts.reduce((sum, key) => sum + (m[key] || 0), 0);
+        const partial = raw && parts.some(key => isSuppressedValue(data, key)), students = m[`${prefix}_students`] || 0;
+        const incidentText = `${fmt.format(incidents)}${partial ? '*' : ''}`;
+        const ratioText = (raw && isSuppressedValue(data, `${prefix}_students`)) || !students ? '-' : `${ratioFmt.format(incidents / students)}${partial ? '*' : ''}`;
+        return [incidentText, ratioText];
+      };
+      const [swdIncidents, swdRatio] = group('swd'), [nonIncidents, nonRatio] = group('nonswd');
+      const cellKeys = ['swd_students', 'swd_seclusions', 'swd_restraints', 'nonswd_students', 'nonswd_seclusions', 'nonswd_restraints'];
+      const cells = cellKeys.reduce((sum, key) => sum + (((raw ? data.suppressedCells : data.approximatedCells) || {})[key] || 0), 0);
+      return [swdIncidents, nonIncidents, swdRatio, nonRatio, fmt.format(cells)];
+    }
+    function derivedTds(data) { return derivedCells(data).map(text => `<td>${text}</td>`).join(''); }
     function detailRowsFor(item, scopeLabel) {
       return activeSource().years.map(y => {
         const data = item.years[y.year], m = data.metrics, s = data.summary;
-        return `<tr><td>${y.year}</td><td>${scopeLabel}</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
+        return `<tr><td>${y.year}</td><td>${scopeLabel}</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td>${derivedTds(data)}</tr>`;
       }).join('');
     }
     function stateDetailRowsFor(source = activeSource()) {
       return source.years.map(y => {
         const data = source.stateTotals[y.year];
-        return `<tr><td>${y.year}</td><td>State Total</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
+        return `<tr><td>${y.year}</td><td>State Total</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td>${derivedTds(data)}</tr>`;
       }).join('');
     }
-    function detailTableHtml(rows, datasetKey = datasetSelect.value) { return `<table class="detail-table ${datasetKey === 'approximated' ? 'approximated-table' : 'raw-table'}"><thead><tr><th>Year</th><th>Scope</th><th>Students Reported</th><th>SWD Students</th><th>SWD Seclusions</th><th>SWD Restraints</th><th>Non-SWD Students</th><th>Non-SWD Seclusions</th><th>Non-SWD Restraints</th><th>Total Seclusions</th><th>Total Restraints</th><th>Combined Ratio</th><th>Total Incidents</th></tr></thead><tbody>${rows}</tbody></table>`; }
+    const DETAIL_COLUMNS = ['Year', 'Scope', 'Students Reported', 'SWD Students', 'SWD Seclusions', 'SWD Restraints', 'Non-SWD Students', 'Non-SWD Seclusions', 'Non-SWD Restraints', 'Total Seclusions', 'Total Restraints', 'Combined Ratio', 'Total Incidents', 'SWD Incidents', 'Non-SWD Incidents', 'SWD Ratio', 'Non-SWD Ratio', 'Suppressed / Approximated Cells'];
+    const hiddenColumns = new Set([13, 14, 15, 16, 17]);
+    function columnVisible(index) { return !hiddenColumns.has(index); }
+    function applyColumnVisibility() {
+      let style = document.getElementById('column-visibility');
+      if (!style) { style = document.createElement('style'); style.id = 'column-visibility'; document.head.appendChild(style); }
+      style.textContent = Array.from(hiddenColumns).map(i => `.detail-table th:nth-child(${i + 1}), .detail-table td:nth-child(${i + 1}) { display: none; }`).join('\n');
+      const button = document.getElementById('column-menu-button');
+      if (button) button.style.borderColor = Array.from(hiddenColumns).some(i => i < OPTIONAL_COLUMN_START) || DETAIL_COLUMNS.some((_, i) => i >= OPTIONAL_COLUMN_START && !hiddenColumns.has(i)) ? '#0f5f68' : '';
+    }
+    function detailTableHtml(rows, datasetKey = datasetSelect.value) { return `<table class="detail-table ${datasetKey === 'approximated' ? 'approximated-table' : 'raw-table'}"><thead><tr><th>Year</th><th>Scope</th><th>Students Reported</th><th>SWD Students</th><th>SWD Seclusions</th><th>SWD Restraints</th><th>Non-SWD Students</th><th>Non-SWD Seclusions</th><th>Non-SWD Restraints</th><th>Total Seclusions</th><th>Total Restraints</th><th>Combined Ratio</th><th>Total Incidents</th><th>SWD Incidents</th><th>Non-SWD Incidents</th><th>SWD Ratio</th><th>Non-SWD Ratio</th><th>${datasetKey === 'raw' ? 'Suppressed Cells' : 'Approximated Cells'}</th></tr></thead><tbody>${rows}</tbody></table>`; }
     function renderStateDrawer() {
       drawerTitle.textContent = 'State Detail';
       drawerSubtitle.textContent = `${activeDataset().label} - ${activeSource().label}`;
@@ -362,7 +452,7 @@
         const combinedData = dataForSelection(activeSources().isd.years, combinedItem.years);
         detailSections = `<label>Metric Breakdowns</label>${rowsForMetrics(entityData)}<label>Overall Totals</label>${rowsForSummary(entityData.summary)}<label>Metric Breakdowns Combined</label>${rowsForMetrics(combinedData)}<label>Overall Totals Combined</label>${rowsForSummary(combinedData.summary)}`;
       }
-      entityPanel.innerHTML = `<div class="entity-name">${item.name}</div><div class="detail-row"><span>View</span><strong>${activeSource().label}</strong></div><div class="detail-row"><span>School year</span><strong>${selectedYearLabel()}</strong></div><div class="detail-row"><span>${item.type} ID</span><strong>${item.id}</strong></div>${extra}<div class="detail-row"><span>LEA rows included</span><strong>${fmt.format(item.districtCount)}</strong></div>${detailSections}<label>Highest LEA combined event totals</label><div class="districts">${districts}</div>`;
+      entityPanel.innerHTML = `<div class="entity-name">${item.name}</div><div class="detail-row"><span>View</span><strong>${activeSource().label}</strong></div><div class="detail-row"><span>School year</span><strong>${selectedYearLabel()}</strong></div><div class="detail-row"><span>${item.type} ID</span><strong>${item.id}</strong></div>${extra}${activeMode() === 'district' ? `<div class="detail-row"><span>Entity type</span><strong>${ENTITY_TYPE_LONG[item.entityType || 'Other']}</strong></div>` : (() => { const b = entityBreakdown(memberEntities(item)); return `<div class="detail-row"><span>Entities included</span><strong>${fmt.format(b.total)}</strong></div><div class="detail-row"><span></span><strong style="font-weight:400">${breakdownText(b)}</strong></div>`; })()}${detailSections}<label>Highest LEA combined event totals</label><div class="districts">${districts}</div>`;
     }
     function clearSelection() { if (selectedLayer) resetLayerStyle(selectedLayer); selectedLayer = null; entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); renderLegend(); scheduleHatches(0); updateHash(); }
     function highlightLayer(layer) { if (selectedLayer === layer) { clearSelection(); return; } if (selectedLayer) resetLayerStyle(selectedLayer); selectedLayer = layer; layer.setStyle({ weight: 3, color: '#17202a', fillOpacity: 0.95 }); layer.bringToFront(); const item = activeItem(layer.feature); renderPanel(item); renderDrawer(item); renderLegend(); updateHash(); }
@@ -405,9 +495,65 @@
     function zoomToLayer(layer) { if (layer.getBounds) map.fitBounds(layer.getBounds(), { padding: [30, 30], maxZoom: activeMode() === 'district' ? 10 : 8 }); else map.setView(layer.getLatLng(), Math.max(map.getZoom(), 9)); }
     function onEachFeature(feature, layer) { if (!activeSource().items[feature.properties.id]) return; layer.bindPopup(() => popupHtml(feature)); layer.on({ mouseover: () => layer.setStyle({ weight: 2.4, color: '#17202a' }), mouseout: () => { if (layer !== selectedLayer) resetLayerStyle(layer); }, click: () => highlightLayer(layer) }); }
     function renderLegend() { const metric = METRICS.find(m => m.key === metricSelect.value), s = colorScale(metric.key), selectedPercent = selectedLegendPercent(metric.key); document.getElementById('legend-title').textContent = `${selectedYearLabel()} - ${metric.label}`; document.getElementById('legend-content').innerHTML = `<div class="swatches" id="swatches">${selectedPercent === null ? '' : `<span class="legend-marker" style="left:${Math.round(selectedPercent * 1000) / 10}%">|</span>`}</div><div class="scale"><span id="legend-min"></span><span id="legend-mid">50th pct</span><span id="legend-max"></span></div><div class="legend-note"><span class="hatch-sample"></span><span>Hatching = metric contains one or more suppressed cells (&lt;10)</span></div><div class="legend-footnote">* Asterisks = value omits one or more suppressed cells (&lt;10)</div>${pointLayer ? '<div class="shape-key"><span><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" fill="#fff" stroke="#17202a"/></svg>Charter academy</span><span><svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" fill="#fff" stroke="#17202a"/></svg>ISD program</span><span><svg viewBox="0 0 12 12"><path d="M6 0.8 L11.2 6 L6 11.2 L0.8 6 Z" fill="#fff" stroke="#17202a"/></svg>State district</span></div>' : ''}`; document.getElementById('legend-min').textContent = formatValue(metric.key, s.min); document.getElementById('legend-max').textContent = formatValue(metric.key, s.max); }
-    function updateStats() { const metricKey = metricSelect.value, source = activeSource(), items = Object.values(source.items), totals = sourceTotalsForSelection(source); document.getElementById('state-total').textContent = formatValue(metricKey, totals.metrics[metricKey] || 0); document.getElementById('area-count').textContent = fmt.format(items.length); document.getElementById('area-label').textContent = labels[activeMode()].represented; document.getElementById('district-total').textContent = fmt.format(items.reduce((sum, item) => sum + item.districtCount, 0)); document.getElementById('suppressed-total').textContent = fmt.format(selectedCellCount(totals, metricKey)); document.getElementById('suppressed-total-label').textContent = selectedCellCountLabel(); document.getElementById('state-total-label').textContent = datasetSelect.value === 'raw' ? 'statewide reported total for selected metric' : 'statewide estimated total for selected metric'; renderSummary(); renderLegend(); }
+    // Entity counts for the selected school year (or any year, for Historic Average).
+    // An entity counts only if it appears in CEPI's file for that year ("-" marks absence).
+    const ENTITY_TYPE_NAMES = { LEA: ['LEA', 'LEAs'], PSA: ['PSA', 'PSAs'], ISD: ['ISD program', 'ISD programs'], State: ['state district', 'state districts'], Other: ['unclassified entity', 'unclassified entities'] };
+    const ENTITY_TYPE_LONG = { LEA: 'LEA (local public school district)', PSA: 'PSA (public school academy / charter)', ISD: 'ISD program', State: 'State district', Other: 'Unclassified' };
+    function countYears() { return isHistoricAverage() ? activeSource().years.map(y => y.year) : [selectedYear()]; }
+    function entityPresent(entity, years) { return years.some(year => entity.years[year] && entity.years[year].displayMetrics.swd_students !== '-'); }
+    function isIsdEntity(entity) { return entity.id === `${String(entity.isdCode).padStart(2, '0')}000`; }
+    function countyFipsByCepiCode() { const out = {}; Object.values(activeSources().county.items).forEach(county => { out[county.cepiCode] = county.id; }); return out; }
+    // The district entities that feed an area's totals in the current view (same rules as the data build).
+    function memberEntities(area) {
+      const sources = activeSources(), all = Object.values(sources.district.items), mode = activeMode(), key = activeSourceKey();
+      if (mode === 'district') return area ? [sources.district.items[area.id]].filter(Boolean) : all;
+      const entityOnly = key === 'isd_entity' || key === 'region_entity';
+      let members = all.filter(entity => sources.isd.items[entity.isdCode] && (!entityOnly || isIsdEntity(entity)));
+      if (!area) return members;
+      if (mode === 'isd') return members.filter(entity => entity.isdCode === area.id);
+      if (mode === 'region') return members.filter(entity => String(entity.region) === String(area.id));
+      const fips = countyFipsByCepiCode();
+      return members.filter(entity => fips[Math.floor(Number(entity.id) / 1000)] === area.id);
+    }
+    function entityBreakdown(entities) {
+      const years = countYears(), counts = {}; let total = 0;
+      entities.forEach(entity => { if (!entityPresent(entity, years)) return; total += 1; const type = entity.entityType || 'Other'; counts[type] = (counts[type] || 0) + 1; });
+      return { total, counts };
+    }
+    function breakdownText(breakdown) { return ['LEA', 'PSA', 'ISD', 'State', 'Other'].filter(type => breakdown.counts[type]).map(type => `${fmt.format(breakdown.counts[type])} ${ENTITY_TYPE_NAMES[type][breakdown.counts[type] === 1 ? 0 : 1]}`).join(' · ') || 'none'; }
+    function areaCountText() { return activeMode() === 'district' ? (isHistoricAverage() ? 'entities reported in any year' : 'entities reported in selected year') : labels[activeMode()].represented; }
+    function areaCountValue(source) { return activeMode() === 'district' ? entityBreakdown(memberEntities(null)).total : Object.values(source.items).length; }
+    function updateStats() { const metricKey = metricSelect.value, source = activeSource(), items = Object.values(source.items), totals = sourceTotalsForSelection(source); document.getElementById('state-total').textContent = formatValue(metricKey, totals.metrics[metricKey] || 0); const breakdown = entityBreakdown(memberEntities(null)); document.getElementById('area-count').textContent = fmt.format(areaCountValue(source)); document.getElementById('area-label').textContent = areaCountText(); document.getElementById('district-total').textContent = fmt.format(breakdown.total); document.getElementById('district-total-label').textContent = `entities included in totals: ${breakdownText(breakdown)}`; document.getElementById('suppressed-total').textContent = fmt.format(selectedCellCount(totals, metricKey)); document.getElementById('suppressed-total-label').textContent = selectedCellCountLabel(); document.getElementById('state-total-label').textContent = datasetSelect.value === 'raw' ? 'statewide reported total for selected metric' : 'statewide estimated total for selected metric'; renderSummary(); renderLegend(); }
     function loadLayer() { if (geoLayer) map.removeLayer(geoLayer); selectedLayer = null; geoLayer = L.geoJSON(boundaries[activeMode()], { style: styleFeature, onEachFeature, smoothFactor: 1.4 }).addTo(map); refreshPoints(); map.fitBounds(geoLayer.getBounds(), { padding: [14, 14], maxZoom: 7 }); scheduleHatches(80); }
     function redraw(resetPanel = true) { updateStats(); if (geoLayer) geoLayer.setStyle(styleFeature); if (pointLayer) pointLayer.setStyle(stylePoint); scheduleHatches(0); if (resetPanel) { selectedLayer = null; renderLegend(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); } else if (selectedLayer) { const item = activeItem(selectedLayer.feature); renderPanel(item); renderDrawer(item); renderLegend(); } else { renderStateDrawer(); } updateHash(); }
+    async function loadPeriodData(period) {
+      if (PERIOD_DATA[period]) return PERIOD_DATA[period];
+      loadingEl.innerHTML = '<span class="spinner"></span>Loading quarterly data&hellip;'; loadingEl.classList.remove('hidden');
+      try {
+        const response = await fetch(`data/map-data-${period}.json`, { cache: 'no-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        PERIOD_DATA[period] = expandMapData(await response.json());
+        return PERIOD_DATA[period];
+      } finally { loadingEl.classList.add('hidden'); }
+    }
+    function usePeriodData(payload) { MAP_DATASETS = payload.datasets; MAP_METADATA = payload.metadata; averageCache.clear(); scaleCache.clear(); }
+    function updatePeriodNote() {
+      const note = document.getElementById('period-note'), info = provisionalInfo(selectedYear());
+      if (periodSelect.value !== 'sy' && info) { note.textContent = `Provisional: CEPI has released ${info.quarters.join(', ')} for ${selectedYear()} so far. These numbers can change when the final school-year file is published.`; note.hidden = false; }
+      else if (periodSelect.value !== 'sy') { note.textContent = `Quarterly view: CEPI's ${PERIOD_LABELS[periodSelect.value]} numbers. Quarters are not added together; student counts overlap between quarters.`; note.hidden = false; }
+      else note.hidden = true;
+    }
+    async function switchPeriod(preferredYear) {
+      const wanted = preferredYear || selectedYear();
+      let payload;
+      try { payload = await loadPeriodData(periodSelect.value); }
+      catch (error) { console.error(error); periodSelect.value = 'sy'; payload = PERIOD_DATA.sy; window.alert('That quarterly data could not be loaded. Showing School Year Totals instead.'); }
+      usePeriodData(payload);
+      if (selectedLayer && !activeItem(selectedLayer.feature)) clearSelection();
+      refreshYears();
+      if (Array.from(yearSelect.options).some(option => option.value === wanted)) yearSelect.value = wanted;
+      refreshSearch(); updatePeriodNote(); updateBanner(); redraw(false);
+    }
     function switchView() { refreshScope(); refreshYears(); refreshSearch(); loadLayer(); redraw(true); }
     function htmlText(value) { return String(value === undefined || value === null ? '' : value).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/<[^>]+>/g, ''); }
     function displayText(data, key) { return htmlText(displayValue(data, key)); }
@@ -495,16 +641,16 @@
       if (line) ctx.fillText(line, x, y);
       return y + lineHeight;
     }
-    function tableRowsForExport(item, scopeLabel, source = activeSource()) {
+    function tableRowsForExport(item, scopeLabel, source = activeSource(), datasetKey = datasetSelect.value) {
       return source.years.map(y => {
         const data = item.years[y.year], m = data.metrics, s = data.summary;
-        return [y.year, scopeLabel, displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events')];
+        return [y.year, scopeLabel, displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events'), ...derivedCells(data, datasetKey)];
       });
     }
-    function stateTableRowsForExport(source = activeSource()) {
+    function stateTableRowsForExport(source = activeSource(), datasetKey = datasetSelect.value) {
       return source.years.map(y => {
         const data = source.stateTotals[y.year];
-        return [y.year, 'State Total', displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events')];
+        return [y.year, 'State Total', displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events'), ...derivedCells(data, datasetKey)];
       });
     }
     function selectedItemForExport() { return selectedLayer ? activeItem(selectedLayer.feature) : null; }
@@ -512,11 +658,15 @@
     function exportDetailsPng(datasetKey) {
       const dataset = MAP_DATASETS[datasetKey], sources = dataset.sources, source = sources[activeSourceKey()], metric = METRICS.find(m => m.key === metricSelect.value), totals = sourceTotalsForSelection(source), item = selectedItemForDatasetExport(source), headerFill = datasetKey === 'approximated' ? '#72dd44' : '#203a5f', headerText = datasetKey === 'approximated' ? '#17202a' : '#ffffff';
       let tableRows = [];
-      if (item && activeMode() === 'isd') tableRows = tableRowsForExport(sources.isd_entity.items[item.id], 'ISD entity only', sources.isd_entity).concat(tableRowsForExport(sources.isd.items[item.id], 'Combined entities', sources.isd));
-      else if (item && activeMode() === 'region') tableRows = tableRowsForExport(sources.region_entity.items[item.id], 'ISD entities only', sources.region_entity).concat(tableRowsForExport(sources.region.items[item.id], 'Combined entities', sources.region));
-      else if (item) tableRows = tableRowsForExport(item, source.label, source);
-      else tableRows = stateTableRowsForExport(source);
-      const width = 1400, rowHeight = 28, height = Math.max(980, 560 + tableRows.length * rowHeight);
+      if (item && activeMode() === 'isd') tableRows = tableRowsForExport(sources.isd_entity.items[item.id], 'ISD entity only', sources.isd_entity, datasetKey).concat(tableRowsForExport(sources.isd.items[item.id], 'Combined entities', sources.isd, datasetKey));
+      else if (item && activeMode() === 'region') tableRows = tableRowsForExport(sources.region_entity.items[item.id], 'ISD entities only', sources.region_entity, datasetKey).concat(tableRowsForExport(sources.region.items[item.id], 'Combined entities', sources.region, datasetKey));
+      else if (item) tableRows = tableRowsForExport(item, source.label, source, datasetKey);
+      else tableRows = stateTableRowsForExport(source, datasetKey);
+      const keep = (_, idx) => columnVisible(idx);
+      const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events', 'SWD Inc.', 'Non-SWD Inc.', 'SWD Ratio', 'Non-SWD Ratio', datasetKey === 'raw' ? 'Supp. Cells' : 'Approx. Cells'].filter(keep);
+      const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82, 76, 96, 76, 96, 90].filter(keep);
+      tableRows = tableRows.map(row => row.filter(keep));
+      const width = Math.max(1400, 84 + widths.reduce((a, b) => a + b, 0)), rowHeight = 28, height = Math.max(980, 560 + tableRows.length * rowHeight);
       const canvas = document.createElement('canvas');
       canvas.width = width;
       canvas.height = height;
@@ -540,8 +690,8 @@
       y += 10;
       const cards = [
         ['Selected metric total', formatValue(metric.key, totals.metrics[metric.key] || 0)],
-        ['Areas represented', fmt.format(Object.values(source.items).length)],
-        ['LEA rows included', fmt.format(Object.values(source.items).reduce((sum, row) => sum + row.districtCount, 0))],
+        [activeMode() === 'district' ? 'Entities reported' : 'Areas represented', fmt.format(areaCountValue(source))],
+        [`Entities included in totals: ${breakdownText(entityBreakdown(memberEntities(null)))}`, fmt.format(entityBreakdown(memberEntities(null)).total)],
         [cellCountTitleForDataset(datasetKey), fmt.format(cellCountForDataset(totals, metric.key, datasetKey))]
       ];
       cards.forEach((card, index) => {
@@ -555,7 +705,7 @@
         ctx.fillText(card[1], x + 18, y + 36);
         ctx.fillStyle = '#5f6b77';
         ctx.font = '13px Segoe UI, Arial';
-        wrapText(ctx, card[0], x + 18, y + 60, 260, 16);
+        wrapText(ctx, card[0], x + 18, y + 58, 264, 15);
       });
       y += 124;
       ctx.fillStyle = '#17202a';
@@ -576,8 +726,6 @@
       ctx.fillText(item ? 'Bottom Drawer Data' : 'Bottom Drawer Data: State Detail', 42, y);
       y += 24;
       if (tableRows.length) {
-        const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events'];
-        const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82];
         let x = 42;
         ctx.fillStyle = headerFill;
         ctx.fillRect(42, y, widths.reduce((a, b) => a + b, 0), rowHeight);
@@ -643,13 +791,14 @@
         ['EndSaR Interactive Data Map export'],
         ['Dataset', activeDataset().label],
         ['Map View', activeSource().label],
+        ['Reporting Period', PERIOD_LABELS[periodSelect.value]],
         ['Selected School Year', selectedYearLabel()],
         ['Selected Metric', METRICS.find(m => m.key === metricSelect.value).label],
         ['Drawer', drawerTitle.textContent],
         ['Source', 'MI School Data, CEPI Use of seclusion and restraint data files'],
         ['Note', datasetSelect.value === 'raw' ? 'Values marked * omit one or more suppressed cells (<10).' : 'Approximated data estimates suppressed cells (<10) from ISD totals.']
       ];
-      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => Array.from(row.children).map(cell => cell.textContent.replace(/\s+/g, ' ').trim()));
+      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => Array.from(row.children).filter((_, idx) => columnVisible(idx)).map(cell => cell.textContent.replace(/\s+/g, ' ').trim()));
       const rows = metadataRows.concat([[]], tableRows), headerRows = new Set([0, metadataRows.length + 1]);
       const link = document.createElement('a'); link.download = `endsar-table-${exportSlug()}.xlsx`; link.href = URL.createObjectURL(buildXlsx(rows, headerRows)); link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 4000);
     }
@@ -659,18 +808,68 @@
     function updateHash() {
       if (!hashReady) return;
       const params = new URLSearchParams({ data: datasetSelect.value, view: viewSelect.value, year: selectedYear(), metric: metricSelect.value });
+      if (periodSelect.value !== 'sy') params.set('period', periodSelect.value);
       if (activeMode() === 'isd' || activeMode() === 'region') params.set('scope', scopeSelect.value);
       if (selectedLayer) params.set('area', selectedLayer.feature.properties.id);
       history.replaceState(null, '', `#${params.toString()}`);
     }
     function setIfValid(select, value) { if (value && Array.from(select.options).some(option => option.value === value)) { select.value = value; return true; } return false; }
     function readHash() { return new URLSearchParams(location.hash.replace(/^#/, '')); }
-    const lastYear = MAP_METADATA.years[MAP_METADATA.years.length - 1];
-    document.getElementById('data-through').textContent = `Data through the ${lastYear} school year (${MAP_METADATA.years.length} school years)`;
+    const lastYear = SCHOOL_YEAR_METADATA.years[SCHOOL_YEAR_METADATA.years.length - 1];
+    document.getElementById('data-through').textContent = `Data through the ${lastYear} school year (${SCHOOL_YEAR_METADATA.years.length} school years)`;
+    // Dates come from data/app-info.json, written by the update pipeline (see README).
+    function formatAppDate(value, withTime = false) {
+      if (!value) return 'Not recorded';
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(value) ? new Date(`${value}T12:00:00`) : new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      const options = withTime ? { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' } : { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleString('en-US', options);
+    }
+    if (APP_INFO.lastUpdated) document.getElementById('data-updated').textContent = `Updated: ${formatAppDate(APP_INFO.lastUpdated)}`;
+    document.getElementById('app-last-updated').textContent = formatAppDate(APP_INFO.lastUpdated);
+    document.getElementById('app-last-refreshed').textContent = formatAppDate(APP_INFO.lastRefreshed, true);
+    document.getElementById('app-last-import').textContent = APP_INFO.lastImportFile || 'Not recorded';
+    const appDataToggle = document.getElementById('app-data-toggle'), appDataPanel = document.getElementById('app-data-panel');
+    function placeAppDataPanel() {
+      const button = appDataToggle.getBoundingClientRect(), side = document.querySelector('aside').getBoundingClientRect();
+      if (window.innerWidth > 900) { appDataPanel.style.left = `${side.right + 10}px`; appDataPanel.style.top = `${Math.max(10, Math.min(button.top - 12, window.innerHeight - appDataPanel.offsetHeight - 10))}px`; }
+      else { appDataPanel.style.left = `${Math.max(10, button.left)}px`; appDataPanel.style.top = `${button.bottom + 6}px`; }
+    }
+    function setAppDataOpen(open) { appDataPanel.hidden = !open; appDataToggle.setAttribute('aria-expanded', String(open)); appDataToggle.innerHTML = open ? 'App Data &#9666;' : 'App Data &#9656;'; if (open) placeAppDataPanel(); }
+    appDataToggle.addEventListener('click', event => { event.stopPropagation(); setAppDataOpen(appDataPanel.hidden); });
+    document.querySelector('aside').addEventListener('scroll', () => { if (!appDataPanel.hidden) placeAppDataPanel(); });
+    window.addEventListener('resize', () => { if (!appDataPanel.hidden) placeAppDataPanel(); });
+    const columnMenuButton = document.getElementById('column-menu-button'), columnList = document.getElementById('column-list');
+    columnList.innerHTML = '<p class="column-list-title">Table columns</p>' + DETAIL_COLUMNS.map((label, idx) => `${idx === OPTIONAL_COLUMN_START ? '<p class="column-list-title" style="margin-top:8px">Optional columns</p>' : ''}<label><input type="checkbox" data-column="${idx}"${hiddenColumns.has(idx) ? '' : ' checked'}${idx === 0 ? ' disabled title="Year is always shown"' : ''}> ${label}</label>`).join('') + '<button class="column-reset" type="button" id="column-reset">Reset columns</button>';
+    columnList.addEventListener('change', event => { const box = event.target.closest('input[data-column]'); if (!box) return; const idx = Number(box.dataset.column); if (box.checked) hiddenColumns.delete(idx); else hiddenColumns.add(idx); applyColumnVisibility(); });
+    columnList.addEventListener('click', event => { event.stopPropagation(); if (event.target.id === 'column-reset') { hiddenColumns.clear(); [13, 14, 15, 16, 17].forEach(idx => hiddenColumns.add(idx)); columnList.querySelectorAll('input[data-column]').forEach(box => { box.checked = !hiddenColumns.has(Number(box.dataset.column)); }); applyColumnVisibility(); } });
+    applyColumnVisibility();
+    function setColumnMenuOpen(open) { columnList.hidden = !open; columnMenuButton.setAttribute('aria-expanded', String(open)); }
+    columnMenuButton.addEventListener('click', event => { event.stopPropagation(); setColumnMenuOpen(columnList.hidden); });
+    document.addEventListener('click', event => {
+      if (!appDataPanel.hidden && !appDataPanel.contains(event.target) && event.target !== appDataToggle) setAppDataOpen(false);
+      if (!columnList.hidden && !columnList.contains(event.target) && event.target !== columnMenuButton) setColumnMenuOpen(false);
+    });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') { setAppDataOpen(false); setColumnMenuOpen(false); } });
     const initial = readHash();
+    if (setIfValid(periodSelect, initial.get('period')) && periodSelect.value !== 'sy') { try { usePeriodData(await loadPeriodData(periodSelect.value)); } catch (error) { periodSelect.value = 'sy'; } }
     setIfValid(datasetSelect, initial.get('data')); setIfValid(viewSelect, initial.get('view')); setIfValid(scopeSelect, initial.get('scope')); setIfValid(metricSelect, initial.get('metric'));
     refreshScope(); refreshYears(); setIfValid(yearSelect, initial.get('year')); refreshSearch(); loadLayer(); updateStats(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer();
     hashReady = true;
+    // Banner: CEPI has released quarters for a school year that has no final totals yet.
+    const newestProvisional = Object.keys(APP_INFO.provisionalYears || {}).sort().pop();
+    const bannerQuarter = newestProvisional ? (APP_INFO.provisionalYears[newestProvisional].quarters || []).slice(-1)[0] : null;
+    const bannerKey = newestProvisional && bannerQuarter ? `${newestProvisional}-${bannerQuarter}` : null;
+    function bannerDismissed() { try { return localStorage.getItem('endsar-banner-dismissed') === bannerKey; } catch (error) { return false; } }
+    function updateBanner() {
+      const banner = document.getElementById('new-data-banner');
+      const viewing = periodSelect.value === (bannerQuarter || '').toLowerCase() && selectedYear() === newestProvisional;
+      banner.hidden = !bannerKey || bannerDismissed() || viewing;
+      if (!banner.hidden) document.getElementById('new-data-text').innerHTML = `<strong>New:</strong> ${newestProvisional} ${bannerQuarter} data is available (provisional &ndash; school year in progress).`;
+    }
+    document.getElementById('new-data-view').addEventListener('click', () => { periodSelect.value = bannerQuarter.toLowerCase(); switchPeriod(newestProvisional); });
+    document.getElementById('new-data-close').addEventListener('click', () => { try { localStorage.setItem('endsar-banner-dismissed', bannerKey); } catch (error) { /* banner just reappears next visit */ } document.getElementById('new-data-banner').hidden = true; });
+    updatePeriodNote(); updateBanner();
     const initialArea = initial.get('area') && findLayerById(initial.get('area'));
     if (initialArea) { zoomToLayer(initialArea); highlightLayer(initialArea); } else { renderLegend(); scheduleHatches(80); updateHash(); }
     loadingEl.classList.add('hidden');
@@ -682,7 +881,8 @@
     datasetSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); loadLayer(); redraw(true); });
     viewSelect.addEventListener('change', switchView);
     scopeSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); redraw(true); });
-    yearSelect.addEventListener('change', () => redraw(false));
+    yearSelect.addEventListener('change', () => { updatePeriodNote(); updateBanner(); redraw(false); });
+    periodSelect.addEventListener('change', () => switchPeriod());
     metricSelect.addEventListener('change', () => redraw(false));
     exportButton.addEventListener('click', exportCurrentSelection);
     exportTableButton.addEventListener('click', exportDrawerTable);

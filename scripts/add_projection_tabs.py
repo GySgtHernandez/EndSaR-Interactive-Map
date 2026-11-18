@@ -19,6 +19,7 @@ APPROX_SHEET = "Approximated_Data"
 RANGE_SHEET = "Suppressed_Range_Data"
 
 YEARS = []
+PERIOD = "Full Year"  # "Full Year" (School Year Totals) or "Q1".."Q4"
 
 IDENTITY_COLUMNS = ["Region", "Entity Level", "ISD Code", "ISD Name", "District Code", "District Name"]
 
@@ -313,7 +314,7 @@ def load_district_data(wb):
     metadata = {}
 
     for row in ws.iter_rows(min_row=2, values_only=True):
-        if row[idx[SOURCE_HEADERS["period"]]] != "Full Year":
+        if row[idx[SOURCE_HEADERS["period"]]] != PERIOD:
             continue
         year = row[idx[SOURCE_HEADERS["school_year"]]]
         if year not in YEARS:
@@ -361,7 +362,7 @@ def load_isd_data(wb):
     data = {}
 
     for row in ws.iter_rows(min_row=2, values_only=True):
-        if row[idx["Period"]] != "Full Year":
+        if row[idx["Period"]] != PERIOD:
             continue
         year = row[idx["School Year"]]
         if year not in YEARS:
@@ -587,12 +588,14 @@ def style_projection_sheet(ws, mode):
 
 
 def main():
-    global OUTPUT_FILE, REFERENCE_FILE, REGION_FILE, YEARS, YEAR_HEADER_COLORS, YEAR_BODY_COLORS
+    global OUTPUT_FILE, REFERENCE_FILE, REGION_FILE, YEARS, YEAR_HEADER_COLORS, YEAR_BODY_COLORS, PERIOD
     parser = argparse.ArgumentParser(description="Add normalized raw and suppression-approximated projection sheets.")
     parser.add_argument("--workbook", type=Path, default=OUTPUT_FILE)
     parser.add_argument("--roster", type=Path, default=REFERENCE_FILE, help="CSV with entity_level, region, district_code, and district_name columns.")
     parser.add_argument("--regions", type=Path, default=REGION_FILE)
+    parser.add_argument("--period", default="Full Year", choices=["Full Year", "Q1", "Q2", "Q3", "Q4"], help="Reporting period to project (default: School Year Totals).")
     args = parser.parse_args()
+    PERIOD = args.period
     OUTPUT_FILE = args.workbook.resolve()
     REFERENCE_FILE = args.roster.resolve()
     REGION_FILE = args.regions.resolve()
@@ -600,9 +603,11 @@ def main():
     district_ws = wb["District_All"]
     district_headers = [cell.value for cell in district_ws[1]]
     year_col = district_headers.index("School Year")
-    YEARS = sorted({str(row[year_col]) for row in district_ws.iter_rows(min_row=2, values_only=True) if row[year_col]})
+    period_col = district_headers.index("Period")
+    # Only years that actually have rows for this period (a mid-year file adds quarter rows but no school-year totals).
+    YEARS = sorted({str(row[year_col]) for row in district_ws.iter_rows(min_row=2, values_only=True) if row[year_col] and row[period_col] == PERIOD})
     if not YEARS:
-        raise ValueError("No school years were found in District_All")
+        raise ValueError(f"No school years were found in District_All for period {PERIOD}")
     while len(YEAR_HEADER_COLORS) < len(YEARS):
         YEAR_HEADER_COLORS.extend(YEAR_HEADER_COLORS)
         YEAR_BODY_COLORS.extend(YEAR_BODY_COLORS)

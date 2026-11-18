@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 from copy import deepcopy
 from pathlib import Path
@@ -135,6 +136,17 @@ def load_boundary_ids(filename):
 
 
 DISTRICT_BOUNDARY_PROPS = load_boundary_ids("district-boundaries.js")
+
+
+def load_entity_types(path=ROOT / "data" / "entity-types.csv"):
+    """LEA, PSA, ISD or State for each district code (from CEPI's Educational Entity Master)."""
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return {row["district_code"].strip().zfill(5): row["entity_type"].strip() for row in csv.DictReader(handle) if row["entity_type"].strip()}
+
+
+ENTITY_TYPES = load_entity_types()
 ISD_BOUNDARY_PROPS = load_boundary_ids("isd-boundaries.js")
 REGION_BOUNDARY_PROPS = load_boundary_ids("region-boundaries.js")
 COUNTY_BOUNDARY_PROPS = load_boundary_ids("county-boundaries.js")
@@ -314,7 +326,7 @@ def build_sources(sheet_name, suppression_sheet_name=None):
             sources["district"]["unmatched"].append({"code": district_id, "name": row["districtName"]})
         sources["district"]["items"].setdefault(
             district_id,
-            make_item(district_id, "District data", "District", row["districtName"], "District", years, isdCode=row["isdCode"], isdName=row["isdName"], region=row["region"]),
+            make_item(district_id, "District data", "District", row["districtName"], "District", years, isdCode=row["isdCode"], isdName=row["isdName"], region=row["region"], entityType=ENTITY_TYPES.get(district_id, "Other")),
         )
         sources["district"]["items"][district_id]["districtCount"] = 1
 
@@ -417,6 +429,7 @@ def main():
     parser.add_argument("--workbook", type=Path, default=WORKBOOK)
     parser.add_argument("--output", type=Path, help="Optional legacy map-data.js (full format) for debugging.")
     parser.add_argument("--json-output", type=Path, default=ROOT / "site" / "data" / "map-data.json", help="Compact JSON loaded by the map page.")
+    parser.add_argument("--period", default="School Year Totals", help='Reporting period label stored in the file, e.g. "School Year Totals" or "Q1".')
     args = parser.parse_args()
     WORKBOOK = args.workbook.resolve()
     OUTPUT = args.output.resolve() if args.output else None
@@ -436,6 +449,7 @@ def main():
         "sourceWorkbook": WORKBOOK.name,
         "sheets": {key: config["sheet"] for key, config in DATASETS.items()},
         "years": years,
+        "period": args.period,
         "suppressionNote": "Approximated_Data uses reconciled suppressed-value estimates from ISD totals where available.",
     }
     payload = {"datasets": datasets, "defaultDataset": "approximated", "metrics": metrics, "metadata": metadata}

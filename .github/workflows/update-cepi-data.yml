@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: cepi-data-update
@@ -40,7 +41,7 @@ jobs:
         id: changes
         shell: bash
         run: |
-          if git diff --quiet -- data/sources.json reports site/data; then
+          if [ -z "$(git status --porcelain -- data/sources.json reports site/data)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -64,3 +65,9 @@ jobs:
       - name: Record no-change result
         if: steps.changes.outputs.changed != 'true'
         run: echo "No CEPI source or generated map-data changes were detected."
+
+      - name: Republish the site with this check's time
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: gh workflow run deploy-pages.yml --ref main -f refreshed="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
