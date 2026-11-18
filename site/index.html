@@ -85,6 +85,13 @@
     .detail-table.approximated-table th { background: #72dd44; color: #17202a; }
     .detail-table tr:nth-child(even) td { background: #f6f8fa; }
     .data-through { margin-top: 6px; font-size: 13px; font-weight: 700; color: #0f5f68; }
+    .new-data-banner { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1100; display: flex; align-items: center; gap: 10px; max-width: min(640px, calc(100% - 260px)); padding: 8px 10px 8px 14px; border: 1px solid #f0d58a; border-radius: 8px; background: #fff7e0; color: #4d3f0f; font-size: 13px; box-shadow: 0 3px 12px rgba(0,0,0,.15); }
+    .new-data-banner[hidden] { display: none; }
+    .new-data-banner button { white-space: nowrap; flex-shrink: 0; width: auto; min-height: 0; padding: 4px 10px; border-radius: 5px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .new-data-banner .banner-view { border: 1px solid #0f5f68; background: #0f5f68; color: #fff; }
+    .new-data-banner .banner-close { border: 0; background: transparent; color: #4d3f0f; font-size: 17px; line-height: 1; padding: 2px 6px; }
+    .period-note { margin-top: 8px; padding: 6px 9px; border-radius: 6px; background: #fff7e0; border: 1px solid #f0d58a; font-size: 12px; color: #5a4a14; }
+    .period-note[hidden] { display: none; }
     .data-updated { margin-top: 2px; font-size: 12px; font-weight: 400; color: #0f5f68; }
     .tip-wrap { position: relative; }
     .tip { display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 1200; width: min(330px, 100%); padding: 9px 11px; border-radius: 6px; background: #17202a; color: #fff; font-size: 12px; line-height: 1.4; font-weight: 400; text-transform: none; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
@@ -131,11 +138,15 @@
       <p>School-year data uses CEPI <em>Use of seclusion and restraint data files</em> [Data set] and CEPI district-code geography assignments.</p>
       <p class="data-through" id="data-through"></p>
       <p class="data-updated" id="data-updated"></p>
-      <label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select>
       <div class="controls">
-        <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
+        <div><label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select></div>
         <div><label for="year">School Year</label><select id="year"></select></div>
       </div>
+      <div class="controls">
+        <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
+        <div><label for="period">Reporting Period</label><select id="period"><option value="q1">Q1</option><option value="q2">Q2</option><option value="q3">Q3</option><option value="q4">Q4</option><option value="sy" selected>School Year Totals</option></select></div>
+      </div>
+      <p class="period-note" id="period-note" hidden></p>
       <div id="points-wrap" class="tip-wrap"><label class="toggle-row" for="show-points"><input type="checkbox" id="show-points" checked aria-describedby="points-tip"> Show charter academies, ISD programs and state districts</label><span class="tip" id="points-tip" role="tooltip">Circles = charter academies (PSAs). Squares = ISD programs. Diamonds = state districts. These have no district boundary, so each is placed at its office address, or near its host district or ISD when no address is on file. Zoom in to separate crowded markers.</span></div>
       <div id="scope-wrap"><label for="scope">Data Scope</label><select id="scope"><option value="combined">Combined entities</option><option value="entity">ISD entity only</option></select></div>
       <label for="metric">Metric</label><select id="metric"></select>
@@ -155,7 +166,7 @@
       <button class="app-data-toggle" id="app-data-toggle" type="button" aria-expanded="false" aria-controls="app-data-panel">App Data &#9656;</button>
     </aside>
     <div class="app-data-panel" id="app-data-panel" role="dialog" aria-label="App data" hidden><h3>App Data</h3><dl><dt>Last Updated:</dt><dd id="app-last-updated">-</dd><dt>Last Refreshed:</dt><dd id="app-last-refreshed">-</dd><dt>Last Import:</dt><dd id="app-last-import">-</dd></dl></div>
-      <main><div id="map"></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
+      <main><div id="map"></div><div class="new-data-banner" id="new-data-banner" role="status" hidden><span id="new-data-text"></span><button class="banner-view" id="new-data-view" type="button">View it</button><button class="banner-close" id="new-data-close" type="button" aria-label="Dismiss">&times;</button></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
   </div>
   <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Show or hide the detail table" aria-label="Show or hide the detail table">&#9650;</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button><div class="column-menu"><button class="column-menu-button" id="column-menu-button" type="button" title="Choose table columns" aria-label="Choose table columns" aria-haspopup="true" aria-expanded="false">&#8942;</button><div class="column-list" id="column-list" role="menu" hidden></div></div></div><div class="drawer-content" id="drawer-content"></div></div>
   <div class="info-overlay" id="info-overlay" aria-hidden="true"><div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="info-dialog-header"><div class="info-dialog-title"><h2 id="info-title">Information</h2><p id="info-subtitle"></p></div><button class="info-close" id="info-close" type="button" aria-label="Close information">×</button></div><div class="info-dialog-body" id="info-body"></div></div></div>
@@ -191,12 +202,17 @@
     const dataPayload = expandMapData(await dataResponse.json());
     const ENTITY_POINTS = pointsResponse && pointsResponse.ok ? (await pointsResponse.json()).points || {} : {};
     const APP_INFO = appInfoResponse && appInfoResponse.ok ? await appInfoResponse.json().catch(() => ({})) : {};
-    const MAP_DATASETS = dataPayload.datasets;
+    // Each reporting period has its own data file. School Year Totals (map-data.json) loads first;
+    // a quarter file (map-data-q1.json ...) is loaded the first time someone picks that quarter.
+    // Nothing is added up across quarters: every period shows CEPI's own numbers for that period.
+    const PERIOD_LABELS = { q1: 'Q1', q2: 'Q2', q3: 'Q3', q4: 'Q4', sy: 'School Year Totals' };
+    const PERIOD_DATA = { sy: dataPayload };
+    const SCHOOL_YEAR_METADATA = dataPayload.metadata;
+    let MAP_DATASETS = dataPayload.datasets;
     const DEFAULT_DATASET = dataPayload.defaultDataset;
-    const MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources;
     const METRICS = dataPayload.metrics;
-    const MAP_METADATA = dataPayload.metadata;
-    const datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body'), pointsWrap = document.getElementById('points-wrap'), showPoints = document.getElementById('show-points'), copyLinkButton = document.getElementById('copy-link'), shareStatus = document.getElementById('share-status'), loadingEl = document.getElementById('loading');
+    let MAP_METADATA = dataPayload.metadata;
+    const periodSelect = document.getElementById('period'), datasetSelect = document.getElementById('dataset'), viewSelect = document.getElementById('view'), yearSelect = document.getElementById('year'), scopeSelect = document.getElementById('scope'), scopeWrap = document.getElementById('scope-wrap'), metricSelect = document.getElementById('metric'), exportButton = document.getElementById('export-png'), exportTableButton = document.getElementById('export-table'), search = document.getElementById('search'), areaList = document.getElementById('area-list'), entityPanel = document.getElementById('entity-panel'), drawer = document.getElementById('bottom-drawer'), drawerToggle = document.getElementById('drawer-toggle'), legend = document.getElementById('legend'), legendToggle = document.getElementById('legend-toggle'), drawerTitle = document.getElementById('drawer-title'), drawerSubtitle = document.getElementById('drawer-subtitle'), drawerContent = document.getElementById('drawer-content'), infoButton = document.getElementById('info-button'), infoList = document.getElementById('info-list'), infoOverlay = document.getElementById('info-overlay'), infoClose = document.getElementById('info-close'), infoTitle = document.getElementById('info-title'), infoSubtitle = document.getElementById('info-subtitle'), infoBody = document.getElementById('info-body'), pointsWrap = document.getElementById('points-wrap'), showPoints = document.getElementById('show-points'), copyLinkButton = document.getElementById('copy-link'), shareStatus = document.getElementById('share-status'), loadingEl = document.getElementById('loading');
     const fmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
     const ratioFmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
     const HISTORIC_AVERAGE_YEAR = '__historic_average__';
@@ -250,7 +266,9 @@
     function refreshScope() { const visible = activeMode() === 'isd' || activeMode() === 'region'; scopeWrap.style.display = visible ? 'block' : 'none'; if (!visible) scopeSelect.value = 'combined'; }
     function selectedYear() { return yearSelect.value; }
     function isHistoricAverage() { return selectedYear() === HISTORIC_AVERAGE_YEAR; }
-    function selectedYearLabel() { return isHistoricAverage() ? HISTORIC_AVERAGE_LABEL : selectedYear(); }
+    function periodSuffix() { return periodSelect.value === 'sy' ? '' : ` ${PERIOD_LABELS[periodSelect.value]}`; }
+    function provisionalInfo(year) { return (APP_INFO.provisionalYears || {})[year] || null; }
+    function selectedYearLabel() { return (isHistoricAverage() ? HISTORIC_AVERAGE_LABEL : selectedYear()) + periodSuffix(); }
     function activeItem(feature) { return activeSource().items[feature.properties.id]; }
     function formatValue(key, value) { return key === 'event_student_ratio' ? ratioFmt.format(value || 0) : fmt.format(value || 0); }
     function average(values) { const usable = values.filter(value => Number.isFinite(value)); return usable.length ? usable.reduce((sum, value) => sum + value, 0) / usable.length : 0; }
@@ -272,11 +290,12 @@
     // Speed: Historic Average and colour-scale values are computed once per selection and reused,
     // instead of being recalculated for every shape on every redraw.
     const averageCache = new Map(), scaleCache = new Map();
-    function selectionKey() { return `${datasetSelect.value}|${activeSourceKey()}|${selectedYear()}`; }
+    function selectionKey() { return `${periodSelect.value}|${datasetSelect.value}|${activeSourceKey()}|${selectedYear()}`; }
     function dataForSelection(years, dataByYear) {
       if (!isHistoricAverage()) return dataByYear[selectedYear()];
-      let perSelection = averageCache.get(datasetSelect.value);
-      if (!perSelection) { if (averageCache.size > 4) averageCache.clear(); perSelection = new WeakMap(); averageCache.set(datasetSelect.value, perSelection); }
+      const averageKey = `${periodSelect.value}|${datasetSelect.value}`;
+      let perSelection = averageCache.get(averageKey);
+      if (!perSelection) { if (averageCache.size > 12) averageCache.clear(); perSelection = new WeakMap(); averageCache.set(averageKey, perSelection); }
       let record = perSelection.get(dataByYear);
       if (!record) { record = averageYearRecords(years.map(year => dataByYear[year.year]).filter(Boolean)); perSelection.set(dataByYear, record); }
       return record;
@@ -352,7 +371,7 @@
     map.on('zoomend moveend resize viewreset', () => scheduleHatches(40));
     map.on('zoomend', () => { if (pointLayer) pointLayer.eachLayer(layer => layer.setRadius(pointRadius())); });
 
-    function refreshYears() { const current = yearSelect.value; yearSelect.innerHTML = ''; activeSource().years.forEach(item => { const option = document.createElement('option'); option.value = item.year; option.textContent = item.year; yearSelect.appendChild(option); }); const historic = document.createElement('option'); historic.value = HISTORIC_AVERAGE_YEAR; historic.textContent = HISTORIC_AVERAGE_LABEL; yearSelect.appendChild(historic); yearSelect.value = current === HISTORIC_AVERAGE_YEAR || activeSource().years.some(y => y.year === current) ? current : activeSource().years[activeSource().years.length - 1].year; }
+    function refreshYears() { const current = yearSelect.value; yearSelect.innerHTML = ''; activeSource().years.forEach(item => { const option = document.createElement('option'); option.value = item.year; option.textContent = provisionalInfo(item.year) ? `${item.year} (prov.)` : item.year; yearSelect.appendChild(option); }); const historic = document.createElement('option'); historic.value = HISTORIC_AVERAGE_YEAR; historic.textContent = HISTORIC_AVERAGE_LABEL; yearSelect.appendChild(historic); yearSelect.value = current === HISTORIC_AVERAGE_YEAR || activeSource().years.some(y => y.year === current) ? current : activeSource().years[activeSource().years.length - 1].year; }
     function refreshSearch() { const l = labels[activeMode()]; document.getElementById('search-label').textContent = l.find; search.placeholder = l.ph; search.value = ''; areaList.innerHTML = ''; Object.values(activeSource().items).sort((a, b) => a.name.localeCompare(b.name)).forEach(item => { const option = document.createElement('option'); option.value = item.name; areaList.appendChild(option); }); }
     function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">LEA rows: ${fmt.format(item.districtCount)}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>${feature.geometry.type === 'Point' ? `<div class="popup-line"><em>${POINT_KINDS[feature.properties.kind] || 'Entity'} - ${feature.properties.exact ? 'marker shows office location (no district boundary)' : 'marker location is approximate (no district boundary)'}</em></div>` : ''}`; }
     function sourceTotalsForSelection(source = activeSource()) { return dataForSelection(source.years, source.stateTotals); }
@@ -457,6 +476,34 @@
     function updateStats() { const metricKey = metricSelect.value, source = activeSource(), items = Object.values(source.items), totals = sourceTotalsForSelection(source); document.getElementById('state-total').textContent = formatValue(metricKey, totals.metrics[metricKey] || 0); document.getElementById('area-count').textContent = fmt.format(items.length); document.getElementById('area-label').textContent = labels[activeMode()].represented; document.getElementById('district-total').textContent = fmt.format(items.reduce((sum, item) => sum + item.districtCount, 0)); document.getElementById('suppressed-total').textContent = fmt.format(selectedCellCount(totals, metricKey)); document.getElementById('suppressed-total-label').textContent = selectedCellCountLabel(); document.getElementById('state-total-label').textContent = datasetSelect.value === 'raw' ? 'statewide reported total for selected metric' : 'statewide estimated total for selected metric'; renderSummary(); renderLegend(); }
     function loadLayer() { if (geoLayer) map.removeLayer(geoLayer); selectedLayer = null; geoLayer = L.geoJSON(boundaries[activeMode()], { style: styleFeature, onEachFeature, smoothFactor: 1.4 }).addTo(map); refreshPoints(); map.fitBounds(geoLayer.getBounds(), { padding: [14, 14], maxZoom: 7 }); scheduleHatches(80); }
     function redraw(resetPanel = true) { updateStats(); if (geoLayer) geoLayer.setStyle(styleFeature); if (pointLayer) pointLayer.setStyle(stylePoint); scheduleHatches(0); if (resetPanel) { selectedLayer = null; renderLegend(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer(); map.closePopup(); } else if (selectedLayer) { const item = activeItem(selectedLayer.feature); renderPanel(item); renderDrawer(item); renderLegend(); } else { renderStateDrawer(); } updateHash(); }
+    async function loadPeriodData(period) {
+      if (PERIOD_DATA[period]) return PERIOD_DATA[period];
+      loadingEl.innerHTML = '<span class="spinner"></span>Loading quarterly data&hellip;'; loadingEl.classList.remove('hidden');
+      try {
+        const response = await fetch(`data/map-data-${period}.json`, { cache: 'no-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        PERIOD_DATA[period] = expandMapData(await response.json());
+        return PERIOD_DATA[period];
+      } finally { loadingEl.classList.add('hidden'); }
+    }
+    function usePeriodData(payload) { MAP_DATASETS = payload.datasets; MAP_METADATA = payload.metadata; averageCache.clear(); scaleCache.clear(); }
+    function updatePeriodNote() {
+      const note = document.getElementById('period-note'), info = provisionalInfo(selectedYear());
+      if (periodSelect.value !== 'sy' && info) { note.textContent = `Provisional: CEPI has released ${info.quarters.join(', ')} for ${selectedYear()} so far. These numbers can change when the final school-year file is published.`; note.hidden = false; }
+      else if (periodSelect.value !== 'sy') { note.textContent = `Quarterly view: CEPI's ${PERIOD_LABELS[periodSelect.value]} numbers. Quarters are not added together; student counts overlap between quarters.`; note.hidden = false; }
+      else note.hidden = true;
+    }
+    async function switchPeriod(preferredYear) {
+      const wanted = preferredYear || selectedYear();
+      let payload;
+      try { payload = await loadPeriodData(periodSelect.value); }
+      catch (error) { console.error(error); periodSelect.value = 'sy'; payload = PERIOD_DATA.sy; window.alert('That quarterly data could not be loaded. Showing School Year Totals instead.'); }
+      usePeriodData(payload);
+      if (selectedLayer && !activeItem(selectedLayer.feature)) clearSelection();
+      refreshYears();
+      if (Array.from(yearSelect.options).some(option => option.value === wanted)) yearSelect.value = wanted;
+      refreshSearch(); updatePeriodNote(); updateBanner(); redraw(false);
+    }
     function switchView() { refreshScope(); refreshYears(); refreshSearch(); loadLayer(); redraw(true); }
     function htmlText(value) { return String(value === undefined || value === null ? '' : value).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/<[^>]+>/g, ''); }
     function displayText(data, key) { return htmlText(displayValue(data, key)); }
@@ -694,6 +741,7 @@
         ['EndSaR Interactive Data Map export'],
         ['Dataset', activeDataset().label],
         ['Map View', activeSource().label],
+        ['Reporting Period', PERIOD_LABELS[periodSelect.value]],
         ['Selected School Year', selectedYearLabel()],
         ['Selected Metric', METRICS.find(m => m.key === metricSelect.value).label],
         ['Drawer', drawerTitle.textContent],
@@ -710,14 +758,15 @@
     function updateHash() {
       if (!hashReady) return;
       const params = new URLSearchParams({ data: datasetSelect.value, view: viewSelect.value, year: selectedYear(), metric: metricSelect.value });
+      if (periodSelect.value !== 'sy') params.set('period', periodSelect.value);
       if (activeMode() === 'isd' || activeMode() === 'region') params.set('scope', scopeSelect.value);
       if (selectedLayer) params.set('area', selectedLayer.feature.properties.id);
       history.replaceState(null, '', `#${params.toString()}`);
     }
     function setIfValid(select, value) { if (value && Array.from(select.options).some(option => option.value === value)) { select.value = value; return true; } return false; }
     function readHash() { return new URLSearchParams(location.hash.replace(/^#/, '')); }
-    const lastYear = MAP_METADATA.years[MAP_METADATA.years.length - 1];
-    document.getElementById('data-through').textContent = `Data through the ${lastYear} school year (${MAP_METADATA.years.length} school years)`;
+    const lastYear = SCHOOL_YEAR_METADATA.years[SCHOOL_YEAR_METADATA.years.length - 1];
+    document.getElementById('data-through').textContent = `Data through the ${lastYear} school year (${SCHOOL_YEAR_METADATA.years.length} school years)`;
     // Dates come from data/app-info.json, written by the update pipeline (see README).
     function formatAppDate(value, withTime = false) {
       if (!value) return 'Not recorded';
@@ -752,9 +801,24 @@
     });
     document.addEventListener('keydown', event => { if (event.key === 'Escape') { setAppDataOpen(false); setColumnMenuOpen(false); } });
     const initial = readHash();
+    if (setIfValid(periodSelect, initial.get('period')) && periodSelect.value !== 'sy') { try { usePeriodData(await loadPeriodData(periodSelect.value)); } catch (error) { periodSelect.value = 'sy'; } }
     setIfValid(datasetSelect, initial.get('data')); setIfValid(viewSelect, initial.get('view')); setIfValid(scopeSelect, initial.get('scope')); setIfValid(metricSelect, initial.get('metric'));
     refreshScope(); refreshYears(); setIfValid(yearSelect, initial.get('year')); refreshSearch(); loadLayer(); updateStats(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer();
     hashReady = true;
+    // Banner: CEPI has released quarters for a school year that has no final totals yet.
+    const newestProvisional = Object.keys(APP_INFO.provisionalYears || {}).sort().pop();
+    const bannerQuarter = newestProvisional ? (APP_INFO.provisionalYears[newestProvisional].quarters || []).slice(-1)[0] : null;
+    const bannerKey = newestProvisional && bannerQuarter ? `${newestProvisional}-${bannerQuarter}` : null;
+    function bannerDismissed() { try { return localStorage.getItem('endsar-banner-dismissed') === bannerKey; } catch (error) { return false; } }
+    function updateBanner() {
+      const banner = document.getElementById('new-data-banner');
+      const viewing = periodSelect.value === (bannerQuarter || '').toLowerCase() && selectedYear() === newestProvisional;
+      banner.hidden = !bannerKey || bannerDismissed() || viewing;
+      if (!banner.hidden) document.getElementById('new-data-text').innerHTML = `<strong>New:</strong> ${newestProvisional} ${bannerQuarter} data is available (provisional &ndash; school year in progress).`;
+    }
+    document.getElementById('new-data-view').addEventListener('click', () => { periodSelect.value = bannerQuarter.toLowerCase(); switchPeriod(newestProvisional); });
+    document.getElementById('new-data-close').addEventListener('click', () => { try { localStorage.setItem('endsar-banner-dismissed', bannerKey); } catch (error) { /* banner just reappears next visit */ } document.getElementById('new-data-banner').hidden = true; });
+    updatePeriodNote(); updateBanner();
     const initialArea = initial.get('area') && findLayerById(initial.get('area'));
     if (initialArea) { zoomToLayer(initialArea); highlightLayer(initialArea); } else { renderLegend(); scheduleHatches(80); updateHash(); }
     loadingEl.classList.add('hidden');
@@ -766,7 +830,8 @@
     datasetSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); loadLayer(); redraw(true); });
     viewSelect.addEventListener('change', switchView);
     scopeSelect.addEventListener('change', () => { refreshYears(); refreshSearch(); redraw(true); });
-    yearSelect.addEventListener('change', () => redraw(false));
+    yearSelect.addEventListener('change', () => { updatePeriodNote(); updateBanner(); redraw(false); });
+    periodSelect.addEventListener('change', () => switchPeriod());
     metricSelect.addEventListener('change', () => redraw(false));
     exportButton.addEventListener('click', exportCurrentSelection);
     exportTableButton.addEventListener('click', exportDrawerTable);

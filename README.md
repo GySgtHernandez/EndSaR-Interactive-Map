@@ -21,7 +21,15 @@ The map runs entirely in the visitor's browser (no server), so GitHub Pages host
 3. It opens a **pull request** with a plain summary (statewide totals for every year). Nothing on the public site changes yet.
 4. When you merge the pull request, the site republishes automatically.
 
-Mid-year (quarterly) files are recorded for review but are never published as full-year data.
+### Quarterly data and how CEPI releases are handled
+
+CEPI posts one file per school year and replaces it as the year fills in: a **Q1** file (Jan/Feb), then a **Q2** file that also contains Q1 (May/June), then the **final** file with Q1-Q4 and School Year Totals (Aug/Sept).
+
+- Each school year has exactly one current file in `data/sources.json`. A later release for the same school year **replaces** the earlier one (the old entry stays, marked `superseded`, with the date and the file that replaced it). A file for a school year not seen before is **added**.
+- If CEPI still lists an older release, it is ignored. A file whose school year or release cannot be read from its name is flagged in the pull request for a person to check, and is not added.
+- The map's **Reporting Period** menu shows CEPI's own numbers for each period: `site/data/map-data.json` (School Year Totals) and `map-data-q1.json` ... `map-data-q4.json`. Nothing is added up across quarters; student counts overlap between quarters.
+- A school year that only has mid-year data appears under Q1-Q4 as "(prov.)", never under School Year Totals, and the map shows a "New data" banner.
+- 2017-2018 has no quarterly sheets, so the quarter views start at 2018-2019.
 
 Note: GitHub pauses scheduled jobs in repositories with no activity for 60 days. If the Monday check ever stops, open the Actions tab and re-enable it, or use **Run workflow**.
 

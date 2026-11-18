@@ -1,7 +1,7 @@
 {
   "catalogUrl": "https://mischooldata.org/districtschool-data-files/",
   "policy": {
-    "publishPeriods": ["full_year"],
+    "publishPeriods": ["q1", "q2", "q3", "full_year"],
     "detectProvisional": true
   },
   "sources": [

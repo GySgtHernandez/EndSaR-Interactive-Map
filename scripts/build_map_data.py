@@ -417,6 +417,7 @@ def main():
     parser.add_argument("--workbook", type=Path, default=WORKBOOK)
     parser.add_argument("--output", type=Path, help="Optional legacy map-data.js (full format) for debugging.")
     parser.add_argument("--json-output", type=Path, default=ROOT / "site" / "data" / "map-data.json", help="Compact JSON loaded by the map page.")
+    parser.add_argument("--period", default="School Year Totals", help='Reporting period label stored in the file, e.g. "School Year Totals" or "Q1".')
     args = parser.parse_args()
     WORKBOOK = args.workbook.resolve()
     OUTPUT = args.output.resolve() if args.output else None
@@ -436,6 +437,7 @@ def main():
         "sourceWorkbook": WORKBOOK.name,
         "sheets": {key: config["sheet"] for key, config in DATASETS.items()},
         "years": years,
+        "period": args.period,
         "suppressionNote": "Approximated_Data uses reconciled suppressed-value estimates from ISD totals where available.",
     }
     payload = {"datasets": datasets, "defaultDataset": "approximated", "metrics": metrics, "metadata": metadata}

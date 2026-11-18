@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 from collections import OrderedDict
@@ -305,7 +306,12 @@ def main():
     parser = argparse.ArgumentParser(description="Normalize CEPI seclusion and restraint workbooks.")
     parser.add_argument("--source-dir", type=Path, default=BASE_DIR)
     parser.add_argument("--output", type=Path, default=OUTPUT_FILE)
+    parser.add_argument("--source-report", type=Path, help="reports/source-report.json; files whose period is not full_year are treated as mid-year (quarter sheets only).")
     args = parser.parse_args()
+    provisional = set()
+    if args.source_report and args.source_report.exists():
+        report = json.loads(args.source_report.read_text(encoding="utf-8"))
+        provisional = {item["filename"] for item in report.get("downloaded", []) if item.get("period") != "full_year"}
     BASE_DIR = args.source_dir.resolve()
     OUTPUT_FILE = args.output.resolve()
     OUTPUT_DIR = OUTPUT_FILE.parent
@@ -317,9 +323,13 @@ def main():
     field_definition_rows = []
     seen_definitions = OrderedDict()
 
+    years_seen = {}
     for path in source_files():
         source_wb = load_workbook(path, read_only=True, data_only=True)
         school_year = detect_school_year(source_wb, path.name)
+        if school_year in years_seen:
+            raise ValueError(f"Two source files cover {school_year}: {years_seen[school_year]} and {path.name}. Each school year must have one current file.")
+        years_seen[school_year] = path.name
         source_index.append([path.name, school_year, len(source_wb.sheetnames), ", ".join(source_wb.sheetnames)])
 
         for definition in extract_field_definitions(source_wb, path.name, school_year):
@@ -331,6 +341,8 @@ def main():
             if not level:
                 continue
             period = detect_period(ws.title)
+            if period == "Full Year" and path.name in provisional:
+                continue  # a mid-year release has no final school-year totals
             rows, headers = extract_totals_sheet(path, ws, school_year, level, period)
             if not rows:
                 continue

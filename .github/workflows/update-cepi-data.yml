@@ -41,7 +41,7 @@ jobs:
         id: changes
         shell: bash
         run: |
-          if git diff --quiet -- data/sources.json reports site/data; then
+          if [ -z "$(git status --porcelain -- data/sources.json reports site/data)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"

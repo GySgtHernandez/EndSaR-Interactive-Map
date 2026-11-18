@@ -68,14 +68,15 @@ def main():
     parser.add_argument("--report", type=Path, default=Path("build/validation-report.json"))
     parser.add_argument("--allow-change", action="store_true")
     parser.add_argument("--write-summary", type=Path)
+    parser.add_argument("--min-years", type=int, default=8, help="Minimum school years expected (quarter files may have fewer).")
     args = parser.parse_args()
 
     candidate = summarize(args.candidate)
     errors = []
     if candidate["years"] != sorted(candidate["years"]):
         errors.append("School years are not sorted")
-    if len(candidate["years"]) < 8:
-        errors.append("Candidate contains fewer than eight school years")
+    if len(candidate["years"]) < args.min_years:
+        errors.append(f"Candidate contains fewer than {args.min_years} school years")
     for dataset_key in ("raw", "approximated"):
         if dataset_key not in candidate["datasets"]:
             errors.append(f"Missing dataset: {dataset_key}")
