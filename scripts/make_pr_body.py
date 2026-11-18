@@ -43,6 +43,9 @@ if review_sources:
         lines.append(f"- `{item.get('schoolYear') or 'unknown year'}` / `{item.get('period')}`: {item['url']}")
     lines.append("")
 map_data = expand(json.loads(Path("site/data/map-data.json").read_text(encoding="utf-8")))
+untyped = [f"{i['id']} {i['name']}" for i in map_data["datasets"]["raw"]["sources"]["district"]["items"].values() if i.get("entityType", "Other") == "Other"]
+if untyped:
+    lines.extend(["### Entities without a type", "", "Add these to `data/entity-types.csv` (LEA, PSA, ISD or State) so the map counts them correctly:", ""] + [f"- {name}" for name in untyped] + [""])
 totals = map_data["datasets"]["approximated"]["sources"]["district"]["stateTotals"]
 lines.extend(["### Statewide totals in the new map data (approximated data)", "", "| School year | Students reported | Seclusions | Restraints | Total incidents |", "|---|---:|---:|---:|---:|"])
 for year in map_data["metadata"]["years"]:

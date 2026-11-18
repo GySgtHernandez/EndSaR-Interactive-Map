@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 from copy import deepcopy
 from pathlib import Path
@@ -135,6 +136,17 @@ def load_boundary_ids(filename):
 
 
 DISTRICT_BOUNDARY_PROPS = load_boundary_ids("district-boundaries.js")
+
+
+def load_entity_types(path=ROOT / "data" / "entity-types.csv"):
+    """LEA, PSA, ISD or State for each district code (from CEPI's Educational Entity Master)."""
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return {row["district_code"].strip().zfill(5): row["entity_type"].strip() for row in csv.DictReader(handle) if row["entity_type"].strip()}
+
+
+ENTITY_TYPES = load_entity_types()
 ISD_BOUNDARY_PROPS = load_boundary_ids("isd-boundaries.js")
 REGION_BOUNDARY_PROPS = load_boundary_ids("region-boundaries.js")
 COUNTY_BOUNDARY_PROPS = load_boundary_ids("county-boundaries.js")
@@ -314,7 +326,7 @@ def build_sources(sheet_name, suppression_sheet_name=None):
             sources["district"]["unmatched"].append({"code": district_id, "name": row["districtName"]})
         sources["district"]["items"].setdefault(
             district_id,
-            make_item(district_id, "District data", "District", row["districtName"], "District", years, isdCode=row["isdCode"], isdName=row["isdName"], region=row["region"]),
+            make_item(district_id, "District data", "District", row["districtName"], "District", years, isdCode=row["isdCode"], isdName=row["isdName"], region=row["region"], entityType=ENTITY_TYPES.get(district_id, "Other")),
         )
         sources["district"]["items"][district_id]["districtCount"] = 1
 

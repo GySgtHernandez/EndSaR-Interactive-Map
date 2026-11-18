@@ -57,6 +57,7 @@ The 2025-2026 update (November 2026) was checked against the September 2026 Netl
 - `data/sources.json` - approved CEPI source files. `importedOn` records when each file was added; the newest one sets the map's "Updated" date.
 - `site/data/app-info.json` - dates in the App Data panel (Last Updated, Last Refreshed, Last Import). Written by `scripts/write_app_info.py`; the publish step stamps Last Refreshed with the time of the latest weekly CEPI check.
 - `data/district-roster.csv` - district, ISD, region roster used for projections.
+- `data/entity-types.csv` - LEA, PSA, ISD or State for each district code (from CEPI's Educational Entity Master). Used for the entity counts on the map; a new code missing from this file is listed in the weekly pull request.
 - `scripts/run_pipeline.py` - the full rebuild (download > combine > approximate suppressed values > build map data > validate).
 - `tests/` - accuracy tests and the approved baseline.
 
