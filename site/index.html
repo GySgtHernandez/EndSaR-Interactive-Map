@@ -376,29 +376,51 @@
     function popupHtml(feature) { const item = activeItem(feature), metric = METRICS.find(m => m.key === metricSelect.value), data = yearData(item); return `<div class="popup-title">${item.name}</div><div class="popup-line">${selectedYearLabel()} - ${activeSource().label}</div><div class="popup-line">${metric.label}: <strong>${displayValue(data, metric.key)}</strong></div><div class="popup-line">${activeMode() === 'district' ? `Type: ${ENTITY_TYPE_LONG[item.entityType || 'Other']}` : `Entities included: ${fmt.format(entityBreakdown(memberEntities(item)).total)}`}</div><div class="popup-line">${selectedCellCountTitle()}: ${fmt.format(selectedCellCount(data, metric.key))}</div>${feature.geometry.type === 'Point' ? `<div class="popup-line"><em>${POINT_KINDS[feature.properties.kind] || 'Entity'} - ${feature.properties.exact ? 'marker shows office location (no district boundary)' : 'marker location is approximate (no district boundary)'}</em></div>` : ''}`; }
     function sourceTotalsForSelection(source = activeSource()) { return dataForSelection(source.years, source.stateTotals); }
     function renderSummary() { const totals = sourceTotalsForSelection(), s = totals.summary; document.getElementById('summary-body').innerHTML = `<tr><td>Total reported students with disabilities</td><td>${fmt.format(s.swd_total)}</td></tr><tr><td>Total reported students without disabilities</td><td>${fmt.format(s.nonswd_total)}</td></tr><tr><td>Combined reported students</td><td>${fmt.format(s.student_total)}</td></tr><tr><td>Total seclusions</td><td>${fmt.format(s.seclusion_total)}</td></tr><tr><td>Total restraints</td><td>${fmt.format(s.restraint_total)}</td></tr><tr><td>Combined seclusions and restraints</td><td>${fmt.format(s.combined_event_total)}</td></tr><tr><td>Combined Ratio</td><td>${formatValue('event_student_ratio', totals.metrics.event_student_ratio || 0)}</td></tr>`; }
+    // Optional columns (off by default), matching the extra columns in the EndSaR master workbook:
+    // SWD / Non-SWD incidents and ratios, and the row's suppressed (Raw) or approximated (Approximated) cell count.
+    // Calculated from the same values as the rest of the table. In Raw data, * = includes a suppressed (<10) value
+    // and "-" = the ratio cannot be calculated because the student count is suppressed or zero.
+    const OPTIONAL_COLUMN_START = 13;
+    function isSuppressedValue(data, key) { const shown = data.displayMetrics && data.displayMetrics[key]; return typeof shown === 'string' && shown.trim().startsWith('<'); }
+    function derivedCells(data, datasetKey = datasetSelect.value) {
+      if (!data || (data.displayMetrics && data.displayMetrics.swd_students === '-')) return ['-', '-', '-', '-', '-'];
+      const m = data.metrics, raw = datasetKey === 'raw';
+      const group = prefix => {
+        const parts = [`${prefix}_seclusions`, `${prefix}_restraints`], incidents = parts.reduce((sum, key) => sum + (m[key] || 0), 0);
+        const partial = raw && parts.some(key => isSuppressedValue(data, key)), students = m[`${prefix}_students`] || 0;
+        const incidentText = `${fmt.format(incidents)}${partial ? '*' : ''}`;
+        const ratioText = (raw && isSuppressedValue(data, `${prefix}_students`)) || !students ? '-' : `${ratioFmt.format(incidents / students)}${partial ? '*' : ''}`;
+        return [incidentText, ratioText];
+      };
+      const [swdIncidents, swdRatio] = group('swd'), [nonIncidents, nonRatio] = group('nonswd');
+      const cellKeys = ['swd_students', 'swd_seclusions', 'swd_restraints', 'nonswd_students', 'nonswd_seclusions', 'nonswd_restraints'];
+      const cells = cellKeys.reduce((sum, key) => sum + (((raw ? data.suppressedCells : data.approximatedCells) || {})[key] || 0), 0);
+      return [swdIncidents, nonIncidents, swdRatio, nonRatio, fmt.format(cells)];
+    }
+    function derivedTds(data) { return derivedCells(data).map(text => `<td>${text}</td>`).join(''); }
     function detailRowsFor(item, scopeLabel) {
       return activeSource().years.map(y => {
         const data = item.years[y.year], m = data.metrics, s = data.summary;
-        return `<tr><td>${y.year}</td><td>${scopeLabel}</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
+        return `<tr><td>${y.year}</td><td>${scopeLabel}</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td>${derivedTds(data)}</tr>`;
       }).join('');
     }
     function stateDetailRowsFor(source = activeSource()) {
       return source.years.map(y => {
         const data = source.stateTotals[y.year];
-        return `<tr><td>${y.year}</td><td>State Total</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
+        return `<tr><td>${y.year}</td><td>State Total</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td>${derivedTds(data)}</tr>`;
       }).join('');
     }
-    const DETAIL_COLUMNS = ['Year', 'Scope', 'Students Reported', 'SWD Students', 'SWD Seclusions', 'SWD Restraints', 'Non-SWD Students', 'Non-SWD Seclusions', 'Non-SWD Restraints', 'Total Seclusions', 'Total Restraints', 'Combined Ratio', 'Total Incidents'];
-    const hiddenColumns = new Set();
+    const DETAIL_COLUMNS = ['Year', 'Scope', 'Students Reported', 'SWD Students', 'SWD Seclusions', 'SWD Restraints', 'Non-SWD Students', 'Non-SWD Seclusions', 'Non-SWD Restraints', 'Total Seclusions', 'Total Restraints', 'Combined Ratio', 'Total Incidents', 'SWD Incidents', 'Non-SWD Incidents', 'SWD Ratio', 'Non-SWD Ratio', 'Suppressed / Approximated Cells'];
+    const hiddenColumns = new Set([13, 14, 15, 16, 17]);
     function columnVisible(index) { return !hiddenColumns.has(index); }
     function applyColumnVisibility() {
       let style = document.getElementById('column-visibility');
       if (!style) { style = document.createElement('style'); style.id = 'column-visibility'; document.head.appendChild(style); }
       style.textContent = Array.from(hiddenColumns).map(i => `.detail-table th:nth-child(${i + 1}), .detail-table td:nth-child(${i + 1}) { display: none; }`).join('\n');
       const button = document.getElementById('column-menu-button');
-      if (button) button.style.borderColor = hiddenColumns.size ? '#0f5f68' : '';
+      if (button) button.style.borderColor = Array.from(hiddenColumns).some(i => i < OPTIONAL_COLUMN_START) || DETAIL_COLUMNS.some((_, i) => i >= OPTIONAL_COLUMN_START && !hiddenColumns.has(i)) ? '#0f5f68' : '';
     }
-    function detailTableHtml(rows, datasetKey = datasetSelect.value) { return `<table class="detail-table ${datasetKey === 'approximated' ? 'approximated-table' : 'raw-table'}"><thead><tr><th>Year</th><th>Scope</th><th>Students Reported</th><th>SWD Students</th><th>SWD Seclusions</th><th>SWD Restraints</th><th>Non-SWD Students</th><th>Non-SWD Seclusions</th><th>Non-SWD Restraints</th><th>Total Seclusions</th><th>Total Restraints</th><th>Combined Ratio</th><th>Total Incidents</th></tr></thead><tbody>${rows}</tbody></table>`; }
+    function detailTableHtml(rows, datasetKey = datasetSelect.value) { return `<table class="detail-table ${datasetKey === 'approximated' ? 'approximated-table' : 'raw-table'}"><thead><tr><th>Year</th><th>Scope</th><th>Students Reported</th><th>SWD Students</th><th>SWD Seclusions</th><th>SWD Restraints</th><th>Non-SWD Students</th><th>Non-SWD Seclusions</th><th>Non-SWD Restraints</th><th>Total Seclusions</th><th>Total Restraints</th><th>Combined Ratio</th><th>Total Incidents</th><th>SWD Incidents</th><th>Non-SWD Incidents</th><th>SWD Ratio</th><th>Non-SWD Ratio</th><th>${datasetKey === 'raw' ? 'Suppressed Cells' : 'Approximated Cells'}</th></tr></thead><tbody>${rows}</tbody></table>`; }
     function renderStateDrawer() {
       drawerTitle.textContent = 'State Detail';
       drawerSubtitle.textContent = `${activeDataset().label} - ${activeSource().label}`;
@@ -619,16 +641,16 @@
       if (line) ctx.fillText(line, x, y);
       return y + lineHeight;
     }
-    function tableRowsForExport(item, scopeLabel, source = activeSource()) {
+    function tableRowsForExport(item, scopeLabel, source = activeSource(), datasetKey = datasetSelect.value) {
       return source.years.map(y => {
         const data = item.years[y.year], m = data.metrics, s = data.summary;
-        return [y.year, scopeLabel, displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events')];
+        return [y.year, scopeLabel, displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events'), ...derivedCells(data, datasetKey)];
       });
     }
-    function stateTableRowsForExport(source = activeSource()) {
+    function stateTableRowsForExport(source = activeSource(), datasetKey = datasetSelect.value) {
       return source.years.map(y => {
         const data = source.stateTotals[y.year];
-        return [y.year, 'State Total', displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events')];
+        return [y.year, 'State Total', displayText(data, 'all_students'), displayText(data, 'swd_students'), displayText(data, 'swd_seclusions'), displayText(data, 'swd_restraints'), displayText(data, 'nonswd_students'), displayText(data, 'nonswd_seclusions'), displayText(data, 'nonswd_restraints'), displayText(data, 'all_seclusions'), displayText(data, 'all_restraints'), displayText(data, 'event_student_ratio'), displayText(data, 'all_events'), ...derivedCells(data, datasetKey)];
       });
     }
     function selectedItemForExport() { return selectedLayer ? activeItem(selectedLayer.feature) : null; }
@@ -636,11 +658,15 @@
     function exportDetailsPng(datasetKey) {
       const dataset = MAP_DATASETS[datasetKey], sources = dataset.sources, source = sources[activeSourceKey()], metric = METRICS.find(m => m.key === metricSelect.value), totals = sourceTotalsForSelection(source), item = selectedItemForDatasetExport(source), headerFill = datasetKey === 'approximated' ? '#72dd44' : '#203a5f', headerText = datasetKey === 'approximated' ? '#17202a' : '#ffffff';
       let tableRows = [];
-      if (item && activeMode() === 'isd') tableRows = tableRowsForExport(sources.isd_entity.items[item.id], 'ISD entity only', sources.isd_entity).concat(tableRowsForExport(sources.isd.items[item.id], 'Combined entities', sources.isd));
-      else if (item && activeMode() === 'region') tableRows = tableRowsForExport(sources.region_entity.items[item.id], 'ISD entities only', sources.region_entity).concat(tableRowsForExport(sources.region.items[item.id], 'Combined entities', sources.region));
-      else if (item) tableRows = tableRowsForExport(item, source.label, source);
-      else tableRows = stateTableRowsForExport(source);
-      const width = 1400, rowHeight = 28, height = Math.max(980, 560 + tableRows.length * rowHeight);
+      if (item && activeMode() === 'isd') tableRows = tableRowsForExport(sources.isd_entity.items[item.id], 'ISD entity only', sources.isd_entity, datasetKey).concat(tableRowsForExport(sources.isd.items[item.id], 'Combined entities', sources.isd, datasetKey));
+      else if (item && activeMode() === 'region') tableRows = tableRowsForExport(sources.region_entity.items[item.id], 'ISD entities only', sources.region_entity, datasetKey).concat(tableRowsForExport(sources.region.items[item.id], 'Combined entities', sources.region, datasetKey));
+      else if (item) tableRows = tableRowsForExport(item, source.label, source, datasetKey);
+      else tableRows = stateTableRowsForExport(source, datasetKey);
+      const keep = (_, idx) => columnVisible(idx);
+      const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events', 'SWD Inc.', 'Non-SWD Inc.', 'SWD Ratio', 'Non-SWD Ratio', datasetKey === 'raw' ? 'Supp. Cells' : 'Approx. Cells'].filter(keep);
+      const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82, 76, 96, 76, 96, 90].filter(keep);
+      tableRows = tableRows.map(row => row.filter(keep));
+      const width = Math.max(1400, 84 + widths.reduce((a, b) => a + b, 0)), rowHeight = 28, height = Math.max(980, 560 + tableRows.length * rowHeight);
       const canvas = document.createElement('canvas');
       canvas.width = width;
       canvas.height = height;
@@ -665,7 +691,7 @@
       const cards = [
         ['Selected metric total', formatValue(metric.key, totals.metrics[metric.key] || 0)],
         [activeMode() === 'district' ? 'Entities reported' : 'Areas represented', fmt.format(areaCountValue(source))],
-        ['Entities included in totals', `${fmt.format(entityBreakdown(memberEntities(null)).total)} (${breakdownText(entityBreakdown(memberEntities(null)))})`],
+        [`Entities included in totals: ${breakdownText(entityBreakdown(memberEntities(null)))}`, fmt.format(entityBreakdown(memberEntities(null)).total)],
         [cellCountTitleForDataset(datasetKey), fmt.format(cellCountForDataset(totals, metric.key, datasetKey))]
       ];
       cards.forEach((card, index) => {
@@ -679,7 +705,7 @@
         ctx.fillText(card[1], x + 18, y + 36);
         ctx.fillStyle = '#5f6b77';
         ctx.font = '13px Segoe UI, Arial';
-        wrapText(ctx, card[0], x + 18, y + 60, 260, 16);
+        wrapText(ctx, card[0], x + 18, y + 58, 264, 15);
       });
       y += 124;
       ctx.fillStyle = '#17202a';
@@ -700,10 +726,6 @@
       ctx.fillText(item ? 'Bottom Drawer Data' : 'Bottom Drawer Data: State Detail', 42, y);
       y += 24;
       if (tableRows.length) {
-        const keep = (_, idx) => columnVisible(idx);
-        const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events'].filter(keep);
-        const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82].filter(keep);
-        tableRows = tableRows.map(row => row.filter(keep));
         let x = 42;
         ctx.fillStyle = headerFill;
         ctx.fillRect(42, y, widths.reduce((a, b) => a + b, 0), rowHeight);
@@ -818,9 +840,10 @@
     document.querySelector('aside').addEventListener('scroll', () => { if (!appDataPanel.hidden) placeAppDataPanel(); });
     window.addEventListener('resize', () => { if (!appDataPanel.hidden) placeAppDataPanel(); });
     const columnMenuButton = document.getElementById('column-menu-button'), columnList = document.getElementById('column-list');
-    columnList.innerHTML = '<p class="column-list-title">Table columns</p>' + DETAIL_COLUMNS.map((label, idx) => `<label><input type="checkbox" data-column="${idx}" checked${idx === 0 ? ' disabled title="Year is always shown"' : ''}> ${label}</label>`).join('') + '<button class="column-reset" type="button" id="column-reset">Show all</button>';
+    columnList.innerHTML = '<p class="column-list-title">Table columns</p>' + DETAIL_COLUMNS.map((label, idx) => `${idx === OPTIONAL_COLUMN_START ? '<p class="column-list-title" style="margin-top:8px">Optional columns</p>' : ''}<label><input type="checkbox" data-column="${idx}"${hiddenColumns.has(idx) ? '' : ' checked'}${idx === 0 ? ' disabled title="Year is always shown"' : ''}> ${label}</label>`).join('') + '<button class="column-reset" type="button" id="column-reset">Reset columns</button>';
     columnList.addEventListener('change', event => { const box = event.target.closest('input[data-column]'); if (!box) return; const idx = Number(box.dataset.column); if (box.checked) hiddenColumns.delete(idx); else hiddenColumns.add(idx); applyColumnVisibility(); });
-    columnList.addEventListener('click', event => { event.stopPropagation(); if (event.target.id === 'column-reset') { hiddenColumns.clear(); columnList.querySelectorAll('input[data-column]').forEach(box => { box.checked = true; }); applyColumnVisibility(); } });
+    columnList.addEventListener('click', event => { event.stopPropagation(); if (event.target.id === 'column-reset') { hiddenColumns.clear(); [13, 14, 15, 16, 17].forEach(idx => hiddenColumns.add(idx)); columnList.querySelectorAll('input[data-column]').forEach(box => { box.checked = !hiddenColumns.has(Number(box.dataset.column)); }); applyColumnVisibility(); } });
+    applyColumnVisibility();
     function setColumnMenuOpen(open) { columnList.hidden = !open; columnMenuButton.setAttribute('aria-expanded', String(open)); }
     columnMenuButton.addEventListener('click', event => { event.stopPropagation(); setColumnMenuOpen(columnList.hidden); });
     document.addEventListener('click', event => {
