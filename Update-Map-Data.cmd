@@ -23,6 +23,7 @@ if not %errorlevel%==0 (
   pause
   exit /b 1
 )
+".venv\Scripts\python.exe" scripts\write_app_info.py --refreshed-now >nul
 ".venv\Scripts\python.exe" scripts\make_pr_body.py
 echo.
 type build\pr-body.md

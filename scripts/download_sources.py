@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from datetime import datetime, timezone
 import re
 import urllib.parse
 import urllib.request
@@ -98,6 +99,7 @@ def main():
                 "schoolYear": candidate["schoolYear"],
                 "period": candidate["period"],
                 "status": "review",
+                "importedOn": datetime.now(timezone.utc).date().isoformat(),
                 "url": candidate["url"],
             })
         manifest["sources"] = sorted(manifest["sources"], key=lambda item: (item["schoolYear"], item["period"], item["url"]))

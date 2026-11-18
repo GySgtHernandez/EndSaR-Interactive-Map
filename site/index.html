@@ -85,6 +85,27 @@
     .detail-table.approximated-table th { background: #72dd44; color: #17202a; }
     .detail-table tr:nth-child(even) td { background: #f6f8fa; }
     .data-through { margin-top: 6px; font-size: 13px; font-weight: 700; color: #0f5f68; }
+    .data-updated { margin-top: 2px; font-size: 12px; font-weight: 400; color: #0f5f68; }
+    .tip-wrap { position: relative; }
+    .tip { display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 1200; width: min(330px, 100%); padding: 9px 11px; border-radius: 6px; background: #17202a; color: #fff; font-size: 12px; line-height: 1.4; font-weight: 400; text-transform: none; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+    .tip::before { content: ''; position: absolute; top: -5px; left: 14px; border: 5px solid transparent; border-top: 0; border-bottom-color: #17202a; }
+    .tip-wrap:hover .tip, .tip-wrap:focus-within .tip { display: block; }
+    .app-data-toggle { margin-top: 6px; padding: 3px 8px; border: 1px solid #c9d3dd; border-radius: 4px; background: #fff; color: #203a5f; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .app-data-toggle:hover, .app-data-toggle[aria-expanded="true"] { background: #eef6f7; }
+    .app-data-panel { position: fixed; z-index: 2000; width: 270px; padding: 12px 14px; border: 1px solid #c9d3dd; border-radius: 8px; background: #fff; box-shadow: 0 6px 22px rgba(0,0,0,.18); font-size: 13px; }
+    .app-data-panel[hidden] { display: none; }
+    .app-data-panel h3 { margin: 0 0 8px; font-size: 14px; color: #17202a; }
+    .app-data-panel dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 5px 10px; }
+    .app-data-panel dt { color: var(--muted); }
+    .app-data-panel dd { margin: 0; color: #17202a; font-weight: 700; word-break: break-word; }
+    .column-menu { position: relative; }
+    .drawer-bar .column-menu-button { width: 30px; font-size: 16px; line-height: 1; font-weight: 700; color: #203a5f; }
+    .column-list { position: absolute; right: 0; bottom: calc(100% + 6px); z-index: 1300; width: 230px; max-height: 60vh; overflow-y: auto; padding: 8px 10px; border: 1px solid #c9d3dd; border-radius: 8px; background: #fff; box-shadow: 0 6px 22px rgba(0,0,0,.18); font-size: 12px; }
+    .column-list[hidden] { display: none; }
+    .column-list-title { margin: 0 0 6px; font-weight: 700; color: #17202a; }
+    .column-list label { display: flex; align-items: center; gap: 7px; margin: 0; padding: 2px 0; color: #203a5f; cursor: pointer; text-transform: none; letter-spacing: normal; font-size: 12px; font-weight: 400; }
+    .column-list input { width: 14px; height: 14px; min-height: 14px; margin: 0; }
+    .column-list .column-reset { margin-top: 6px; width: auto; height: auto; padding: 3px 8px; font-size: 12px; }
     .toggle-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: #384653; text-transform: none; font-weight: 400; }
     .toggle-row input { width: 16px; min-height: 16px; height: 16px; margin: 0; }
     .share-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
@@ -109,12 +130,13 @@
       <h1>EndSaR Interactive Data Map</h1>
       <p>School-year data uses CEPI <em>Use of seclusion and restraint data files</em> [Data set] and CEPI district-code geography assignments.</p>
       <p class="data-through" id="data-through"></p>
+      <p class="data-updated" id="data-updated"></p>
       <label for="dataset">Data Selection</label><select id="dataset"><option value="raw">Raw CEPI Data</option><option value="approximated" selected>Approximated Data</option></select>
       <div class="controls">
         <div><label for="view">Map View</label><select id="view"><option value="district">District data</option><option value="isd">ISD data</option><option value="region">Region data</option><option value="county">County data</option></select></div>
         <div><label for="year">School Year</label><select id="year"></select></div>
       </div>
-      <div id="points-wrap"><label class="toggle-row" for="show-points"><input type="checkbox" id="show-points" checked> Show charter academies, ISD programs and state districts</label><p class="point-note">Circles = charter academies (PSAs). Squares = ISD programs. Diamonds = state districts. These have no district boundary, so each is placed at its office address, or near its host district or ISD when no address is on file. Zoom in to separate crowded markers.</p></div>
+      <div id="points-wrap" class="tip-wrap"><label class="toggle-row" for="show-points"><input type="checkbox" id="show-points" checked aria-describedby="points-tip"> Show charter academies, ISD programs and state districts</label><span class="tip" id="points-tip" role="tooltip">Circles = charter academies (PSAs). Squares = ISD programs. Diamonds = state districts. These have no district boundary, so each is placed at its office address, or near its host district or ISD when no address is on file. Zoom in to separate crowded markers.</span></div>
       <div id="scope-wrap"><label for="scope">Data Scope</label><select id="scope"><option value="combined">Combined entities</option><option value="entity">ISD entity only</option></select></div>
       <label for="metric">Metric</label><select id="metric"></select>
       <label>Export</label><div class="export-controls"><button class="command" id="export-png" type="button">Export Map as PNG</button><button class="command" id="export-table" type="button">Export Table as Excel</button></div>
@@ -130,10 +152,12 @@
       <div id="entity-panel" class="details"><p>Select an area on the map to see details.</p></div>
       <p class="note">Michigan's Center for Educational Performance and Information. (2017-2026). <em>Use of seclusion and restraint data files</em> [Data set]. MI School Data. <a href="https://www.mischooldata.org/districtschool-data-files/" target="_blank" rel="noopener noreferrer">https://www.mischooldata.org/districtschool-data-files/</a></p>
       <p class="credit">Developed by Matt Rische</p>
+      <button class="app-data-toggle" id="app-data-toggle" type="button" aria-expanded="false" aria-controls="app-data-panel">App Data &#9656;</button>
     </aside>
-    <main><div id="map"></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
+    <div class="app-data-panel" id="app-data-panel" role="dialog" aria-label="App data" hidden><h3>App Data</h3><dl><dt>Last Updated:</dt><dd id="app-last-updated">-</dd><dt>Last Refreshed:</dt><dd id="app-last-refreshed">-</dd><dt>Last Import:</dt><dd id="app-last-import">-</dd></dl></div>
+      <main><div id="map"></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
   </div>
-  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Show or hide the detail table" aria-label="Show or hide the detail table">&#9650;</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button></div><div class="drawer-content" id="drawer-content"></div></div>
+  <div id="bottom-drawer" class="bottom-drawer"><div class="legend" id="legend" aria-label="Map legend"><div class="legend-title" id="legend-title">Legend</div><div id="legend-content"><div class="swatches" id="swatches"></div><div class="scale"><span id="legend-min">0</span><span id="legend-mid">50th pct</span><span id="legend-max">0</span></div></div></div><div class="drawer-bar"><button id="drawer-toggle" type="button" title="Show or hide the detail table" aria-label="Show or hide the detail table">&#9650;</button><span class="drawer-title" id="drawer-title">Detail Table</span><span class="drawer-subtitle" id="drawer-subtitle">Select an area to populate the table</span><button class="legend-toggle" id="legend-toggle" type="button" title="Toggle legend">Hide Legend</button><div class="column-menu"><button class="column-menu-button" id="column-menu-button" type="button" title="Choose table columns" aria-label="Choose table columns" aria-haspopup="true" aria-expanded="false">&#8942;</button><div class="column-list" id="column-list" role="menu" hidden></div></div></div><div class="drawer-content" id="drawer-content"></div></div>
   <div class="info-overlay" id="info-overlay" aria-hidden="true"><div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="info-title"><div class="info-dialog-header"><div class="info-dialog-title"><h2 id="info-title">Information</h2><p id="info-subtitle"></p></div><button class="info-close" id="info-close" type="button" aria-label="Close information">×</button></div><div class="info-dialog-body" id="info-body"></div></div></div>
   <script src="leaflet/leaflet.js"></script><script src="county-boundaries-optimized.js"></script><script src="district-boundaries-optimized.js"></script><script src="isd-boundaries-optimized.js"></script><script src="region-boundaries-optimized.js"></script>
   <script>
@@ -158,13 +182,15 @@
       return payload;
     }
     (async () => {
-    const [dataResponse, pointsResponse] = await Promise.all([
+    const [dataResponse, pointsResponse, appInfoResponse] = await Promise.all([
       fetch('data/map-data.json', { cache: 'no-cache' }),
-      fetch('data/entity-locations.json', { cache: 'no-cache' }).catch(() => null)
+      fetch('data/entity-locations.json', { cache: 'no-cache' }).catch(() => null),
+      fetch('data/app-info.json', { cache: 'no-cache' }).catch(() => null)
     ]);
     if (!dataResponse.ok) throw new Error(`Map data request failed (${dataResponse.status})`);
     const dataPayload = expandMapData(await dataResponse.json());
     const ENTITY_POINTS = pointsResponse && pointsResponse.ok ? (await pointsResponse.json()).points || {} : {};
+    const APP_INFO = appInfoResponse && appInfoResponse.ok ? await appInfoResponse.json().catch(() => ({})) : {};
     const MAP_DATASETS = dataPayload.datasets;
     const DEFAULT_DATASET = dataPayload.defaultDataset;
     const MAP_SOURCES = MAP_DATASETS[DEFAULT_DATASET].sources;
@@ -342,6 +368,16 @@
         const data = source.stateTotals[y.year];
         return `<tr><td>${y.year}</td><td>State Total</td><td>${displayValue(data, 'all_students')}</td><td>${displayValue(data, 'swd_students')}</td><td>${displayValue(data, 'swd_seclusions')}</td><td>${displayValue(data, 'swd_restraints')}</td><td>${displayValue(data, 'nonswd_students')}</td><td>${displayValue(data, 'nonswd_seclusions')}</td><td>${displayValue(data, 'nonswd_restraints')}</td><td>${displayValue(data, 'all_seclusions')}</td><td>${displayValue(data, 'all_restraints')}</td><td>${displayValue(data, 'event_student_ratio')}</td><td>${displayValue(data, 'all_events')}</td></tr>`;
       }).join('');
+    }
+    const DETAIL_COLUMNS = ['Year', 'Scope', 'Students Reported', 'SWD Students', 'SWD Seclusions', 'SWD Restraints', 'Non-SWD Students', 'Non-SWD Seclusions', 'Non-SWD Restraints', 'Total Seclusions', 'Total Restraints', 'Combined Ratio', 'Total Incidents'];
+    const hiddenColumns = new Set();
+    function columnVisible(index) { return !hiddenColumns.has(index); }
+    function applyColumnVisibility() {
+      let style = document.getElementById('column-visibility');
+      if (!style) { style = document.createElement('style'); style.id = 'column-visibility'; document.head.appendChild(style); }
+      style.textContent = Array.from(hiddenColumns).map(i => `.detail-table th:nth-child(${i + 1}), .detail-table td:nth-child(${i + 1}) { display: none; }`).join('\n');
+      const button = document.getElementById('column-menu-button');
+      if (button) button.style.borderColor = hiddenColumns.size ? '#0f5f68' : '';
     }
     function detailTableHtml(rows, datasetKey = datasetSelect.value) { return `<table class="detail-table ${datasetKey === 'approximated' ? 'approximated-table' : 'raw-table'}"><thead><tr><th>Year</th><th>Scope</th><th>Students Reported</th><th>SWD Students</th><th>SWD Seclusions</th><th>SWD Restraints</th><th>Non-SWD Students</th><th>Non-SWD Seclusions</th><th>Non-SWD Restraints</th><th>Total Seclusions</th><th>Total Restraints</th><th>Combined Ratio</th><th>Total Incidents</th></tr></thead><tbody>${rows}</tbody></table>`; }
     function renderStateDrawer() {
@@ -589,8 +625,10 @@
       ctx.fillText(item ? 'Bottom Drawer Data' : 'Bottom Drawer Data: State Detail', 42, y);
       y += 24;
       if (tableRows.length) {
-        const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events'];
-        const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82];
+        const keep = (_, idx) => columnVisible(idx);
+        const columns = ['Year', 'Scope', 'Students', 'SWD Stud.', 'SWD Secl.', 'SWD Restr.', 'Non-SWD Stud.', 'Non-SWD Secl.', 'Non-SWD Restr.', 'All Secl.', 'All Restr.', 'Ratio', 'Events'].filter(keep);
+        const widths = [86, 140, 92, 86, 86, 86, 106, 106, 106, 82, 82, 74, 82].filter(keep);
+        tableRows = tableRows.map(row => row.filter(keep));
         let x = 42;
         ctx.fillStyle = headerFill;
         ctx.fillRect(42, y, widths.reduce((a, b) => a + b, 0), rowHeight);
@@ -662,7 +700,7 @@
         ['Source', 'MI School Data, CEPI Use of seclusion and restraint data files'],
         ['Note', datasetSelect.value === 'raw' ? 'Values marked * omit one or more suppressed cells (<10).' : 'Approximated data estimates suppressed cells (<10) from ISD totals.']
       ];
-      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => Array.from(row.children).map(cell => cell.textContent.replace(/\s+/g, ' ').trim()));
+      const tableRows = Array.from(table.querySelectorAll('tr')).map(row => Array.from(row.children).filter((_, idx) => columnVisible(idx)).map(cell => cell.textContent.replace(/\s+/g, ' ').trim()));
       const rows = metadataRows.concat([[]], tableRows), headerRows = new Set([0, metadataRows.length + 1]);
       const link = document.createElement('a'); link.download = `endsar-table-${exportSlug()}.xlsx`; link.href = URL.createObjectURL(buildXlsx(rows, headerRows)); link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 4000);
     }
@@ -680,6 +718,39 @@
     function readHash() { return new URLSearchParams(location.hash.replace(/^#/, '')); }
     const lastYear = MAP_METADATA.years[MAP_METADATA.years.length - 1];
     document.getElementById('data-through').textContent = `Data through the ${lastYear} school year (${MAP_METADATA.years.length} school years)`;
+    // Dates come from data/app-info.json, written by the update pipeline (see README).
+    function formatAppDate(value, withTime = false) {
+      if (!value) return 'Not recorded';
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(value) ? new Date(`${value}T12:00:00`) : new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      const options = withTime ? { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' } : { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleString('en-US', options);
+    }
+    if (APP_INFO.lastUpdated) document.getElementById('data-updated').textContent = `Updated: ${formatAppDate(APP_INFO.lastUpdated)}`;
+    document.getElementById('app-last-updated').textContent = formatAppDate(APP_INFO.lastUpdated);
+    document.getElementById('app-last-refreshed').textContent = formatAppDate(APP_INFO.lastRefreshed, true);
+    document.getElementById('app-last-import').textContent = APP_INFO.lastImportFile || 'Not recorded';
+    const appDataToggle = document.getElementById('app-data-toggle'), appDataPanel = document.getElementById('app-data-panel');
+    function placeAppDataPanel() {
+      const button = appDataToggle.getBoundingClientRect(), side = document.querySelector('aside').getBoundingClientRect();
+      if (window.innerWidth > 900) { appDataPanel.style.left = `${side.right + 10}px`; appDataPanel.style.top = `${Math.max(10, Math.min(button.top - 12, window.innerHeight - appDataPanel.offsetHeight - 10))}px`; }
+      else { appDataPanel.style.left = `${Math.max(10, button.left)}px`; appDataPanel.style.top = `${button.bottom + 6}px`; }
+    }
+    function setAppDataOpen(open) { appDataPanel.hidden = !open; appDataToggle.setAttribute('aria-expanded', String(open)); appDataToggle.innerHTML = open ? 'App Data &#9666;' : 'App Data &#9656;'; if (open) placeAppDataPanel(); }
+    appDataToggle.addEventListener('click', event => { event.stopPropagation(); setAppDataOpen(appDataPanel.hidden); });
+    document.querySelector('aside').addEventListener('scroll', () => { if (!appDataPanel.hidden) placeAppDataPanel(); });
+    window.addEventListener('resize', () => { if (!appDataPanel.hidden) placeAppDataPanel(); });
+    const columnMenuButton = document.getElementById('column-menu-button'), columnList = document.getElementById('column-list');
+    columnList.innerHTML = '<p class="column-list-title">Table columns</p>' + DETAIL_COLUMNS.map((label, idx) => `<label><input type="checkbox" data-column="${idx}" checked${idx === 0 ? ' disabled title="Year is always shown"' : ''}> ${label}</label>`).join('') + '<button class="column-reset" type="button" id="column-reset">Show all</button>';
+    columnList.addEventListener('change', event => { const box = event.target.closest('input[data-column]'); if (!box) return; const idx = Number(box.dataset.column); if (box.checked) hiddenColumns.delete(idx); else hiddenColumns.add(idx); applyColumnVisibility(); });
+    columnList.addEventListener('click', event => { event.stopPropagation(); if (event.target.id === 'column-reset') { hiddenColumns.clear(); columnList.querySelectorAll('input[data-column]').forEach(box => { box.checked = true; }); applyColumnVisibility(); } });
+    function setColumnMenuOpen(open) { columnList.hidden = !open; columnMenuButton.setAttribute('aria-expanded', String(open)); }
+    columnMenuButton.addEventListener('click', event => { event.stopPropagation(); setColumnMenuOpen(columnList.hidden); });
+    document.addEventListener('click', event => {
+      if (!appDataPanel.hidden && !appDataPanel.contains(event.target) && event.target !== appDataToggle) setAppDataOpen(false);
+      if (!columnList.hidden && !columnList.contains(event.target) && event.target !== columnMenuButton) setColumnMenuOpen(false);
+    });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') { setAppDataOpen(false); setColumnMenuOpen(false); } });
     const initial = readHash();
     setIfValid(datasetSelect, initial.get('data')); setIfValid(viewSelect, initial.get('view')); setIfValid(scopeSelect, initial.get('scope')); setIfValid(metricSelect, initial.get('metric'));
     refreshScope(); refreshYears(); setIfValid(yearSelect, initial.get('year')); refreshSearch(); loadLayer(); updateStats(); entityPanel.innerHTML = `<p>${labels[activeMode()].empty}</p>`; renderStateDrawer();

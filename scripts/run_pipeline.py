@@ -37,6 +37,7 @@ def main():
     run(sys.executable, SCRIPTS / "add_projection_tabs.py", "--workbook", WORKBOOK, "--roster", ROOT / "data" / "district-roster.csv", "--regions", SCRIPTS / "isd-code-to-region.txt")
     run(sys.executable, SCRIPTS / "build_map_data.py", "--workbook", WORKBOOK, "--json-output", ROOT / "site" / "data" / "map-data.json")
     run(sys.executable, SCRIPTS / "export_entity_locations.py")
+    run(sys.executable, SCRIPTS / "write_app_info.py")
     validate = [sys.executable, SCRIPTS / "validate_map_data.py", ROOT / "site" / "data" / "map-data.json", "--baseline", args.baseline, "--report", REPORTS / "validation-report.json"]
     if args.allow_change:
         validate.append("--allow-change")
