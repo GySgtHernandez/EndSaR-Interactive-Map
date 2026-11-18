@@ -204,8 +204,8 @@
         url: 'https://www.endsar-mi.org'
       }
     };
-    const MICHIGAN_BOUNDS = L.latLngBounds([41.25, -91.2], [48.75, -80.2]);
-    const MAP_NAVIGATION_BOUNDS = L.latLngBounds([39.2, -91.2], [48.75, -78.0]);
+    // Michigan's outer edges (from the county boundary file).
+    const MICHIGAN_EXTENT = L.latLngBounds([41.696, -90.418], [48.191, -82.416]);
     const boundaries = { county: COUNTY_BOUNDARIES_OPTIMIZED, district: DISTRICT_BOUNDARIES_OPTIMIZED, isd: ISD_BOUNDARIES_OPTIMIZED, region: REGION_BOUNDARIES_OPTIMIZED };
     const labels = { county: { find: 'Find County', ph: 'Type a county', represented: 'counties represented', empty: 'Select a county on the map to see details.' }, district: { find: 'Find District', ph: 'Type a district', represented: 'districts represented', empty: 'Select a district on the map to see details.' }, isd: { find: 'Find ISD', ph: 'Type an ISD', represented: 'ISDs represented', empty: 'Select an ISD on the map to see details.' }, region: { find: 'Find Region', ph: 'Type a region', represented: 'regions represented', empty: 'Select a region on the map to see details.' } };
     let selectedLayer = null, geoLayer = null, pointLayer = null, pointRenderer = null, hatchCanvas = null, hatchCtx = null, hatchFrame = 0, hatchTimer = 0, hatchDrawTopLeft = L.point(0, 0);
@@ -275,8 +275,21 @@
     function cellCountTitleForDataset(datasetKey) { return datasetKey === 'raw' ? 'Suppressed cells' : 'Approximated cells'; }
     function styleFeature(feature) { const item = activeItem(feature), metricKey = metricSelect.value, data = item ? yearData(item) : null, value = data ? data.metrics[metricKey] || 0 : 0, patterned = data && hasSuppressionPattern(data, metricKey); return { color: '#ffffff', weight: activeMode() === 'district' ? 0.8 : activeMode() === 'region' ? 2 : 1.2, fillColor: datasetSelect.value === 'raw' && patterned && !isHistoricAverage() ? '#d8dde2' : percentileColor(value, metricKey), fillOpacity: 0.88 }; }
 
-    const map = L.map('map', { zoomControl: true, scrollWheelZoom: true, preferCanvas: true, maxBounds: MAP_NAVIGATION_BOUNDS, maxBoundsViscosity: 0.85, minZoom: 5, maxZoom: 11, attributionControl: false }).setView([44.35, -85.55], 6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { bounds: MICHIGAN_BOUNDS, noWrap: true, keepBuffer: 1, minZoom: 5, maxZoom: 11, opacity: 0.82, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+    const map = L.map('map', { zoomControl: true, scrollWheelZoom: true, preferCanvas: true, maxBoundsViscosity: 0.85, minZoom: 5, maxZoom: 11, attributionControl: false }).setView([44.35, -85.55], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { noWrap: true, keepBuffer: 1, minZoom: 5, maxZoom: 11, opacity: 0.82, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+    // Panning limit: any Michigan border can be dragged all the way to the opposite side of the screen
+    // (south border to the top, north to the bottom, east to the left, west to the right).
+    // The limit is Michigan's extent plus one full screen in every direction, recalculated for each zoom level.
+    function navigationBounds(zoom) {
+      const size = map.getSize(), sw = map.project(MICHIGAN_EXTENT.getSouthWest(), zoom), ne = map.project(MICHIGAN_EXTENT.getNorthEast(), zoom);
+      const low = map.unproject(L.point(sw.x - size.x, sw.y + size.y), zoom), high = map.unproject(L.point(ne.x + size.x, ne.y - size.y), zoom);
+      return L.latLngBounds([Math.max(low.lat, -85), low.lng], [Math.min(high.lat, 85), high.lng]);
+    }
+    const leafletLimitCenter = map._limitCenter;
+    map._limitCenter = function (center, zoom, bounds) { return leafletLimitCenter.call(this, center, zoom, bounds ? navigationBounds(zoom) : bounds); };
+    function updateNavigationBounds() { map.options.maxBounds = navigationBounds(map.getZoom()); }
+    map.setMaxBounds(navigationBounds(map.getZoom()));
+    map.on('zoomend resize', updateNavigationBounds);
     function ensureHatchCanvas() { if (hatchCanvas) return; hatchCanvas = document.createElement('canvas'); hatchCanvas.className = 'screen-hatch-canvas'; map.getPanes().overlayPane.appendChild(hatchCanvas); hatchCtx = hatchCanvas.getContext('2d'); }
     function resizeHatchCanvas() { ensureHatchCanvas(); const size = map.getSize(), dpr = window.devicePixelRatio || 1, topLeft = map.containerPointToLayerPoint([0, 0]); L.DomUtil.setPosition(hatchCanvas, topLeft); hatchCanvas.style.width = `${size.x}px`; hatchCanvas.style.height = `${size.y}px`; hatchCanvas.width = Math.ceil(size.x * dpr); hatchCanvas.height = Math.ceil(size.y * dpr); hatchCtx.setTransform(dpr, 0, 0, dpr, 0, 0); return { size, topLeft }; }
     function drawFeaturePathToContainer(ctx, geometry) {
