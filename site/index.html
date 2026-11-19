@@ -98,6 +98,9 @@
     .tip::before { content: ''; position: absolute; top: -5px; left: 14px; border: 5px solid transparent; border-top: 0; border-bottom-color: #17202a; }
     .tip-wrap:hover .tip, .tip-wrap:focus-within .tip { display: block; }
     .app-data-toggle { margin-top: 6px; padding: 3px 8px; border: 1px solid #c9d3dd; border-radius: 4px; background: #fff; color: #203a5f; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .github-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; color: #203a5f; font-size: 13px; font-weight: 700; text-decoration: underline; }
+    .github-link:hover { color: #0f5f68; }
+    .github-link img { width: 24px; height: 24px; display: block; }
     .app-data-toggle:hover, .app-data-toggle[aria-expanded="true"] { background: #eef6f7; }
     .app-data-panel { position: fixed; z-index: 2000; width: 270px; padding: 12px 14px; border: 1px solid #c9d3dd; border-radius: 8px; background: #fff; box-shadow: 0 6px 22px rgba(0,0,0,.18); font-size: 13px; }
     .app-data-panel[hidden] { display: none; }
@@ -164,6 +167,7 @@
       <p class="note">Michigan's Center for Educational Performance and Information. (2017-2026). <em>Use of seclusion and restraint data files</em> [Data set]. MI School Data. <a href="https://www.mischooldata.org/districtschool-data-files/" target="_blank" rel="noopener noreferrer">https://www.mischooldata.org/districtschool-data-files/</a></p>
       <p class="credit">Developed by Matt Rische</p>
       <button class="app-data-toggle" id="app-data-toggle" type="button" aria-expanded="false" aria-controls="app-data-panel">App Data &#9656;</button>
+      <div><a class="github-link" href="https://github.com/GySgtHernandez/EndSaR-Interactive-Map" target="_blank" rel="noopener noreferrer"><img src="github-mark.png" alt="" width="24" height="24">GitHub</a></div>
     </aside>
     <div class="app-data-panel" id="app-data-panel" role="dialog" aria-label="App data" hidden><h3>App Data</h3><dl><dt>Last Updated:</dt><dd id="app-last-updated">-</dd><dt>Last Refreshed:</dt><dd id="app-last-refreshed">-</dd><dt>Last Import:</dt><dd id="app-last-import">-</dd></dl></div>
       <main><div id="map"></div><div class="new-data-banner" id="new-data-banner" role="status" hidden><span id="new-data-text"></span><button class="banner-view" id="new-data-view" type="button">View it</button><button class="banner-close" id="new-data-close" type="button" aria-label="Dismiss">&times;</button></div><div class="loading" id="loading"><span class="spinner"></span>Loading map data&hellip;</div><div class="info-menu"><button class="info-button" id="info-button" type="button" aria-haspopup="true" aria-expanded="false">Information</button><div class="info-list" id="info-list" role="menu"><button class="info-item" type="button" data-info="seclusion" role="menuitem">Seclusion</button><button class="info-item" type="button" data-info="restraint" role="menuitem">Restraint</button><button class="info-item" type="button" data-info="getInvolved" role="menuitem">Get Involved</button></div></div></main>
