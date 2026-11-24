@@ -76,12 +76,14 @@
       "schoolYear": "2025-2026",
       "period": "full_year",
       "status": "final",
+      "importedOn": "2026-09-23",
       "url": "https://www.michigan.gov/cepi/-/media/Project/Websites/cepi/MISchoolData/2025-26/26CEPI60-Q34.xlsx",
       "filename": "26CEPI60-Q34.xlsx",
       "bytes": 890625,
       "sha256": "a4eccff1c68d79ddda401a528583d218b53042bc2d5ede92e2b467653120f0e2"
     }
   ],
+  "catalogChanges": [],
   "unapprovedCandidates": [],
   "reviewSources": [],
   "manifestUpdated": false
